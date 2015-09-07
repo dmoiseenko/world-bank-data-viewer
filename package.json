@@ -1,0 +1,24 @@
+{
+  "name": "Worl-Bank-Data-Viewer",
+  "version": "0.0.1",
+  "description": "Worl Bank Data Viewer",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lampas21/world-bank-data-viewer.git"
+  },
+  "author": "Denis Moiseenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lampas21/world-bank-data-viewer/issues"
+  },
+  "homepage": "https://github.com/lampas21/world-bank-data-viewer#readme",
+  "devDependencies": {
+    "browser-sync": "^2.9.1",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.0.1",
+    "gulp-util": "^3.0.6"
+  }
+}
