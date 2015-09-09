@@ -1,0 +1,1 @@
+!function(){"use strict";angular.module("app",[])}(),angular.module("app.core").run(["$templateCache",function(i){i.put("app/layout/shell.html",'<div class=container-fluid><div class=row><div class="col-sm-3 col-md-2 sidebar" ui-view=categories></div><div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ui-view=bookmarks></div></div></div>')}]);

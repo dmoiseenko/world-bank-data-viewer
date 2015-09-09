@@ -18,11 +18,17 @@
   ],
   "dependencies": {
     "angular": "*",
-    "font-awesome": "~4.0.3",
+    "font-awesome": "*",
     "angular-ui-router": "*",
-    "normalize.css": "*",
     "bourbon": "*",
     "bootstrap-sass": "*",
-    "neat": "*"
+    "neat": "*",
+    "bootsharp": "*"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": "dist/css/bootstrap.css",
+      "dist": "dist/js/bootstrap.js"
+    }
   }
 }

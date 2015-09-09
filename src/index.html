@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html data-ng-app="app" ng-strict-di>
 
 <head>
@@ -7,16 +7,52 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="content/main.css">
+
+    <style>
+        /* This helps the ng-show/ng-hide animations start at the right place. */
+        /* Since Angular has this but needs to load, this gives us the class early. */
+        .ng-hide { display: none!important; }
+    </style>
+
+    <!-- build:css styles/lib.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/videojs/dist/video-js/video-js.css" />
+    <link rel="stylesheet" href="../bower_components/bootsharp/dist/css/bootsharp.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/app.css-->
+    <!-- inject:css -->
+    <link rel="stylesheet" href=".tmp/styles.css">
+    <!-- endinject -->
+    <!-- endbuild -->
 </head>
 
 <body>
 
+    <h1>Denis</h1>
+
+    <!-- build:js js/lib.js -->
+    <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="app/app.module.js"></script>
+    <script src="../bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+    <script src="../bower_components/videojs/dist/video-js/video.js"></script>
+    <script src="../bower_components/bootsharp/dist/js/bootsharp.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js js/app.js -->
+    <!-- inject:js -->
+    <script src="/src/app/app.module.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:templates:js -->
+    <!-- endinject -->
+
+    <!-- endbuild -->
+
 </body>
 
 </html>
