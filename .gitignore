@@ -36,6 +36,8 @@ journal
 *.o
 *.so
 report/
+build/
+.tmp/
 
 # Packages #
 ############
