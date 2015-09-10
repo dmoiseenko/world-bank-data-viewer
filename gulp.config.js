@@ -37,7 +37,7 @@ module.exports = function () {
             '**/*.module.js',
             '**/*.js'
         ],
-        scss: client + 'content/scss/styles.scss',
+        scss: client + 'content/scss/**/*.scss',
         root: root,
         source: 'src/',
         temp: temp,

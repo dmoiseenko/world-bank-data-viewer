@@ -11,7 +11,7 @@ var $ = require('gulp-load-plugins')({ lazy: true });
  * List the available gulp tasks
  */
 gulp.task('help', $.taskListing);
-gulp.task('default', ['optimize']);
+gulp.task('default', ['serve-dev']);
 
 /**
  * vet the code and create coverage report
@@ -44,6 +44,23 @@ gulp.task('compile-styles', function () {
         .pipe(gulp.dest(config.temp));
 });
 
+
+/**
+ * Compile scss to css and reload browsersync
+ * @return {Stream}
+ */
+gulp.task('compile-styles-reload-browsersync', function () {
+    log('Compiling SCSS --> CSS');
+
+    return gulp
+        .src(config.scss)
+        .pipe($.plumber())
+        .pipe($.sass().on('error', $.sass.logError))
+        .pipe($.autoprefixer({ browsers: ['last 2 version', '> 5%'] }))
+        .pipe(gulp.dest(config.temp))
+        .pipe(browserSync.stream());
+});
+
 /**
  * Copy fonts
  * @return {Stream}
@@ -66,7 +83,9 @@ gulp.task('fonts', $.sequence('clean-fonts', 'copy-fonts'));
  * Prepare CSS for production
  * @return {Stream}
  */
-gulp.task('styles', $.sequence('clean-styles', 'compile-styles'));
+gulp.task('styles', function (callback) {
+    $.sequence('clean-styles', 'compile-styles')(callback)
+});
 
 
 /**
@@ -86,10 +105,6 @@ gulp.task('compress-images', function () {
         .src(config.images)
         .pipe($.imagemin({ optimizationLevel: 4 }))
         .pipe(gulp.dest(config.build + 'images'));
-});
-
-gulp.task('scss-watcher', function () {
-    gulp.watch([config.scss], ['styles']);
 });
 
 /**
@@ -156,13 +171,18 @@ gulp.task('inject-css-templatecache', function () {
  */
 gulp.task('inject', $.sequence(['wiredep', 'styles', 'templatecache'], 'inject-css-templatecache'));
 
-
 /**
  * Build everything
  * This is separate so we can run tests on
  * optimize before handling image or fonts
  */
-gulp.task('build', ['optimize', 'images', 'fonts'], function () {
+gulp.task('build', $.sequence(['optimize', 'images', 'fonts'], 'build-finished'));
+
+/**
+ * Finishing build
+ * Delete temp folder and pop up a message.
+ */
+gulp.task('build-finished', function () {
     log('Building everything');
 
     var msg = {
@@ -176,16 +196,39 @@ gulp.task('build', ['optimize', 'images', 'fonts'], function () {
 });
 
 /**
+ * Serve the build environment
+ * --debug-brk or --debug
+ * --nosync
+ */
+gulp.task('serve-build', function () { //['build']
+    serve(false);
+});
+
+/**
+ * serve the dev environment
+ * --debug-brk or --debug
+ * --nosync
+ */
+gulp.task('serve-dev', ['inject'], function() {
+    serve(true /*isDev*/);
+});
+
+/**
+ * Inject and optimize all files, move to a build folder,
+ * and inject them into the new index.html
+ * @return {Stream}
+ */
+gulp.task('optimize', $.sequence('inject', 'optimize-assets'));
+
+/**
  * Optimize all files, move to a build folder,
  * and inject them into the new index.html
  * @return {Stream}
  */
-
-//['inject'],
-gulp.task('optimize', function () {
+gulp.task('optimize-assets', function () {
     log('Optimizing the js, css, and html');
 
-    var assets = $.useref.assets({ searchPath: './' }); //{searchPath: './'}
+    var assets = $.useref.assets(); //{searchPath: './'}
     // Filters are named for the gulp-useref path
     var cssFilter = $.filter('**/*.css', { restore: true });
     var jsAppFilter = $.filter('**/' + config.optimized.app, { restore: true });
@@ -222,6 +265,16 @@ gulp.task('optimize', function () {
         .pipe($.revReplace())
         .pipe(gulp.dest(config.build));
 });
+
+/**
+ * Re-load browserSync
+ */
+gulp.task('reload-browserSync', browserSync.reload);
+
+/**
+ * Optimize the code and re-load browserSync
+ */
+gulp.task('browserSyncReload', $.sequence('optimize', 'reload-browserSync'));
 
 /**
  * Remove all files from the build, temp, and reports folders
@@ -387,4 +440,72 @@ function getHeader() {
     return $.header(template, {
         pkg: pkg
     });
+}
+
+/**
+ * serve the code
+ * --debug-brk or --debug
+ * --nosync
+ * @param  {Boolean} isDev - dev or build mode
+ */
+function serve(isDev) {
+    startBrowserSync(isDev);
+}
+
+/**
+ * Start BrowserSync
+ * --nosync will avoid browserSync
+ */
+function startBrowserSync(isDev) {
+    if (args.nosync || browserSync.active) {
+        return;
+    }
+
+    // If build: watches the files, builds, and restarts browser-sync.
+    // If dev: watches less, compiles it to css, browser-sync handles reload
+    if (isDev) {
+        gulp.watch([config.scss], ['compile-styles-reload-browsersync'])
+            .on('change', changeEvent);
+    } else {
+        gulp.watch([config.scss, config.js, config.html], ['browserSyncReload'])
+            .on('change', changeEvent);
+    }
+
+    var options = {
+        server: {
+            baseDir: isDev ? './src/' : './build',
+            routes: {
+                "/bower_components": "bower_components",
+                "/src": "src",
+                "/.tmp": ".tmp"
+            }
+        },
+        files: isDev ? [
+            config.client + '**/*.*',
+            '!' + '**/*.scss',
+            config.temp + '**/*.css'
+        ] : [],
+        ghostMode: { // these are the defaults t,f,t,t
+            clicks: true,
+            location: false,
+            forms: true,
+            scroll: true
+        },
+        injectChanges: true,
+        logFileChanges: true,
+        logLevel: 'debug',
+        notify: true,
+        reloadDelay: 0 //1000
+    };
+
+    browserSync(options);
+}
+
+/**
+ * When files change, log it
+ * @param  {Object} event - event that fired
+ */
+function changeEvent(event) {
+    var srcPattern = new RegExp('/.*(?=/' + config.source + ')/');
+    log('File ' + event.path.replace(srcPattern, '') + ' ' + event.type);
 }
