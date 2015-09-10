@@ -15,6 +15,7 @@ bower_components
 /reports
 
 
+
 # mongo db
 ###################
 #Don't commit Mongo Database files
@@ -37,7 +38,10 @@ journal
 *.so
 report/
 build/
+<<<<<<< HEAD
 .tmp/
+=======
+>>>>>>> origin/master
 
 # Packages #
 ############
