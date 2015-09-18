@@ -1,6 +1,37 @@
-﻿@import "partials/_base.scss";
+﻿@import "base";
 
-.asd{
-	@extend .btn;
-	
+.page {
+    @extend .container-fluid;
+}
+
+.header {
+    @include make-row(0);
+    height: 100px;
+}
+
+.content {
+    @include make-row(0);
+}
+
+.filter {
+    @include make-md-column(3);
+    height: 400px;
+}
+
+.chart {
+    @include make-md-column(9);
+    height: 500px;
+}
+
+.chart__change-button{
+    @extend .btn, .btn-default;
+}
+
+.chart__graph{
+    @include make-row(0);
+}
+
+.footer {
+    @include make-row(0);
+    height: 100px;
 }

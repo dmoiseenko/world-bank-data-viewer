@@ -1,5 +1,7 @@
 <!doctype html>
-<html data-ng-app="app" ng-strict-di>
+<!--suppress HtmlUnknownTag -->
+<!--TODO ng-strict-di-->
+<html data-ng-app="app">
 
 <head>
     <meta charset="utf-8">
@@ -11,13 +13,13 @@
     <style>
         /* This helps the ng-show/ng-hide animations start at the right place. */
         /* Since Angular has this but needs to load, this gives us the class early. */
-        .ng-hide { display: none!important; }
+        .ng-hide {
+            display: none !important;
+        }
     </style>
 
     <!-- build:css styles/lib.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="../bower_components/videojs/dist/video-js/video-js.css" />
-    <link rel="stylesheet" href="../bower_components/bootsharp/dist/css/bootsharp.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -30,30 +32,53 @@
 
 <body>
 
-    <h1>Denis</h1>
+<div class="page">
+    <div class="header">
+        <h2>World Bank Data Viewer</h2>
+    </div>
 
-    <input type="button" value="lampas" class="asd">
+    <div class="content">
+        <div class="filter" ng-controller="Filter as vm">
+        </div>
+        <div class="chart" ng-controller="Chart as vm">
+            <div class="chart__graph">
+                <linechart data="vm.data" options="vm.options"></linechart>
+            </div>
+            <button class="chart__change-button" ng-click="vm.change()">Change</button>
+        </div>
+    </div>
 
-    <!-- build:js js/lib.js -->
-    <!-- bower:js -->
-    <script src="../bower_components/jquery/dist/jquery.js"></script>
-    <script src="../bower_components/angular/angular.js"></script>
-    <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="../bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
-    <script src="../bower_components/videojs/dist/video-js/video.js"></script>
-    <script src="../bower_components/bootsharp/dist/js/bootsharp.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+    <div class="footer"></div>
+</div>
 
-    <!-- build:js(./) js/app.js -->
-    <!-- inject:js -->
-    <script src="/src/app/app.module.js"></script>
-    <!-- endinject -->
+<!-- build:js js/lib.js -->
+<!-- bower:js -->
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="../bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+<script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="../bower_components/d3/d3.js"></script>
+<script src="../bower_components/moment/moment.js"></script>
+<script src="../bower_components/n3-line-chart/build/line-chart.min.js"></script>
+<script src="../bower_components/lodash/lodash.js"></script>
+<script src="../bower_components/restangular/dist/restangular.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
 
-    <!-- inject:templates:js -->
-    <!-- endinject -->
+<!-- build:js(./) js/app.js -->
+<!-- inject:js -->
+<script src="/src/app/app.module.js"></script>
+<script src="/src/app/chart/chart.module.js"></script>
+<script src="/src/app/filter/filter.module.js"></script>
+<script src="/src/app/chart/chart.controller.js"></script>
+<script src="/src/app/filter/filter.controller.js"></script>
+<!-- endinject -->
 
-    <!-- endbuild -->
+<!-- inject:templates:js -->
+<!-- endinject -->
+
+<!-- endbuild -->
 
 </body>
 

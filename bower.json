@@ -23,7 +23,9 @@
     "bourbon": "*",
     "bootstrap-sass": "*",
     "neat": "*",
-    "bootsharp": "*"
+    "angular-bootstrap": "*",
+    "n3-line-chart": "*",
+    "restangular": "*"
   },
   "overrides": {
     "bootstrap": {

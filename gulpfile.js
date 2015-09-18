@@ -461,9 +461,9 @@ function startBrowserSync(isDev) {
         return;
     }
 
-    // If build: watches the files, builds, and restarts browser-sync.
-    // If dev: watches less, compiles it to css, browser-sync handles reload
     if (isDev) {
+        // If build: watches the files, builds, and restarts browser-sync.
+        // If dev: watches less, compiles it to css, browser-sync handles reload
         gulp.watch([config.scss], ['compile-styles-reload-browsersync'])
             .on('change', changeEvent);
     } else {
