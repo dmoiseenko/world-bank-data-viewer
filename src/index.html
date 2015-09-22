@@ -39,12 +39,14 @@
 
     <div class="content">
         <div class="filter" ng-controller="Filter as vm">
+            <div ng-repeat="country in vm.countries">
+                <a href="#" ng-click="vm.selectCountry(country)">{{ country.name }}</a>
+            </div>
         </div>
         <div class="chart" ng-controller="Chart as vm">
             <div class="chart__graph">
                 <linechart data="vm.data" options="vm.options"></linechart>
             </div>
-            <button class="chart__change-button" ng-click="vm.change()">Change</button>
         </div>
     </div>
 
@@ -63,6 +65,7 @@
 <script src="../bower_components/n3-line-chart/build/line-chart.min.js"></script>
 <script src="../bower_components/lodash/lodash.js"></script>
 <script src="../bower_components/restangular/dist/restangular.js"></script>
+<script src="../bower_components/rxjs/dist/rx.all.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -70,8 +73,10 @@
 <!-- inject:js -->
 <script src="/src/app/app.module.js"></script>
 <script src="/src/app/chart/chart.module.js"></script>
+<script src="/src/app/core/core.module.js"></script>
 <script src="/src/app/filter/filter.module.js"></script>
 <script src="/src/app/chart/chart.controller.js"></script>
+<script src="/src/app/core/api.js"></script>
 <script src="/src/app/filter/filter.controller.js"></script>
 <!-- endinject -->
 

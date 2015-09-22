@@ -25,7 +25,8 @@
     "neat": "*",
     "angular-bootstrap": "*",
     "n3-line-chart": "*",
-    "restangular": "*"
+    "restangular": "*",
+    "rxjs": "*"
   },
   "overrides": {
     "bootstrap": {

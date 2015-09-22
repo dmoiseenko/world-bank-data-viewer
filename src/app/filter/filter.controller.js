@@ -1,38 +1,38 @@
-(function() {
+(function () {
     "use strict";
 
     angular
         .module('app.filter')
         .controller('Filter', Filter);
 
-    Filter.$inject = [];
+    Filter.$inject = ['api'];
 
     /* @ngInject */
-    function Filter() {
+    function Filter(api) {
         /* jshint validthis: true */
         var vm = this;
 
-        vm.activate = activate;
         vm.title = 'Filter';
+        vm.countries = [];
+        vm.values = [];
 
-        vm.alerts = [
-            { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
-            { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
-        ];
-
-        vm.closeAlert = function(index) {
-            vm.alerts.splice(index, 1);
-        };
-
+        vm.activate = activate;
+        vm.selectCountry = selectCountry;
 
         activate();
 
         ////////////////
 
         function activate() {
+            var subject  = api.getCountriesObservable();
+            subject.subscribe(function(data){
+                vm.countries = data;
+            });
         }
 
-
+        function selectCountry(country) {
+            api.selectCountry(country);
+        }
     }
 
 })();
