@@ -10,20 +10,25 @@
     /* @ngInject */
     function worldBank(Restangular) {
         var service = {
-            getAllCountries: getAllCountries,
-            getAllSources: getAllSources
+            getCountries: getCountries,
+            getSources: getSources,
+            getIndicatorsBySource: getIndicatorsBySource
         };
 
         return service;
 
         ////////////////
 
-        function getAllCountries() {
+        function getCountries() {
             return Restangular.all('countries').getList();
         }
 
-        function getAllSources() {
+        function getSources() {
             return Restangular.all('sources').getList();
+        }
+
+        function getIndicatorsBySource(source) {
+            return Restangular.all('source/'+ source.id +'/indicators').getList();
         }
 
         //Restangular

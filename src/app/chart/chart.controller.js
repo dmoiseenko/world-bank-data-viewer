@@ -47,7 +47,7 @@
         ////////////////
 
         function activate() {
-            //api.getCountryIndicatorObservable().subscribe(function (values){
+            //api.countryIndicatorObservable().subscribe(function (values){
             //    vm.data = convert(values);
             //});
         }

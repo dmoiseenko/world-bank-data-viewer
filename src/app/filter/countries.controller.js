@@ -3,38 +3,36 @@
 
     angular
         .module('app.filter')
-        .controller('CountryFilter', CountryFilter);
+        .controller('CountriesController', CountriesController);
 
-    CountryFilter.$inject = ['$scope', 'countryService'];
+    CountriesController.$inject = ['$scope', 'countries'];
 
     /* @ngInject */
-    function CountryFilter($scope, countryService) {
+    function CountriesController($scope, countries) {
         /* jshint validthis: true */
         var vm = this;
 
         vm.countries = [];
         vm.selectedCountries = [];
-        vm.values = [];
         vm.searchedCountry = '';
 
-        vm.activate = activate;
         vm.selectCountry = selectCountry;
-        vm.unselectCountry = unselectCountry;
+        vm.deselectCountry = deselectCountry;
 
         activate();
 
         ////////////////
 
         function activate() {
-            countryService.getCountriesObservable()
+            countries.countriesObservable
                 .subscribe(function (countries) {
                     vm.countries = countries;
                 });
 
-            countryService.getSelectedCountriesObservable()
+            countries.selectedCountriesObservable
                 .subscribe(function(selectedCountries){
                     vm.selectedCountries = selectedCountries;
-                })
+                });
 
             //observeOnScope($scope, 'vm.searchedCountry')
             //    .subscribe(function(change) {
@@ -43,11 +41,11 @@
         }
 
         function selectCountry(country) {
-            countryService.selectCountry(country);
+            countries.selectCountry(country);
         }
 
-        function unselectCountry(country) {
-            countryService.unselectCountry(country);
+        function deselectCountry(country) {
+            countries.deselectCountry(country);
         }
     }
 

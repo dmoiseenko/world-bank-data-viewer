@@ -15,7 +15,9 @@
 
 .filter {
     @include make-md-column(3);
-    height: 400px;
+    height: auto;
+    max-height: 800px;
+    overflow-x: hidden;
 }
 
 .selected-countries{
@@ -26,8 +28,6 @@
 }
 
 .chart {
-    @include make-md-column(9);
-    height: 500px;
 }
 
 .chart__change-button{

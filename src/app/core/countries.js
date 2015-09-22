@@ -3,23 +3,20 @@
 
     angular
         .module('app.core')
-        .factory('countryService', countryService);
+        .factory('countries', countries);
 
-    countryService.$inject = ['worldBank'];
+    countries.$inject = ['worldBank'];
 
     /* @ngInject */
-    function countryService(worldBank) {
+    function countries(worldBank) {
         var service = {
-            getCountriesObservable: getCountriesSubject,
-            getSelectedCountriesObservable: getSelectedCountriesSubject,
-            getCountryIndicatorObservable: getCountryIndicatorSubject,
+            countriesObservable: new Rx.BehaviorSubject([]),
+            selectedCountriesObservable: new Rx.BehaviorSubject([]),
+            countryIndicatorObservable: new Rx.BehaviorSubject([]),
             selectCountry: selectCountry,
-            unselectCountry: unselectCountry
+            deselectCountry: deselectCountry
         };
 
-        var countriesSubject = new Rx.BehaviorSubject([]);
-        var selectedCountriesSubject = new Rx.BehaviorSubject([]);
-        var countryIndicatorSubject = new Rx.BehaviorSubject([]);
         var countries = [];
         var selectedCountries = [];
 
@@ -29,26 +26,14 @@
 
         ////////////////
 
-        function getCountriesSubject() {
-            return countriesSubject;
-        }
-
-        function getCountryIndicatorSubject() {
-            return countryIndicatorSubject;
-        }
-
-        function getSelectedCountriesSubject() {
-            return selectedCountriesSubject;
-        }
-
         function activate() {
-            getCountriesSubject().subscribe(function (data) {
+            service.countriesObservable.subscribe(function (data) {
                 countries = data;
             });
 
-            worldBank.getAllCountries()
+            worldBank.getCountries()
                 .then(function (countries) {
-                    getCountriesSubject().onNext(excludeRegions(countries));
+                    service.countriesObservable.onNext(excludeRegions(countries));
                 });
         }
 
@@ -63,8 +48,8 @@
             selectedCountries.push(country);
             sortCountriesByName(selectedCountries);
 
-            getSelectedCountriesSubject().onNext(selectedCountries);
-            getCountriesSubject().onNext(countries);
+            service.selectedCountriesObservable.onNext(selectedCountries);
+            service.countriesObservable.onNext(countries);
 
             //Restangular
             //    .all('countries/' + country.iso2Code + '/indicators/NY.GDP.MKTP.CD')
@@ -74,7 +59,7 @@
             //    });
         }
 
-        function unselectCountry(country) {
+        function deselectCountry(country) {
             removeCountry(selectedCountries, country);
 
             countries.push(country);
