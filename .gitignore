@@ -38,10 +38,8 @@ journal
 *.so
 report/
 build/
-<<<<<<< HEAD
 .tmp/
-=======
->>>>>>> origin/master
+.vscode/
 
 # Packages #
 ############
