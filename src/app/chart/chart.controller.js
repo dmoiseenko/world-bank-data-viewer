@@ -5,10 +5,10 @@
         .module('app.chart')
         .controller('Chart', Chart);
 
-    Chart.$inject = ['api', '$timeout'];
+    Chart.$inject = [];
 
     /* @ngInject */
-    function Chart(api) {
+    function Chart() {
         /* jshint validthis: true */
         var vm = this;
 
@@ -47,9 +47,9 @@
         ////////////////
 
         function activate() {
-            api.getCountryIndicatorObservable().subscribe(function (values){
-                vm.data = convert(values);
-            });
+            //api.getCountryIndicatorObservable().subscribe(function (values){
+            //    vm.data = convert(values);
+            //});
         }
 
         function convert(values){

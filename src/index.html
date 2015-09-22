@@ -39,7 +39,18 @@
 
     <div class="content">
         <div class="filter" ng-controller="Filter as vm">
-            <div ng-repeat="country in vm.countries">
+            <div class="selected-countries">
+                <ul>
+                    <li ng-repeat="country in vm.selectedCountries">
+                        <a href="#" ng-click="vm.unselectCountry(country)" class="selected-country">{{ country.name }}</a>
+                    </li>
+                </ul>
+
+            </div>
+            <div>
+                <input type="text"  ng-model="vm.searchedCountry">
+            </div>
+            <div class="countries" ng-repeat="country in vm.countries | filter:vm.searchedCountry">
                 <a href="#" ng-click="vm.selectCountry(country)">{{ country.name }}</a>
             </div>
         </div>
@@ -56,16 +67,17 @@
 <!-- build:js js/lib.js -->
 <!-- bower:js -->
 <script src="../bower_components/jquery/dist/jquery.js"></script>
-<script src="../bower_components/angular/angular.js"></script>
-<script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="../bower_components/rxjs/dist/rx.all.js"></script>
 <script src="../bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-rx/dist/rx.angular.js"></script>
+<script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="../bower_components/d3/d3.js"></script>
 <script src="../bower_components/moment/moment.js"></script>
 <script src="../bower_components/n3-line-chart/build/line-chart.min.js"></script>
 <script src="../bower_components/lodash/lodash.js"></script>
 <script src="../bower_components/restangular/dist/restangular.js"></script>
-<script src="../bower_components/rxjs/dist/rx.all.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -76,7 +88,8 @@
 <script src="/src/app/core/core.module.js"></script>
 <script src="/src/app/filter/filter.module.js"></script>
 <script src="/src/app/chart/chart.controller.js"></script>
-<script src="/src/app/core/api.js"></script>
+<script src="/src/app/core/countriesService.js"></script>
+<script src="/src/app/core/worldBankApi.js"></script>
 <script src="/src/app/filter/filter.controller.js"></script>
 <!-- endinject -->
 

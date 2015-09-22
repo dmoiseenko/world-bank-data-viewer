@@ -26,7 +26,8 @@
     "angular-bootstrap": "*",
     "n3-line-chart": "*",
     "restangular": "*",
-    "rxjs": "*"
+    "rxjs": "*",
+    "angular-rx": "*"
   },
   "overrides": {
     "bootstrap": {

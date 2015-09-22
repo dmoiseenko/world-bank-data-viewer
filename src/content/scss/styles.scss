@@ -18,6 +18,13 @@
     height: 400px;
 }
 
+.selected-countries{
+    margin-bottom: 20px;
+}
+
+.selected-country{
+}
+
 .chart {
     @include make-md-column(9);
     height: 500px;

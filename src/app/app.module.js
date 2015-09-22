@@ -9,6 +9,7 @@
             'app.filter',
             'app.chart'
         ])
+        // TODO move to worldBankApi.js as  local configuration
         .config(function (RestangularProvider) {
             RestangularProvider.setBaseUrl('http://api.worldbank.org');
             RestangularProvider.setJsonp(true);
