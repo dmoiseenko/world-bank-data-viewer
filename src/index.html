@@ -38,7 +38,7 @@
     </div>
 
     <div class="content">
-        <div class="filter" ng-controller="Filter as vm">
+        <div class="filter" ng-controller="CountryFilter as vm">
             <div class="selected-countries">
                 <ul>
                     <li ng-repeat="country in vm.selectedCountries">
@@ -67,30 +67,39 @@
 <!-- build:js js/lib.js -->
 <!-- bower:js -->
 <script src="../bower_components/jquery/dist/jquery.js"></script>
-<script src="../bower_components/rxjs/dist/rx.all.js"></script>
-<script src="../bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
 <script src="../bower_components/angular/angular.js"></script>
-<script src="../bower_components/angular-rx/dist/rx.angular.js"></script>
 <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="../bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
 <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="../bower_components/d3/d3.js"></script>
 <script src="../bower_components/moment/moment.js"></script>
 <script src="../bower_components/n3-line-chart/build/line-chart.min.js"></script>
 <script src="../bower_components/lodash/lodash.js"></script>
 <script src="../bower_components/restangular/dist/restangular.js"></script>
+<script src="../bower_components/rxjs/dist/rx.all.js"></script>
+<script src="../bower_components/angular-rx/dist/rx.angular.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
 <!-- build:js(./) js/app.js -->
 <!-- inject:js -->
 <script src="/src/app/app.module.js"></script>
-<script src="/src/app/chart/chart.module.js"></script>
+
+<script src="/src/app/api/api.module.js"></script>
+<script src="/src/app/api/worldBank.config.js"></script>
+<script src="/src/app/api/worldBank.js"></script>
+
 <script src="/src/app/core/core.module.js"></script>
-<script src="/src/app/filter/filter.module.js"></script>
+<script src="/src/app/core/country.service.js"></script>
+<script src="/src/app/core/source.service.js"></script>
+
+
+<script src="/src/app/chart/chart.module.js"></script>
 <script src="/src/app/chart/chart.controller.js"></script>
-<script src="/src/app/core/countriesService.js"></script>
-<script src="/src/app/core/worldBankApi.js"></script>
-<script src="/src/app/filter/filter.controller.js"></script>
+
+<script src="/src/app/filter/filter.module.js"></script>
+<script src="/src/app/filter/countryFilter.controller.js"></script>
+<script src="/src/app/filter/indicatorFilter.controller.js"></script>
 <!-- endinject -->
 
 <!-- inject:templates:js -->

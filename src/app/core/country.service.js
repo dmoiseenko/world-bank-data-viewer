@@ -3,12 +3,12 @@
 
     angular
         .module('app.core')
-        .factory('countriesService', countriesService);
+        .factory('countryService', countryService);
 
-    countriesService.$inject = ['worldBankApi'];
+    countryService.$inject = ['worldBank'];
 
     /* @ngInject */
-    function countriesService(api) {
+    function countryService(worldBank) {
         var service = {
             getCountriesObservable: getCountriesSubject,
             getSelectedCountriesObservable: getSelectedCountriesSubject,
@@ -17,9 +17,9 @@
             unselectCountry: unselectCountry
         };
 
-        var countriesSubject;
-        var selectedCountriesSubject;
-        var countryIndicatorSubject;
+        var countriesSubject = new Rx.BehaviorSubject([]);
+        var selectedCountriesSubject = new Rx.BehaviorSubject([]);
+        var countryIndicatorSubject = new Rx.BehaviorSubject([]);
         var countries = [];
         var selectedCountries = [];
 
@@ -30,23 +30,14 @@
         ////////////////
 
         function getCountriesSubject() {
-            if (!countriesSubject) {
-                countriesSubject = new Rx.BehaviorSubject([]);
-            }
             return countriesSubject;
         }
 
         function getCountryIndicatorSubject() {
-            if (!countryIndicatorSubject) {
-                countryIndicatorSubject = new Rx.BehaviorSubject([]);
-            }
             return countryIndicatorSubject;
         }
 
         function getSelectedCountriesSubject() {
-            if (!selectedCountriesSubject) {
-                selectedCountriesSubject = new Rx.BehaviorSubject([]);
-            }
             return selectedCountriesSubject;
         }
 
@@ -55,7 +46,7 @@
                 countries = data;
             });
 
-            api.getAllCountries()
+            worldBank.getAllCountries()
                 .then(function (countries) {
                     getCountriesSubject().onNext(excludeRegions(countries));
                 });

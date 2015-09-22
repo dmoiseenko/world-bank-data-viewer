@@ -2,15 +2,16 @@
     'use strict';
 
     angular
-        .module('app.core')
-        .factory('worldBankApi', worldBankApi);
+        .module('app.api')
+        .factory('worldBank', worldBank);
 
-    worldBankApi.$inject = ['Restangular'];
+    worldBank.$inject = ['Restangular'];
 
     /* @ngInject */
-    function worldBankApi(Restangular) {
+    function worldBank(Restangular) {
         var service = {
-            getAllCountries: getAllCountries
+            getAllCountries: getAllCountries,
+            getAllSources: getAllSources
         };
 
         return service;
@@ -18,14 +19,11 @@
         ////////////////
 
         function getAllCountries() {
-            return Restangular
-                .all('countries')
-                .getList();
+            return Restangular.all('countries').getList();
         }
 
-        function getAllIndicators()
-        {
-
+        function getAllSources() {
+            return Restangular.all('sources').getList();
         }
 
         //Restangular
