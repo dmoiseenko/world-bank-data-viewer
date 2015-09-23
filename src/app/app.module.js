@@ -7,12 +7,23 @@
             'app.core',
             'app.api',
 
+            'rx',
+            'ui.router',
+
             'app.filter',
             'app.chart',
 
             'ui.bootstrap',
             'n3-line-chart',
-            'rx'
+
         ])
+        .config(function($stateProvider, $urlRouterProvider){
+           $stateProvider
+               .state('wbdv', {
+                   url: '',
+                   abstract: true
+               });
+            $urlRouterProvider.otherwise('/');
+        });
 
 })();

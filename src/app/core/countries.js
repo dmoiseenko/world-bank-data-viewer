@@ -5,11 +5,13 @@
         .module('app.core')
         .factory('countries', countries);
 
-    countries.$inject = ['worldBank'];
+    countries.$inject = ['worldBank', 'rx'];
 
     /* @ngInject */
-    function countries(worldBank) {
-        var service = {
+    function countries(worldBank, Rx) {
+        var service;
+
+        service = {
             countriesObservable: new Rx.BehaviorSubject([]),
             selectedCountriesObservable: new Rx.BehaviorSubject([]),
             countryIndicatorObservable: new Rx.BehaviorSubject([]),
@@ -65,7 +67,7 @@
             countries.push(country);
             sortCountriesByName(countries);
 
-            getSelectedCountriesSubject().onNext(selectedCountries);
+            service.selectedCountriesObservable.onNext(selectedCountries);
         }
 
         function sortCountriesByName(countries)

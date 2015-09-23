@@ -50,8 +50,8 @@
     "jshint-stylish": "^2.0.1",
     "lodash": "^3.10.1",
     "node-notifier": "^4.2.3",
+    "rx": "^3.1.2",
     "wiredep": "^2.2.2",
-    "yargs": "^3.6.0",
-    "rx": "^3.1.2"
+    "yargs": "^3.6.0"
   }
 }

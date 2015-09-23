@@ -1,12 +1,11 @@
 (function () {
     'use strict';
-
+//configure.$inject = ['RestangularProvider'];
     var api = angular.module('app.api');
 
-    configure.$inject = ['RestangularProvider'];
+
 
     api.config(configure);
-
     function configure(RestangularProvider) {
         RestangularProvider.setBaseUrl('http://api.worldbank.org');
         RestangularProvider.setJsonp(true);

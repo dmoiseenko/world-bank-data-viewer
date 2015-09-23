@@ -1,0 +1,17 @@
+<div class="filter" ng-controller="CountriesController as vm">
+    <div class="selected-countries">
+        <ul>
+            <li ng-repeat="country in vm.selectedCountries">
+                <a href="#" ng-click="vm.deselectCountry(country)" class="selected-country">{{ country.name
+                    }}</a>
+            </li>
+        </ul>
+
+    </div>
+    <div>
+        <input type="text" ng-model="vm.searchedCountry">
+    </div>
+    <div class="countries" ng-repeat="country in vm.countries | filter:vm.searchedCountry">
+        <a href="#" ng-click="vm.selectCountry(country)">{{ country.name }}</a>
+    </div>
+</div>

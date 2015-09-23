@@ -1,7 +1,7 @@
 <!doctype html>
 <!--suppress HtmlUnknownTag -->
-<!--TODO ng-strict-di-->
-<html data-ng-app="app">
+<!--TODO -->
+<html data-ng-app="app" ng-strict-di>
 
 <head>
     <meta charset="utf-8">
@@ -38,51 +38,39 @@
     </div>
 
     <div class="content">
-        <div class="filter" ng-controller="CountriesController as vm">
-            <div class="selected-countries">
-                <ul>
-                    <li ng-repeat="country in vm.selectedCountries">
-                        <a href="#" ng-click="vm.deselectCountry(country)" class="selected-country">{{ country.name
-                            }}</a>
-                    </li>
-                </ul>
+        <div ui-view="countries"></div>
+        <!--<div class="row col-md-9" ng-controller="IndicatorsController as vm">-->
 
-            </div>
-            <div>
-                <input type="text" ng-model="vm.searchedCountry">
-            </div>
-            <div class="countries" ng-repeat="country in vm.countries | filter:vm.searchedCountry">
-                <a href="#" ng-click="vm.selectCountry(country)">{{ country.name }}</a>
-            </div>
-        </div>
-        <div class="row col-md-9" ng-controller="IndicatorsController as vm">
-
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="true">
-                    {{ vm.selectedSource.name }}
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#" ng-repeat="source in vm.sources" ng-click="vm.selectSource(source)">{{ source.name }} </a></li>
-                </ul>
-            </div>
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="true">
-                    {{ vm.selectedIndicator.name }}
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#" ng-repeat="indicator in vm.indicators" ng-click="vm.selectIndicator(indicator)">{{ indicator.name }} </a></li>
-                </ul>
-            </div>
-            <div class="chart" ng-controller="Chart as vm">
-                <div class="chart__graph">
-                    <linechart data="vm.data" options="vm.options"></linechart>
-                </div>
-            </div>
-        </div>
+            <!--<div class="dropdown">-->
+                <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"-->
+                        <!--aria-haspopup="true" aria-expanded="true">-->
+                    <!--{{ vm.selectedSource.name }}-->
+                    <!--<span class="caret"></span>-->
+                <!--</button>-->
+                <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+                    <!--<li><a href="#" ng-repeat="source in vm.sources" ng-click="vm.selectSource(source)">{{ source.name-->
+                        <!--}} </a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="dropdown">-->
+                <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"-->
+                        <!--aria-haspopup="true" aria-expanded="true">-->
+                    <!--{{ vm.selectedIndicator.name }}-->
+                    <!--<span class="caret"></span>-->
+                <!--</button>-->
+                <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+                    <!--<li>-->
+                        <!--<a href="#" ng-repeat="indicator in vm.indicators" ng-click="vm.selectIndicator(indicator)">{{-->
+                            <!--indicator.name }} </a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="chart" ng-controller="Chart as vm">-->
+                <!--<div class="chart__graph">-->
+                    <!--<linechart data="vm.data" options="vm.options"></linechart>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
 
 
     </div>
