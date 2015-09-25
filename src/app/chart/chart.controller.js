@@ -3,12 +3,12 @@
 
     angular
         .module('app.chart')
-        .controller('Chart', Chart);
+        .controller('ChartController', ChartController);
 
-    Chart.$inject = [];
+    ChartController.$inject = [];
 
     /* @ngInject */
-    function Chart() {
+    function ChartController() {
         /* jshint validthis: true */
         var vm = this;
 

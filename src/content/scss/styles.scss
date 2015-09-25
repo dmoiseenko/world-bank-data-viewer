@@ -2,43 +2,71 @@
 
 .page {
     @extend .container-fluid;
+    height: 100%;
 }
 
 .header {
     @include make-row(0);
-    height: 100px;
+    height: 10vh;
 }
 
 .content {
     @include make-row(0);
 }
 
-.filter {
-    @include make-md-column(3);
-    height: auto;
-    max-height: 800px;
-    overflow-x: hidden;
+.countries {
+    @include make-md-column(2);
 }
 
-.selected-countries{
-    margin-bottom: 20px;
+.countries__inner-container {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
 }
 
-.selected-country{
+.countries__search {
+    margin-top: 20px;
+    flex: none;
 }
 
-.chart {
+.countries__list {
+    flex: 0 1 auto;
+    user-select: none;
 }
 
-.chart__change-button{
+.country {
+}
+
+.countries__scroll {
+    overflow: hidden;
+    position: relative;
+}
+
+.indicators {
+    @include make-md-column(8);
+    height: 10vh;
+}
+
+.countries__selected-list {
+    //@extend .btn-group-vertical;
+}
+
+.selected-country {
     @extend .btn, .btn-default;
 }
 
-.chart__graph{
+.chart {
+    height: 80vh;
+}
+
+.chart__change-button {
+    @extend .btn, .btn-default;
+}
+
+.chart__graph {
     @include make-row(0);
 }
 
 .footer {
     @include make-row(0);
-    height: 100px;
 }

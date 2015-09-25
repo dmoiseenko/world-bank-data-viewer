@@ -1,17 +1,18 @@
-<div class="filter" ng-controller="CountriesController as vm">
-    <div class="selected-countries">
-        <ul>
-            <li ng-repeat="country in vm.selectedCountries">
-                <a href="#" ng-click="vm.deselectCountry(country)" class="selected-country">{{ country.name
-                    }}</a>
-            </li>
-        </ul>
-
+<div class="countries__inner-container">
+    <div class="countries__selected-list" ng-repeat="country in vm.selectedCountries">
+        <a href="#" ng-click="vm.deselectCountry(country)" class="selected-country">
+            {{ country.name }}
+        </a>
     </div>
-    <div>
+    <div class="countries__search">
         <input type="text" ng-model="vm.searchedCountry">
     </div>
-    <div class="countries" ng-repeat="country in vm.countries | filter:vm.searchedCountry">
-        <a href="#" ng-click="vm.selectCountry(country)">{{ country.name }}</a>
-    </div>
+    <perfect-scrollbar class="countries__scroll" min-scrollbar-length="10">
+        <div class="countries__list">
+            <div ng-repeat="country in vm.countries | filter:vm.searchedCountry">
+                <a class="country" href="#" ng-click="vm.selectCountry(country)">{{ country.name }}</a>
+            </div>
+        </div>
+    </perfect-scrollbar>
+
 </div>

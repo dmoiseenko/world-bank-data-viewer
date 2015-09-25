@@ -7,7 +7,6 @@
 
     indicators.$inject = ['worldBank'];
 
-    /* @ngInject */
     function indicators(worldBank) {
         var service = {
             indicatorsObservable: new Rx.BehaviorSubject([]),

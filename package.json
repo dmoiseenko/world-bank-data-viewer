@@ -16,6 +16,8 @@
   },
   "homepage": "https://github.com/lampas21/world-bank-data-viewer#readme",
   "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-core": "^5.8.25",
     "browser-sync": "^2.9.1",
     "del": "^2.0.1",
     "gulp": "^3.9.0",

@@ -7,7 +7,6 @@
 
     sources.$inject = ['worldBank'];
 
-    /* @ngInject */
     function sources(worldBank) {
         var service = {
             sourcesObservable: new Rx.BehaviorSubject([])

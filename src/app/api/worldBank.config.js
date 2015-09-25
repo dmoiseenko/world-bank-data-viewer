@@ -1,16 +1,15 @@
 (function () {
     'use strict';
-//configure.$inject = ['RestangularProvider'];
-    var api = angular.module('app.api');
 
+    angular
+        .module('app.api')
+        .config(configure);
 
+    configure.$inject = ['RestangularProvider'];
 
-    api.config(configure);
     function configure(RestangularProvider) {
         RestangularProvider.setBaseUrl('http://api.worldbank.org');
         RestangularProvider.setJsonp(true);
-        // ?format=jsonP&prefix=getData
-        //RestangularProvider.setDefaultRequestParams('get', {format: 'jsonP', prefix: 'getData'});
         RestangularProvider.setDefaultRequestParams('jsonp', {
             format: 'jsonP',
             prefix: 'JSON_CALLBACK',
@@ -29,5 +28,6 @@
             }
             return extractedData;
         });
-    }
+    };
+
 })();

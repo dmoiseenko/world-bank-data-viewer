@@ -40,7 +40,8 @@ gulp.task('compile-styles', function () {
         .src(config.scss)
         .pipe($.plumber())
         .pipe($.sass().on('error', $.sass.logError))
-        .pipe($.autoprefixer({ browsers: ['last 2 version', '> 5%'] }))
+        //TODO gulp babel-core issue
+        //.pipe($.autoprefixer({ browsers: ['last 2 version', '> 5%'] }))
         .pipe(gulp.dest(config.temp));
 });
 
@@ -56,7 +57,8 @@ gulp.task('compile-styles-reload-browsersync', function () {
         .src(config.scss)
         .pipe($.plumber())
         .pipe($.sass().on('error', $.sass.logError))
-        .pipe($.autoprefixer({ browsers: ['last 2 version', '> 5%'] }))
+        //TODO gulp babel-core issue
+        //.pipe($.autoprefixer({ browsers: ['last 2 version', '> 5%'] }))
         .pipe(gulp.dest(config.temp))
         .pipe(browserSync.stream());
 });
@@ -423,26 +425,6 @@ function notify(options) {
 }
 
 /**
- * Format and return the header for files
- * @return {String}           Formatted file header
- */
-function getHeader() {
-    var pkg = require('./package.json');
-    var template = ['/**',
-        ' * <%= pkg.name %> - <%= pkg.description %>',
-        ' * @authors <%= pkg.authors %>',
-        ' * @version v<%= pkg.version %>',
-        ' * @link <%= pkg.homepage %>',
-        ' * @license <%= pkg.license %>',
-        ' */',
-        ''
-    ].join('\n');
-    return $.header(template, {
-        pkg: pkg
-    });
-}
-
-/**
  * serve the code
  * --debug-brk or --debug
  * --nosync
@@ -454,16 +436,13 @@ function serve(isDev) {
 
 /**
  * Start BrowserSync
- * --nosync will avoid browserSync
  */
 function startBrowserSync(isDev) {
-    if (args.nosync || browserSync.active) {
+    if (browserSync.active) {
         return;
     }
 
     if (isDev) {
-        // If build: watches the files, builds, and restarts browser-sync.
-        // If dev: watches less, compiles it to css, browser-sync handles reload
         gulp.watch([config.scss], ['compile-styles-reload-browsersync'])
             .on('change', changeEvent);
     } else {

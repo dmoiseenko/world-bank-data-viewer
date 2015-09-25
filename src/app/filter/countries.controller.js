@@ -7,9 +7,7 @@
 
     CountriesController.$inject = ['$scope', 'countries'];
 
-    /* @ngInject */
     function CountriesController($scope, countries) {
-        /* jshint validthis: true */
         var vm = this;
 
         vm.countries = [];

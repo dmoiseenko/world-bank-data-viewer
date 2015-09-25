@@ -1,6 +1,4 @@
 <!doctype html>
-<!--suppress HtmlUnknownTag -->
-<!--TODO -->
 <html data-ng-app="app" ng-strict-di>
 
 <head>
@@ -13,13 +11,14 @@
     <style>
         /* This helps the ng-show/ng-hide animations start at the right place. */
         /* Since Angular has this but needs to load, this gives us the class early. */
-        .ng-hide {
-            display: none !important;
-        }
+        /*.ng-hide {*/
+            /*display: none !important;*/
+        /*}*/
     </style>
 
     <!-- build:css styles/lib.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/perfect-scrollbar/src/perfect-scrollbar.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -32,66 +31,24 @@
 
 <body>
 
-<div class="page">
-    <div class="page-header">
-        <h2>World Bank Data Viewer</h2>
-    </div>
-
-    <div class="content">
-        <div ui-view="countries"></div>
-        <!--<div class="row col-md-9" ng-controller="IndicatorsController as vm">-->
-
-            <!--<div class="dropdown">-->
-                <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"-->
-                        <!--aria-haspopup="true" aria-expanded="true">-->
-                    <!--{{ vm.selectedSource.name }}-->
-                    <!--<span class="caret"></span>-->
-                <!--</button>-->
-                <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
-                    <!--<li><a href="#" ng-repeat="source in vm.sources" ng-click="vm.selectSource(source)">{{ source.name-->
-                        <!--}} </a></li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <!--<div class="dropdown">-->
-                <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"-->
-                        <!--aria-haspopup="true" aria-expanded="true">-->
-                    <!--{{ vm.selectedIndicator.name }}-->
-                    <!--<span class="caret"></span>-->
-                <!--</button>-->
-                <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
-                    <!--<li>-->
-                        <!--<a href="#" ng-repeat="indicator in vm.indicators" ng-click="vm.selectIndicator(indicator)">{{-->
-                            <!--indicator.name }} </a>-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <!--<div class="chart" ng-controller="Chart as vm">-->
-                <!--<div class="chart__graph">-->
-                    <!--<linechart data="vm.data" options="vm.options"></linechart>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
-
-    </div>
-
-    <div class="footer"></div>
-</div>
+<div class="page" ui-view="page"></div>
 
 <!-- build:js js/lib.js -->
 <!-- bower:js -->
 <script src="../bower_components/jquery/dist/jquery.js"></script>
 <script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="../bower_components/perfect-scrollbar/src/perfect-scrollbar.js"></script>
+<script src="../bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js"></script>
+<script src="../bower_components/rxjs/dist/rx.all.js"></script>
+<script src="../bower_components/angular-rx/dist/rx.angular.js"></script>
 <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="../bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
-<script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="../bower_components/d3/d3.js"></script>
 <script src="../bower_components/moment/moment.js"></script>
 <script src="../bower_components/n3-line-chart/build/line-chart.min.js"></script>
 <script src="../bower_components/lodash/lodash.js"></script>
 <script src="../bower_components/restangular/dist/restangular.js"></script>
-<script src="../bower_components/rxjs/dist/rx.all.js"></script>
-<script src="../bower_components/angular-rx/dist/rx.angular.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -102,6 +59,7 @@
 <script src="/src/app/chart/chart.module.js"></script>
 <script src="/src/app/core/core.module.js"></script>
 <script src="/src/app/filter/filter.module.js"></script>
+<script src="/src/app/layout/layout.module.js"></script>
 <script src="/src/app/api/worldBank.config.js"></script>
 <script src="/src/app/api/worldBank.js"></script>
 <script src="/src/app/chart/chart.controller.js"></script>

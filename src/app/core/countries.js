@@ -7,14 +7,11 @@
 
     countries.$inject = ['worldBank', 'rx'];
 
-    /* @ngInject */
-    function countries(worldBank, Rx) {
-        var service;
-
-        service = {
-            countriesObservable: new Rx.BehaviorSubject([]),
-            selectedCountriesObservable: new Rx.BehaviorSubject([]),
-            countryIndicatorObservable: new Rx.BehaviorSubject([]),
+    function countries(worldBank, rx) {
+        var service = {
+            countriesObservable: new rx.BehaviorSubject([]),
+            selectedCountriesObservable: new rx.BehaviorSubject([]),
+            countryIndicatorObservable: new rx.BehaviorSubject([]),
             selectCountry: selectCountry,
             deselectCountry: deselectCountry
         };

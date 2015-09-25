@@ -18,16 +18,17 @@
   ],
   "dependencies": {
     "angular": "*",
-    "font-awesome": "*",
-    "angular-ui-router": "*",
-    "bourbon": "*",
-    "bootstrap-sass": "*",
-    "neat": "*",
     "angular-bootstrap": "*",
+    "angular-perfect-scrollbar": "~0.0.4",
+    "angular-rx": "*",
+    "angular-ui-router": "*",
+    "bootstrap-sass": "*",
+    "bourbon": "*",
+    "font-awesome": "*",
     "n3-line-chart": "*",
+    "neat": "*",
     "restangular": "*",
-    "rxjs": "*",
-    "angular-rx": "*"
+    "rxjs": "*"
   },
   "overrides": {
     "bootstrap": {

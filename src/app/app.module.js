@@ -6,24 +6,15 @@
 
             'app.core',
             'app.api',
+            'app.layout',
 
             'rx',
-            'ui.router',
 
             'app.filter',
             'app.chart',
 
-            'ui.bootstrap',
-            'n3-line-chart',
+            'perfect_scrollbar'
 
         ])
-        .config(function($stateProvider, $urlRouterProvider){
-           $stateProvider
-               .state('wbdv', {
-                   url: '',
-                   abstract: true
-               });
-            $urlRouterProvider.otherwise('/');
-        });
 
 })();
