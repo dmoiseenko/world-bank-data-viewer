@@ -7,7 +7,6 @@
 
     IndicatorsController.$inject = ['sources', 'indicators'];
 
-    /* @ngInject */
     function IndicatorsController(sources, indicators) {
         /* jshint validthis: true */
         var vm = this;
@@ -36,12 +35,13 @@
 
         function selectSource(source) {
             vm.selectedSource = source;
-            indicators.setSource(source);
+            sources.setSource(source);
             vm.selectedIndicator = getNullIndicator();
         }
 
         function selectIndicator(indicator){
             vm.selectedIndicator = indicator;
+            indicators.selectIndicator(indicator);
         }
 
         function getNullSource(){

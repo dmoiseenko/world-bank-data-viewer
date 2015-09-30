@@ -12,7 +12,7 @@
         /* This helps the ng-show/ng-hide animations start at the right place. */
         /* Since Angular has this but needs to load, this gives us the class early. */
         /*.ng-hide {*/
-            /*display: none !important;*/
+        /*display: none !important;*/
         /*}*/
     </style>
 
@@ -31,49 +31,53 @@
 
 <body>
 
-<div class="page" ui-view="page"></div>
+    <ui-view name="page"></ui-view>
 
-<!-- build:js js/lib.js -->
-<!-- bower:js -->
-<script src="../bower_components/jquery/dist/jquery.js"></script>
-<script src="../bower_components/angular/angular.js"></script>
-<script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="../bower_components/perfect-scrollbar/src/perfect-scrollbar.js"></script>
-<script src="../bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js"></script>
-<script src="../bower_components/rxjs/dist/rx.all.js"></script>
-<script src="../bower_components/angular-rx/dist/rx.angular.js"></script>
-<script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="../bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
-<script src="../bower_components/d3/d3.js"></script>
-<script src="../bower_components/moment/moment.js"></script>
-<script src="../bower_components/n3-line-chart/build/line-chart.min.js"></script>
-<script src="../bower_components/lodash/lodash.js"></script>
-<script src="../bower_components/restangular/dist/restangular.js"></script>
-<!-- endbower -->
-<!-- endbuild -->
+    <!-- build:js js/lib.js -->
+    <!-- bower:js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="../bower_components/perfect-scrollbar/src/perfect-scrollbar.js"></script>
+    <script src="../bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js"></script>
+    <script src="../bower_components/rxjs/dist/rx.all.js"></script>
+    <script src="../bower_components/angular-rx/dist/rx.angular.js"></script>
+    <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+    <script src="../bower_components/d3/d3.js"></script>
+    <script src="../bower_components/moment/moment.js"></script>
+    <script src="../bower_components/n3-line-chart/build/line-chart.min.js"></script>
+    <script src="../bower_components/lodash/lodash.js"></script>
+    <script src="../bower_components/restangular/dist/restangular.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
 
-<!-- build:js(./) js/app.js -->
-<!-- inject:js -->
-<script src="/src/app/app.module.js"></script>
-<script src="/src/app/api/api.module.js"></script>
-<script src="/src/app/chart/chart.module.js"></script>
-<script src="/src/app/core/core.module.js"></script>
-<script src="/src/app/filter/filter.module.js"></script>
-<script src="/src/app/layout/layout.module.js"></script>
-<script src="/src/app/api/worldBank.config.js"></script>
-<script src="/src/app/api/worldBank.js"></script>
-<script src="/src/app/chart/chart.controller.js"></script>
-<script src="/src/app/core/countries.js"></script>
-<script src="/src/app/core/indicators.js"></script>
-<script src="/src/app/core/sources.js"></script>
-<script src="/src/app/filter/countries.controller.js"></script>
-<script src="/src/app/filter/indicators.controller.js"></script>
-<!-- endinject -->
+    <!-- build:js(./) js/app.js -->
+    <!-- inject:js -->
+    <script src="/src/app/app.module.js"></script>
+    <script src="/src/app/api/api.module.js"></script>
+    <script src="/src/app/chart/chart.module.js"></script>
+    <script src="/src/app/core/core.module.js"></script>
+    <script src="/src/app/filter/filter.module.js"></script>
+    <script src="/src/app/layout/layout.module.js"></script>
+    <script src="/src/app/api/worldBank.config.js"></script>
+    <script src="/src/app/api/worldBank.js"></script>
+    <script src="/src/app/chart/chart.controller.js"></script>
+    <script src="/src/app/core/charts.js"></script>
+    <script src="/src/app/core/countries.js"></script>
+    <script src="/src/app/core/indicators.js"></script>
+    <script src="/src/app/core/main.js"></script>
+    <script src="/src/app/core/plot.js"></script>
+    <script src="/src/app/core/sources.js"></script>
+    <script src="/src/app/filter/countries.controller.js"></script>
+    <script src="/src/app/filter/indicators.controller.js"></script>
+    <script src="/src/app/layout/main.controller.js"></script>
+    <!-- endinject -->
 
-<!-- inject:templates:js -->
-<!-- endinject -->
+    <!-- inject:templates:js -->
+    <!-- endinject -->
 
-<!-- endbuild -->
+    <!-- endbuild -->
 
 </body>
 

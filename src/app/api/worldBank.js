@@ -7,12 +7,12 @@
 
     worldBank.$inject = ['Restangular'];
 
-    /* @ngInject */
     function worldBank(Restangular) {
         var service = {
             getCountries: getCountries,
             getSources: getSources,
-            getIndicatorsBySource: getIndicatorsBySource
+            getIndicatorsBySource: getIndicatorsBySource,
+            getDataByIndicator: getDataByIndicator
         };
 
         return service;
@@ -28,16 +28,14 @@
         }
 
         function getIndicatorsBySource(source) {
-            return Restangular.all('source/'+ source.id +'/indicators').getList();
+            return Restangular.all('source/' + source.id + '/indicators').getList();
         }
 
-        //Restangular
-        //    .all('countries/' + country.iso2Code + '/indicators/NY.GDP.MKTP.CD')
-        //    .getList()
-        //    .then(function (values) {
-        //        getCountryIndicatorSubject().onNext(values);
-        //    });
-
+        function getDataByIndicator(indicator) {
+            return Restangular
+                .all('countries/all/indicators/' + indicator.id)
+                .getList();
+        }
     }
 
 })();

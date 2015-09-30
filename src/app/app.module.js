@@ -8,13 +8,12 @@
             'app.api',
             'app.layout',
 
-            'rx',
-
             'app.filter',
             'app.chart',
 
-            'perfect_scrollbar'
+            'perfect_scrollbar',
+            'rx'
 
-        ])
+        ]);
 
 })();

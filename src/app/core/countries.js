@@ -7,25 +7,35 @@
 
     countries.$inject = ['worldBank', 'rx'];
 
-    function countries(worldBank, rx) {
+    function countries(worldBank, Rx) {
         var service = {
-            countriesObservable: new rx.BehaviorSubject([]),
-            selectedCountriesObservable: new rx.BehaviorSubject([]),
-            countryIndicatorObservable: new rx.BehaviorSubject([]),
+            loadCountries:loadCountries,
+            countriesObservable: new Rx.BehaviorSubject([]),
+            selectedCountriesObservable: new Rx.BehaviorSubject([]),
+            countryIndicatorObservable: new Rx.BehaviorSubject([]),
             selectCountry: selectCountry,
-            deselectCountry: deselectCountry
+            deselectCountry: deselectCountry,
+            setCountriesFromData: setCountriesFromData
         };
 
         var countries = [];
         var selectedCountries = [];
 
-        activate();
-
         return service;
 
         ////////////////
 
-        function activate() {
+        function setCountriesFromData(data){
+            var withDrawCountries = data.map(function(value){
+                return value.country;
+            });
+
+            var withoutDuplicatedCountries = _.uniq(withDrawCountries);
+
+            service.countriesObservable.onNext(withoutDuplicatedCountries);
+        }
+
+        function loadCountries() {
             service.countriesObservable.subscribe(function (data) {
                 countries = data;
             });
@@ -49,13 +59,6 @@
 
             service.selectedCountriesObservable.onNext(selectedCountries);
             service.countriesObservable.onNext(countries);
-
-            //Restangular
-            //    .all('countries/' + country.iso2Code + '/indicators/NY.GDP.MKTP.CD')
-            //    .getList()
-            //    .then(function (values) {
-            //        getCountryIndicatorSubject().onNext(values);
-            //    });
         }
 
         function deselectCountry(country) {

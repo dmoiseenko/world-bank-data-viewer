@@ -5,26 +5,35 @@
         .module('app.core')
         .factory('indicators', indicators);
 
-    indicators.$inject = ['worldBank'];
+    indicators.$inject = ['worldBank', 'rx'];
 
-    function indicators(worldBank) {
+    function indicators(worldBank, Rx) {
         var service = {
+            setSource: setSource,
             indicatorsObservable: new Rx.BehaviorSubject([]),
-            setSource: setSource
+            selectIndicator: selectIndicator,
+            selectedIndicatorObservable: new Rx.BehaviorSubject(null)
         };
-
-        var selectedSource;
 
         return service;
 
         ////////////////
 
-        function setSource(source)
-        {
-            selectedSource = source;
-            worldBank.getIndicatorsBySource(source).then(function (data){
-                service.indicatorsObservable.onNext(data);
-            });
+        function selectIndicator(selectedIndicator) {
+            service.selectedIndicatorObservable.onNext(selectedIndicator);
+        }
+
+        function setSource(source) {
+            if(source)
+            {
+                worldBank.getIndicatorsBySource(source).then(function (indicators) {
+                    service.indicatorsObservable.onNext(indicators);
+                });
+            }
+            else
+            {
+                service.indicatorsObservable.onNext([]);
+            }
         }
     }
 

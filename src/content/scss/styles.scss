@@ -2,7 +2,11 @@
 
 .page {
     @extend .container-fluid;
-    height: 100%;
+}
+
+.content {
+    @include make-row(0);
+    height: 90vh;
 }
 
 .header {
@@ -10,45 +14,46 @@
     height: 10vh;
 }
 
-.content {
-    @include make-row(0);
+.filters{
+    @include make-md-column(2);
+    height: 90vh;
+}
+
+.countries-wrapper {
+    height: calc(100% - #{$indicators_height});
+    padding-bottom: 50px;
+}
+
+.indicators-wrapper {
+    height: $indicators_height;
 }
 
 .countries {
-    @include make-md-column(2);
-}
-
-.countries__inner-container {
     display: flex;
     flex-direction: column;
-    height: 90vh;
+
+    height: 100%;
 }
 
 .countries__search {
     margin-top: 20px;
-    flex: none;
 }
 
 .countries__list {
-    flex: 0 1 auto;
     user-select: none;
+}
+
+.countries__scroll {
+    flex: 0 1 auto;
+    overflow: hidden;
+    position: relative;
 }
 
 .country {
 }
 
-.countries__scroll {
-    overflow: hidden;
-    position: relative;
-}
-
-.indicators {
-    @include make-md-column(8);
-    height: 10vh;
-}
-
 .countries__selected-list {
-    //@extend .btn-group-vertical;
+    @extend .btn-group-vertical;
 }
 
 .selected-country {
@@ -56,7 +61,8 @@
 }
 
 .chart {
-    height: 80vh;
+    @include make-md-column(10);
+    height: 90vh;
 }
 
 .chart__change-button {

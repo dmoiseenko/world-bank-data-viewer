@@ -13,7 +13,9 @@
                 abstract: true,
                 views: {
                     'page': {
-                        templateUrl: 'app/layout/page.html'
+                        templateUrl: 'app/layout/page.html',
+                        controller: 'MainController',
+                        controllerAs: 'vm'
                     }
                 }
             })

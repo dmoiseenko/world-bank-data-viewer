@@ -1,12 +1,10 @@
-<div class="page-header" ui-view="header">
-</div>
-<div class="content">
-    <div  class="countries" ui-view="countries"></div>
-
-    <div class="col-md-9">
-        <div ui-view="indicators" class="indicators"></div>
+<div class="page">
+    <ui-view name="header"></ui-view>
+    <div class="content">
+        <div class="filters">
+            <div ui-view="indicators" class="indicators-wrapper"></div>
+            <div ui-view="countries" class="countries-wrapper"></div>
+        </div>
         <div ui-view="chart" class="chart"></div>
     </div>
 </div>
-
-<!--<div class="footer"></div>-->

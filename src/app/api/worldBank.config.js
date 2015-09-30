@@ -15,6 +15,7 @@
             prefix: 'JSON_CALLBACK',
             per_page: 10000
         });
+        RestangularProvider.setDefaultHttpFields({cache: true});
         // add a response interceptor
         RestangularProvider.addResponseInterceptor(function (data, operation, what, url, response, deferred) {
             var extractedData;

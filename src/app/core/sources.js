@@ -9,27 +9,27 @@
 
     function sources(worldBank) {
         var service = {
-            sourcesObservable: new Rx.BehaviorSubject([])
+            loadSources: getAllSources,
+            sourcesObservable: new Rx.BehaviorSubject([]),
+            setSource: setSource,
+            selectedSourceObservable: new Rx.BehaviorSubject(null)
         };
-
-        var sources = [];
-
-        activate();
 
         return service;
 
         ////////////////
 
-        function activate()
+        function getAllSources()
         {
-            service.sourcesObservable.subscribe(function (data) {
-                sources = data;
-            });
-
             worldBank.getSources()
                 .then(function (sources) {
                     service.sourcesObservable.onNext(sources);
                 });
+        }
+
+        function setSource(source)
+        {
+            service.selectedSourceObservable.onNext(source);
         }
     }
 
