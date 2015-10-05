@@ -5,15 +5,15 @@
         .module('app.filter')
         .controller('IndicatorsController', IndicatorsController);
 
-    IndicatorsController.$inject = ['sources', 'indicators'];
+    IndicatorsController.$inject = ['topics', 'indicators'];
 
-    function IndicatorsController(sources, indicators) {
+    function IndicatorsController(topics, indicators) {
         /* jshint validthis: true */
         var vm = this;
 
-        vm.sources = [];
-        vm.selectedSource = getNullSource();
-        vm.selectSource = selectSource;
+        vm.topics = [];
+        vm.selectedTopic = getNullTopic();
+        vm.selectTopic = selectTopic;
 
         vm.indicators = indicators;
         vm.selectedIndicator = getNullIndicator();
@@ -24,8 +24,8 @@
         ////////////////
 
         function activate() {
-            sources.sourcesObservable.subscribe(function(data){
-                vm.sources = data;
+            topics.topicsObservable.subscribe(function(data){
+                vm.topics = data;
             });
 
             indicators.indicatorsObservable.subscribe(function(data){
@@ -33,9 +33,9 @@
             });
         }
 
-        function selectSource(source) {
-            vm.selectedSource = source;
-            sources.setSource(source);
+        function selectTopic(topic) {
+            vm.selectedTopic = topic;
+            topics.setTopic(topic);
             vm.selectedIndicator = getNullIndicator();
         }
 
@@ -44,8 +44,8 @@
             indicators.selectIndicator(indicator);
         }
 
-        function getNullSource(){
-            return {name: 'select source'};
+        function getNullTopic(){
+            return {value: 'select topic'};
         }
 
         function getNullIndicator(){

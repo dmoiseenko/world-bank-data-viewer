@@ -9,7 +9,7 @@
 
     function indicators(worldBank, Rx) {
         var service = {
-            setSource: setSource,
+            setTopic: setTopic,
             indicatorsObservable: new Rx.BehaviorSubject([]),
             selectIndicator: selectIndicator,
             selectedIndicatorObservable: new Rx.BehaviorSubject(null)
@@ -23,10 +23,10 @@
             service.selectedIndicatorObservable.onNext(selectedIndicator);
         }
 
-        function setSource(source) {
+        function setTopic(source) {
             if(source)
             {
-                worldBank.getIndicatorsBySource(source).then(function (indicators) {
+                worldBank.getIndicatorsByTopic(source).then(function (indicators) {
                     service.indicatorsObservable.onNext(indicators);
                 });
             }

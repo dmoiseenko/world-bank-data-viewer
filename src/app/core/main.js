@@ -5,9 +5,9 @@
         .module('app.core')
         .factory('main', main);
 
-    main.$inject = ['countries', 'sources', 'indicators', 'charts'];
+    main.$inject = ['countries', 'topics', 'indicators', 'charts'];
 
-    function main(countries, sources, indicators, charts) {
+    function main(countries, topics, indicators, charts) {
         var service = {
             start: start
         };
@@ -19,22 +19,20 @@
         function start() {
 
             countries.loadCountries();
-            sources.loadSources();
+            topics.loadTopics();
 
-            sources.selectedSourceObservable.subscribe(function (source) {
-                indicators.setSource(source);
-            });
-
-            charts.dataObservable.subscribe(function (data) {
-                console.log(data);
+            topics.selectedTopicObservable.subscribe(function (source) {
+                indicators.setTopic(source);
             });
 
             Rx.Observable.combineLatest(countries.selectedCountriesObservable,
-                sources.selectedSourceObservable,
+                topics.selectedTopicObservable,
                 indicators.selectedIndicatorObservable, function (countries, source, indicator) {
                     charts.setCountriesAndIndicator(countries, indicator)
                 })
                 .subscribe();
+
+            //charts.pushSampleData();
         }
 
 

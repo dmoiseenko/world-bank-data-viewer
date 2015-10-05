@@ -10,9 +10,10 @@
     function worldBank(Restangular) {
         var service = {
             getCountries: getCountries,
-            getSources: getSources,
-            getIndicatorsBySource: getIndicatorsBySource,
-            getDataByIndicator: getDataByIndicator
+            getTopics: getTopics,
+            getIndicatorsByTopic: getIndicatorsByTopic,
+            getDataByIndicator: getDataByIndicator,
+            getDataByIndicatorAndCountry: getDataByIndicatorAndCountry
         };
 
         return service;
@@ -23,17 +24,23 @@
             return Restangular.all('countries').getList();
         }
 
-        function getSources() {
-            return Restangular.all('sources').getList();
+        function getTopics() {
+            return Restangular.all('topics').getList();
         }
 
-        function getIndicatorsBySource(source) {
-            return Restangular.all('source/' + source.id + '/indicators').getList();
+        function getIndicatorsByTopic(topic) {
+            return Restangular.all('topic/' + topic.id + '/indicator').getList();
         }
 
         function getDataByIndicator(indicator) {
             return Restangular
                 .all('countries/all/indicators/' + indicator.id)
+                .getList();
+        }
+
+        function getDataByIndicatorAndCountry(indicator, country) {
+            return Restangular
+                .all('countries/' + country.iso2Code +'/indicators/' + indicator.id)
                 .getList();
         }
     }

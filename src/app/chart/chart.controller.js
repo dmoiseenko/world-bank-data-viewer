@@ -21,7 +21,8 @@
         ////////////////
 
         function activate() {
-            charts.dataObservable.subscribe(function(data){
+
+            charts.plotDataObservable.subscribe(function(data){
                 if(data)
                 {
                     vm.title = "lampas";

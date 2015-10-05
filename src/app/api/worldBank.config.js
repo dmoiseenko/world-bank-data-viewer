@@ -18,11 +18,13 @@
         RestangularProvider.setDefaultHttpFields({cache: true});
         // add a response interceptor
         RestangularProvider.addResponseInterceptor(function (data, operation, what, url, response, deferred) {
-            var extractedData;
+            var extractedData = [];
             // .. to look for getList operations
             if (operation === "getList") {
                 // .. and handle the data and meta data
-                extractedData = data[1];
+                if(data[1] !== null){
+                    extractedData = data[1];
+                }
                 extractedData.meta = data[0];
             } else {
                 extractedData = data;

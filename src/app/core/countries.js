@@ -5,17 +5,15 @@
         .module('app.core')
         .factory('countries', countries);
 
-    countries.$inject = ['worldBank', 'rx'];
+    countries.$inject = ['worldBank', 'rx', 'colors'];
 
-    function countries(worldBank, Rx) {
+    function countries(worldBank, Rx, colors) {
         var service = {
             loadCountries:loadCountries,
             countriesObservable: new Rx.BehaviorSubject([]),
             selectedCountriesObservable: new Rx.BehaviorSubject([]),
-            countryIndicatorObservable: new Rx.BehaviorSubject([]),
             selectCountry: selectCountry,
-            deselectCountry: deselectCountry,
-            setCountriesFromData: setCountriesFromData
+            deselectCountry: deselectCountry
         };
 
         var countries = [];
@@ -24,16 +22,6 @@
         return service;
 
         ////////////////
-
-        function setCountriesFromData(data){
-            var withDrawCountries = data.map(function(value){
-                return value.country;
-            });
-
-            var withoutDuplicatedCountries = _.uniq(withDrawCountries);
-
-            service.countriesObservable.onNext(withoutDuplicatedCountries);
-        }
 
         function loadCountries() {
             service.countriesObservable.subscribe(function (data) {
@@ -54,6 +42,7 @@
 
         function selectCountry(country) {
             removeCountry(countries, country);
+            country.color = colors.getColor(country.iso2Code);
             selectedCountries.push(country);
             sortCountriesByName(selectedCountries);
 
@@ -63,6 +52,7 @@
 
         function deselectCountry(country) {
             removeCountry(selectedCountries, country);
+            colors.clearColor(country.iso2Code);
 
             countries.push(country);
             sortCountriesByName(countries);

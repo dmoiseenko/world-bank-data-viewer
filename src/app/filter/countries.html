@@ -1,6 +1,7 @@
 <div class="countries">
     <div class="countries__selected-list" ng-repeat="country in vm.selectedCountries">
-        <a href="#" ng-click="vm.deselectCountry(country)" class="selected-country">
+        <a href="#" ng-click="vm.deselectCountry(country)" class="selected-country"
+           ng-class="country.color">
             {{ country.name }}
         </a>
     </div>
@@ -14,5 +15,4 @@
             </div>
         </div>
     </perfect-scrollbar>
-
 </div>

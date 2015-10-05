@@ -1,15 +1,10 @@
-@import '../../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
-
 // Paper 3.3.5
 // Bootswatch
 // -----------------------------------------------------
+@import '../../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
+
 
 $web-font-path: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" !default;
-
-//@mixin web-font($path){
-//    @import url("#{$path}");
-//}
-//@include web-font($web-font-path);
 
 @import url($web-font-path);
 
