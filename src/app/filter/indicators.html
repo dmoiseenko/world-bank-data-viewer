@@ -1,24 +1,26 @@
-<div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="true">
-        {{ vm.selectedTopic.value }}
-        <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li><a href="#" ng-repeat="topic in vm.topics" ng-click="vm.selectTopic(topic)">{{ topic.value
-            }} </a></li>
-    </ul>
-</div>
-<div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="true">
-        {{ vm.selectedIndicator.name }}
-        <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <li>
-            <a href="#" ng-repeat="indicator in vm.indicators" ng-click="vm.selectIndicator(indicator)">{{
-                indicator.name }} </a>
-        </li>
-    </ul>
+<div class="indicators">
+    <div class="indicators__topic dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="true">
+            {{ vm.selectedTopic.value }}
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#" ng-repeat="topic in vm.topics" ng-click="vm.selectTopic(topic)">{{ topic.value
+                }} </a></li>
+        </ul>
+    </div>
+    <div class="indicators__indicator dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="true">
+            {{ vm.selectedIndicator.name }}
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <li>
+                <a href="#" ng-repeat="indicator in vm.indicators" ng-click="vm.selectIndicator(indicator)">{{
+                    indicator.name }} </a>
+            </li>
+        </ul>
+    </div>
 </div>

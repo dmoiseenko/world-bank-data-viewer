@@ -1,10 +1,13 @@
 <div class="countries">
-    <div class="countries__selected-list" ng-repeat="country in vm.selectedCountries">
-        <a href="#" ng-click="vm.deselectCountry(country)" class="selected-country"
-           ng-class="country.color">
-            {{ country.name }}
-        </a>
+    <div class="countries__selected-list">
+        <div ng-repeat="country in vm.selectedCountries">
+            <a href="#" ng-click="vm.deselectCountry(country)" class="selected-country"
+               ng-class="country.color">
+                {{ country.name }}
+            </a>
+        </div>
     </div>
+
     <div class="countries__search">
         <input type="text" ng-model="vm.searchedCountry">
     </div>

@@ -1,0 +1,48 @@
+.countries {
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+    padding-bottom: 50px;
+}
+
+body{
+}
+
+.countries__search {
+    margin-top: 20px;
+}
+
+.countries__list {
+    user-select: none;
+}
+
+.countries__scroll {
+
+    flex: 0 1 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.country {
+    color: #444444;
+}
+
+.selected-country--red{
+    color: red;
+}
+
+.selected-country--green{
+    color: green;
+}
+
+.selected-country--blue{
+    color: blue;
+}
+
+.countries__selected-list {
+}
+
+.selected-country {
+    @extend .lead;
+}

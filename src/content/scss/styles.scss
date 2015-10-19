@@ -1,95 +1,46 @@
 ﻿@import "base";
 
 .page {
-    @extend .container-fluid;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .content {
-    @include make-row(0);
-    height: 90vh;
 }
 
 .header {
-    @include make-row(0);
-    height: 10vh;
 }
 
 .filters{
     @include make-md-column(2);
-    height: 90vh;
-    padding: 0;
+}
+
+.logo{
+    font-size: 32px;
+    padding-top: 10px;
+    text-transform: lowercase;
+    color: #666666;
+}
+
+.logo-wrapper{
+    @include make-md-column(4);
 }
 
 .countries-wrapper {
-    height: calc(100% - #{$indicators_height});
-    padding-bottom: 50px;
+    height: 90vh;
 }
 
 .indicators-wrapper {
-    height: $indicators_height;
+    @include make-md-column(8);
 }
 
-.countries {
-    display: flex;
-    flex-direction: column;
-
-    height: 100%;
-}
-
-.countries__search {
-    margin-top: 20px;
-}
-
-.countries__list {
-    user-select: none;
-}
-
-.countries__scroll {
-    flex: 0 1 auto;
-    overflow: hidden;
-    position: relative;
-}
-
-.country {
-    color: #555555;
-
-    //font-size: 15px;
-}
-
-.selected-country--red{
-    color: red;
-}
-
-.selected-country--green{
-    color: green;
-}
-
-.selected-country--blue{
-    color: blue;
-}
-
-.country--default{
-    background: inherit;
-}
-
-.countries__selected-list {
-    @extend .btn-group-vertical;
-}
-
-.selected-country {
-    @extend .btn, .btn-link;
-}
-
-.chart {
+.chart-wrapper {
     @include make-md-column(10);
     height: 90vh;
 }
 
-.chart__change-button {
-    @extend .btn, .btn-default;
-}
-
-.chart__graph {
+.chart {
     @include make-row(0);
 }
 
@@ -100,3 +51,5 @@
 .scrubberText {
     font-size: 16px;
 }
+
+

@@ -73,7 +73,10 @@
             var options = {
                 axes: axes,
                 series: series,
-                drawLegend: false
+                drawLegend: false,
+                margin:{
+                    left: 0
+                }
             };
 
             var plotData = {dots: dots, options: options};
