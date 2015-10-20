@@ -1,13 +1,11 @@
 <div class="page">
     <div class="header">
-        <div class="logo-wrapper" ui-view="header"></div>
+        <div ui-view="header"></div>
     </div>
 
     <div class="content">
-        <div class="filters">
-            <div ui-view="countries" class="countries-wrapper"></div>
-        </div>
         <div ui-view="indicators" class="indicators-wrapper"></div>
+        <div ui-view="countries" class="countries-wrapper"></div>
         <div ui-view="chart" class="chart-wrapper"></div>
     </div>
 </div>

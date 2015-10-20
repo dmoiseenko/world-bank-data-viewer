@@ -1,55 +1,7 @@
-﻿@import "base";
-
-.page {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.content {
-}
-
-.header {
-}
-
-.filters{
-    @include make-md-column(2);
-}
-
-.logo{
-    font-size: 32px;
-    padding-top: 10px;
-    text-transform: lowercase;
-    color: #666666;
-}
-
-.logo-wrapper{
-    @include make-md-column(4);
-}
-
-.countries-wrapper {
-    height: 90vh;
-}
-
-.indicators-wrapper {
-    @include make-md-column(8);
-}
-
-.chart-wrapper {
-    @include make-md-column(10);
-    height: 90vh;
-}
-
-.chart {
-    @include make-row(0);
-}
-
-.footer {
-    @include make-row(0);
-}
-
-.scrubberText {
-    font-size: 16px;
-}
+﻿@import "indicators";
+@import "countries";
+@import "header";
+@import "chart";
+@import "layout";
 
 
