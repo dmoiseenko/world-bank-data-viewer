@@ -1,0 +1,20 @@
+@import "base";
+
+.header {
+    height: $header_height;
+}
+
+.top-line{
+    background: $brand-primary;
+    height: 0.7rem;
+    width: 100%;
+}
+
+.logo{
+    font-size: 34px;
+    font-weight: 300;
+    text-transform: lowercase;
+    color: $brand-primary;
+    line-height: 47px;
+    margin-left: $spacer;
+}
