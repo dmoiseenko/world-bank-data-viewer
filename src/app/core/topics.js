@@ -15,6 +15,8 @@
             selectedTopicObservable: new Rx.BehaviorSubject(null)
         };
 
+        var selectedTopic = null;
+
         return service;
 
         ////////////////
@@ -27,9 +29,21 @@
                 });
         }
 
-        function setTopic(source)
+        function setTopic(topic)
         {
-            service.selectedTopicObservable.onNext(source);
+            if (isTopicSelected()) {
+                if (topic.id === selectedTopic.id) {
+                    return;
+                }
+            }
+
+            selectedTopic = topic;
+            service.selectedTopicObservable.onNext(topic);
+        }
+
+        function isTopicSelected()
+        {
+            return !_.isNull(selectedTopic);
         }
     }
 

@@ -1,9 +1,5 @@
 @import "base";
 
-.header {
-    height: $header_height;
-}
-
 .top-line{
     background: $brand-primary;
     height: 0.7rem;
@@ -15,6 +11,6 @@
     font-weight: 300;
     text-transform: lowercase;
     color: $brand-primary;
-    line-height: 47px;
+    line-height: 55px;
     margin-left: $spacer;
 }

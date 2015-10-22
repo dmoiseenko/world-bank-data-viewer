@@ -22,23 +22,10 @@
             .state('start.home', {
                 url: '/',
                 views: {
-                    'countries': {
-                        controller: 'CountriesController',
-                        controllerAs: 'vm',
-                        templateUrl: 'app/filter/countries.html'
-                    },
-                    'indicators': {
-                        controller: 'IndicatorsController',
-                        controllerAs: 'vm',
-                        templateUrl: 'app/filter/indicators.html'
-                    },
                     'chart': {
                         controller: 'ChartController',
                         controllerAs: 'vm',
                         templateUrl: 'app/chart/chart.html'
-                    },
-                    'header': {
-                        templateUrl: 'app/layout/header.html'
                     }
                 }
             });

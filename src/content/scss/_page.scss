@@ -1,0 +1,37 @@
+@import "base";
+
+.page {
+    height: 100vh;
+}
+
+.header-wrapper {
+    height: $header_height;
+}
+
+.content {
+    margin: 0 $spacer 0 $spacer;
+}
+
+.flex-container {
+    display: flex;
+
+    width: 100%;
+
+    padding: 0;
+}
+
+.countries-wrapper {
+    flex-basis: 20%;
+
+    height: calc(100vh - #{$header_height} - #{$indicators_height});
+}
+
+.chart-wrapper {
+    flex-basis: 80%;
+    height: calc(100vh - #{$header_height} - #{$indicators_height});
+}
+
+.indicators-wrapper {
+    height: $indicators_height;
+}
+

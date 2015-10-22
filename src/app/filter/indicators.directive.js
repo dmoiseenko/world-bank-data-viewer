@@ -3,17 +3,28 @@
 
     angular
         .module('app.filter')
-        .controller('IndicatorsController', IndicatorsController);
+        .directive('indicators', indicators);
+
+    indicators.$inject = [];
+
+    function indicators() {
+        var directive = {
+            restrict: 'EA',
+            templateUrl: 'app/filter/indicators.html',
+            scope: {},
+            controller: IndicatorsController,
+            controllerAs: 'vm',
+            bindToController: true
+        };
+
+        return directive;
+    }
 
     IndicatorsController.$inject = ['topics', 'indicators'];
 
     function IndicatorsController(topics, indicators) {
         /* jshint validthis: true */
         var vm = this;
-
-        vm.topics = [];
-        vm.selectedTopic = getNullTopic();
-        vm.selectTopic = selectTopic;
 
         vm.indicators = indicators;
         vm.selectedIndicator = getNullIndicator();
@@ -24,31 +35,21 @@
         ////////////////
 
         function activate() {
-            topics.topicsObservable.subscribe(function(data){
-                vm.topics = data;
-            });
-
-            indicators.indicatorsObservable.subscribe(function(data){
+            indicators.indicatorsObservable.subscribe(function (data) {
                 vm.indicators = data;
             });
+
+            indicators.newTopicObservable.subscribe(function (topic){
+                vm.selectedIndicator = getNullIndicator();
+            });
         }
 
-        function selectTopic(topic) {
-            vm.selectedTopic = topic;
-            topics.setTopic(topic);
-            vm.selectedIndicator = getNullIndicator();
-        }
-
-        function selectIndicator(indicator){
+        function selectIndicator(indicator) {
             vm.selectedIndicator = indicator;
             indicators.selectIndicator(indicator);
         }
 
-        function getNullTopic(){
-            return {value: 'select topic'};
-        }
-
-        function getNullIndicator(){
+        function getNullIndicator() {
             return {name: 'select indicator'}
         }
 

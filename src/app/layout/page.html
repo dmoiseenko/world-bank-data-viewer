@@ -1,11 +1,22 @@
 <div class="page">
-    <div class="header">
-        <div ui-view="header"></div>
+    <div class="header-wrapper">
+        <div class="top-line"></div>
+        <p class="logo">World Bank Data Viewer</p>
     </div>
 
     <div class="content">
-        <div ui-view="indicators" class="indicators-wrapper"></div>
-        <div ui-view="countries" class="countries-wrapper"></div>
-        <div ui-view="chart" class="chart-wrapper"></div>
+        <div class="filters">
+            <topics></topics>
+            <indicators></indicators>
+        </div>
+        <div class="flex-container">
+            <div class="countries-wrapper">
+                <countries></countries>
+            </div>
+
+            <div class="chart-wrapper">
+                <chart></chart>
+            </div>
+        </div>
     </div>
 </div>

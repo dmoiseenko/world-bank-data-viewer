@@ -64,10 +64,11 @@
 
             var max = getMaxValueFromWorldBankData(data);
 
-            var axes = {x: {type: 'date'}, y: {grid: true, max: max}};
+            var axes = {x: {type: 'date'}, y: {grid: true, max: max, min: 0}};
 
             var series = countries.map(function (country) {
-                return {y: country.id, color:colors.getColor(country.id), thickness: '2px'};
+                return {y: country.id, color:colors.getColor(country.id), thickness: '2px', type: 'area'}; //striped: true
+                //type: 'area', striped: true
             });
 
             var options = {
@@ -75,7 +76,7 @@
                 series: series,
                 drawLegend: false,
                 margin:{
-                    left: 0
+                    left: 30
                 }
             };
 
@@ -93,43 +94,44 @@
             return Math.max.apply(null, values);
         }
 
-        function getSampleData() {
-            var dots = [
-                {x: 0, value: 4},
-                {x: 1, value: 8},
-                {x: 2, value: 15},
-                {x: 3, value: 16},
-                {x: 4, value: 23},
-                {x: 5, value: 42}
-            ];
-
-            var options = {
-                axes: {
-                    x: {key: 'x', type: 'linear'},
-                    y: {key: 'value', type: 'linear'}
-                },
-                series: [
-                    {y: 'value', color: 'steelblue', thickness: '2px', type: 'area', striped: true, label: 'Pouet'}
-                ],
-                lineMode: 'linear',
-                tension: 0.7,
-                tooltip: {
-                    mode: 'scrubber', formatter: function (x, y, series) {
-                        return 'pouet';
-                    }
-                },
-                drawLegend: false,
-                drawDots: true,
-                hideOverflow: false,
-                columnsHGap: 5
-            };
-
-            return {dots: dots, options: options};
-        }
-
         function arrayOfArraysToArray(array) {
             return [].concat.apply([], array);
         }
     }
 
 })();
+
+
+//function getSampleData() {
+//    var dots = [
+//        {x: 0, value: 4},
+//        {x: 1, value: 8},
+//        {x: 2, value: 15},
+//        {x: 3, value: 16},
+//        {x: 4, value: 23},
+//        {x: 5, value: 42}
+//    ];
+//
+//    var options = {
+//        axes: {
+//            x: {key: 'x', type: 'linear'},
+//            y: {key: 'value', type: 'linear'}
+//        },
+//        series: [
+//            {y: 'value', color: 'steelblue', thickness: '2px', type: 'area', striped: true, label: 'Pouet'}
+//        ],
+//        lineMode: 'linear',
+//        tension: 0.7,
+//        tooltip: {
+//            mode: 'scrubber', formatter: function (x, y, series) {
+//                return 'pouet';
+//            }
+//        },
+//        drawLegend: false,
+//        drawDots: true,
+//        hideOverflow: false,
+//        columnsHGap: 5
+//    };
+//
+//    return {dots: dots, options: options};
+//}

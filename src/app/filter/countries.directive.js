@@ -1,13 +1,29 @@
-(function () {
-    "use strict";
+(function() {
+    'use strict';
 
     angular
         .module('app.filter')
-        .controller('CountriesController', CountriesController);
+        .directive('countries', countries);
 
-    CountriesController.$inject = ['$scope', 'countries'];
+    countries.$inject = [];
 
-    function CountriesController($scope, countries) {
+    function countries () {
+        var directive = {
+            restrict: 'EA',
+            templateUrl: 'app/filter/countries.html',
+            scope: {
+            },
+            controller: countriesController,
+            controllerAs: 'vm',
+            bindToController: true
+        };
+
+        return directive;
+    }
+
+    countriesController.$inject = ['countries'];
+
+    function countriesController(countries) {
         var vm = this;
 
         vm.countries = [];

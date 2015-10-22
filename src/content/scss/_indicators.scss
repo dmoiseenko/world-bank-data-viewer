@@ -1,11 +1,13 @@
-@import "base";
+@import "modules";
 
-.indicators{
+.filters {
+    height: $indicators_height;
+    display: flex;
 }
 
-.indicators__topic{
-    margin-bottom: $spacer;
+.filters__topic {
+    margin-right: $spacer;
 }
 
-.indicators__indicator{
+.filters__indicator {
 }
