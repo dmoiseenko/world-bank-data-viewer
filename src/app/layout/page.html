@@ -4,19 +4,25 @@
         <p class="logo">World Bank Data Viewer</p>
     </div>
 
-    <div class="content">
-        <div class="filters">
+    <div class="content-wrapper">
+        <div class="indicators-wrapper">
             <topics></topics>
             <indicators></indicators>
         </div>
-        <div class="flex-container">
-            <div class="countries-wrapper">
-                <countries></countries>
-            </div>
+        <div class="countries-chart">
+                <countries class="countries-wrapper"></countries>
 
             <div class="chart-wrapper">
+                <selected-countries></selected-countries>
                 <chart></chart>
+                <indicator-info></indicator-info>
             </div>
+        </div>
+    </div>
+
+    <div class="footer-wrapper">
+        <div class="footer">
+            <div class="footer--label">&#169; 2015 Moiden</div>
         </div>
     </div>
 </div>

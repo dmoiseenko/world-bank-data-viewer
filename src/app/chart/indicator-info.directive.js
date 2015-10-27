@@ -2,13 +2,13 @@
     'use strict';
     
     angular
-        .module('app.widgets')
+        .module('app.chart')
         .directive('indicatorInfo', indicatorInfo);
     
     function indicatorInfo () {
         var directive = {
-            restrict: 'E',
-            template: '<div>{{ vm.selectedIndicator.name }}</div>',
+            restrict: 'EA',
+            templateUrl: 'app/chart/indicator-info.html',
             scope: {
             },
             controller: indicatorInfoController,
@@ -25,7 +25,8 @@
     function indicatorInfoController(indicators) {
         var vm = this;
 
-        vm.selectedIndicator = {};
+        vm.indicatorName = '';
+        vm.indicatorDescription = '';
 
         activate();
 
@@ -33,7 +34,15 @@
 
         function activate() {
             indicators.selectedIndicatorObservable.subscribe(function(selectedIndicator){
-                vm.selectedIndicator = selectedIndicator;
+                if (selectedIndicator) {
+                    vm.indicatorName = selectedIndicator.name;
+                    vm.indicatorDescription  = selectedIndicator.sourceNote;
+                }
+                else{
+                    vm.indicatorName = '';
+                    vm.indicatorDescription = '';
+                }
+
             });
         }
     }

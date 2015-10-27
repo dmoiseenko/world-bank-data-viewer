@@ -27,11 +27,9 @@
         var vm = this;
 
         vm.countries = [];
-        vm.selectedCountries = [];
         vm.searchedCountry = '';
 
         vm.selectCountry = selectCountry;
-        vm.deselectCountry = deselectCountry;
 
         activate();
 
@@ -41,11 +39,6 @@
             countries.countriesObservable
                 .subscribe(function (countries) {
                     vm.countries = countries;
-                });
-
-            countries.selectedCountriesObservable
-                .subscribe(function(selectedCountries){
-                    vm.selectedCountries = selectedCountries;
                 });
 
             //observeOnScope($scope, 'vm.searchedCountry')
@@ -58,9 +51,7 @@
             countries.selectCountry(country);
         }
 
-        function deselectCountry(country) {
-            countries.deselectCountry(country);
-        }
+
     }
 
 })();

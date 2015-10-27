@@ -10,7 +10,6 @@
 
             'app.filter',
             'app.chart',
-            'app.widgets',
 
             'perfect_scrollbar',
             'rx'

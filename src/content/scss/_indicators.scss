@@ -1,13 +1,10 @@
 @import "modules";
 
-.filters {
-    height: $indicators_height;
-    display: flex;
-}
-
 .filters__topic {
     margin-right: $spacer;
 }
 
-.filters__indicator {
+.filters__indicator__indicators-list {
+    max-height: 80vh;
+    overflow-y: auto;
 }

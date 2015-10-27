@@ -40,8 +40,7 @@ gulp.task('compile-styles', function () {
         .src(config.scss)
         .pipe($.plumber())
         .pipe($.sass().on('error', $.sass.logError))
-        //TODO gulp babel-core issue
-        //.pipe($.autoprefixer({ browsers: ['last 2 version', '> 5%'] }))
+        .pipe($.autoprefixer({ browsers: ['last 2 version', '> 5%'] }))
         .pipe(gulp.dest(config.temp));
 });
 

@@ -13,13 +13,8 @@
             clearColor: clearColor
         };
 
-        var colorCssMapping = {
-            'red': 'selected-country--red',
-            'green': 'selected-country--green',
-            'blue': 'selected-country--blue'
-        };
-
-        var availableColors = ['red', 'green', 'blue'];
+        var availableColors = [ '#1F77B4', '#FF7F0E', '#2CA02C', '#D62728', '#9467BD', '#8C564B',
+            '#E377C2', '#7F7F7F', '#BCBD22', '#17BECF', '#1F77B4'];
         var selectedColors = {};
 
         return service;
@@ -35,7 +30,7 @@
 
             selectedColors[isoCode] = color;
 
-            return colorCssMapping[color];
+            return color;
         }
 
         function clearColor(isoCode) {

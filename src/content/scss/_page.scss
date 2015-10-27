@@ -8,30 +8,51 @@
     height: $header_height;
 }
 
-.content {
-    margin: 0 $spacer 0 $spacer;
-}
-
-.flex-container {
-    display: flex;
-
-    width: 100%;
-
-    padding: 0;
-}
-
-.countries-wrapper {
-    flex-basis: 20%;
-
-    height: calc(100vh - #{$header_height} - #{$indicators_height});
-}
-
-.chart-wrapper {
-    flex-basis: 80%;
-    height: calc(100vh - #{$header_height} - #{$indicators_height});
+.content-wrapper {
+    margin: 0 0 0 $spacer*2;
+    height: calc(100vh - #{$header_height} - #{$footer-height});
 }
 
 .indicators-wrapper {
     height: $indicators_height;
+    display: flex;
 }
+
+.countries-chart {
+    display: flex;
+    height: calc(100% - #{$indicators_height});
+    padding: 0 0 $spacer 0;
+}
+
+.countries-wrapper {
+    flex-basis: 15%;
+    height: 100%;
+    padding-top: $spacer;
+}
+
+.chart-wrapper {
+    flex-basis: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: $spacer*2;
+    //background: red;
+
+    selected-countries{
+        //background: grey;
+    }
+
+    chart{
+        height:50%;
+        //background: yellow;
+        flex: auto;
+    }
+
+    indicator-info{
+        position: relative;
+        top: -15px;
+    }
+}
+
+
 

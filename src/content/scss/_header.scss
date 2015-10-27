@@ -1,4 +1,4 @@
-@import "base";
+@import "modules";
 
 .top-line{
     background: $brand-primary;
@@ -8,9 +8,8 @@
 
 .logo{
     font-size: 34px;
-    font-weight: 300;
     text-transform: lowercase;
     color: $brand-primary;
     line-height: 55px;
-    margin-left: $spacer;
+    margin-left: $spacer*2;
 }

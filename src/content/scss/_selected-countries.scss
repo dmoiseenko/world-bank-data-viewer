@@ -1,0 +1,72 @@
+@import "modules";
+
+.selected-country--color1 {
+    background: #1F77B4;
+}
+
+.selected-country--color2 {
+    background: #FF7F0E;
+}
+
+.selected-country--color3 {
+    background: #2CA02C;
+}
+
+.selected-country--color4{
+    background: #D62728;
+}
+
+.selected-country--color5{
+    background: #9467BD;
+}
+
+.selected-country--color6{
+    background: #8C564B;
+}
+
+.selected-country--color7{
+    background: #E377C2;
+}
+
+.selected-country--color8{
+    background: #7F7F7F;
+}
+
+.selected-country--color9{
+    background: #BCBD22;
+}
+
+.selected-country--color10{
+    background: #17BECF;
+}
+
+.selected-country--color11{
+    background: #1F77B4;
+}
+
+.countries__selected-list {
+    margin-left: $spacer*2;
+    margin-right: $spacer*2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.selected-country {
+    font-size: 20px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    color: #444444;
+}
+
+.selected-country__circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: $spacer/2;
+}
+
+.selected-country__container {
+    margin-left: $spacer;
+}

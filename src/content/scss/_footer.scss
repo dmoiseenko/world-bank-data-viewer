@@ -1,0 +1,21 @@
+@import "modules";
+
+.footer-wrapper{
+    height: $footer-height;
+}
+
+.footer{
+    display: flex;
+    align-items:center;
+    height: 100%;
+}
+
+.footer--label {
+    color: white;
+    font-size: 14px;
+    background: $brand-primary;
+    padding-left: $spacer*2;
+    padding-right: $spacer;
+    line-height: 28px;
+    width: max-content;
+}

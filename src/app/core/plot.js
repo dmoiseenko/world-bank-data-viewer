@@ -67,7 +67,8 @@
             var axes = {x: {type: 'date'}, y: {grid: true, max: max, min: 0}};
 
             var series = countries.map(function (country) {
-                return {y: country.id, color:colors.getColor(country.id), thickness: '2px', type: 'area'}; //striped: true
+                return {y: country.id, color:colors.getColor(country.id), thickness: '2px'};
+                //striped: true
                 //type: 'area', striped: true
             });
 
@@ -76,7 +77,8 @@
                 series: series,
                 drawLegend: false,
                 margin:{
-                    left: 30
+                    left: 30,
+                    right: 30
                 }
             };
 
@@ -100,38 +102,3 @@
     }
 
 })();
-
-
-//function getSampleData() {
-//    var dots = [
-//        {x: 0, value: 4},
-//        {x: 1, value: 8},
-//        {x: 2, value: 15},
-//        {x: 3, value: 16},
-//        {x: 4, value: 23},
-//        {x: 5, value: 42}
-//    ];
-//
-//    var options = {
-//        axes: {
-//            x: {key: 'x', type: 'linear'},
-//            y: {key: 'value', type: 'linear'}
-//        },
-//        series: [
-//            {y: 'value', color: 'steelblue', thickness: '2px', type: 'area', striped: true, label: 'Pouet'}
-//        ],
-//        lineMode: 'linear',
-//        tension: 0.7,
-//        tooltip: {
-//            mode: 'scrubber', formatter: function (x, y, series) {
-//                return 'pouet';
-//            }
-//        },
-//        drawLegend: false,
-//        drawDots: true,
-//        hideOverflow: false,
-//        columnsHGap: 5
-//    };
-//
-//    return {dots: dots, options: options};
-//}

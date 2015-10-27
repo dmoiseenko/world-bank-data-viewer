@@ -1,0 +1,10 @@
+<div class="countries__selected-list">
+    <div ng-repeat="country in vm.selectedCountries" class="selected-country__container">
+        <a href="#" ng-click="vm.deselectCountry(country)" >
+            <div class="selected-country">
+                <div class="selected-country__circle" ng-style="{'background': country.color}"></div>
+                {{ country.name }}
+            </div>
+        </a>
+    </div>
+</div>
