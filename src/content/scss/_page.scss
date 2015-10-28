@@ -27,7 +27,6 @@
 .countries-wrapper {
     flex-basis: 15%;
     height: 100%;
-    padding-top: $spacer;
 }
 
 .chart-wrapper {
@@ -36,21 +35,17 @@
     display: flex;
     flex-direction: column;
     padding-left: $spacer*2;
-    //background: red;
 
     selected-countries{
-        //background: grey;
     }
 
     chart{
         height:50%;
-        //background: yellow;
         flex: auto;
     }
 
     indicator-info{
         position: relative;
-        top: -15px;
     }
 }
 

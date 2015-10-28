@@ -8,7 +8,7 @@
     function indicatorInfo () {
         var directive = {
             restrict: 'EA',
-            templateUrl: 'app/chart/indicator-info.html',
+            templateUrl: 'app/chart/indicatorInfo.html',
             scope: {
             },
             controller: indicatorInfoController,

@@ -1,21 +1,13 @@
 @import "modules";
 
-.chart__container {
-    height: 100%;
-    display:flex;
-}
-
-.chart__graph{
-}
-
 .scrubberText {
     font-size: 14px;
 }
 
-.graph-style__container{
+.series-type__container {
     padding-left: $spacer*2;
     position: relative;
-    top: -30px;
+    top: -$spacer*2;
 
     .radio-inline{
         padding-right: $spacer/2;

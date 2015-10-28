@@ -5,9 +5,9 @@
         .module('app.core')
         .factory('plot', plot);
 
-    plot.$inject = ['rx', 'colors'];
+    plot.$inject = ['rx', 'colors', 'settings'];
 
-    function plot(Rx, colors) {
+    function plot(Rx, colors, settings) {
         var service = {
             composePlotData: composePlotData
         };
@@ -16,10 +16,7 @@
 
         ////////////////
 
-        function composePlotData(worldBankData) {
-            console.log('initial data');
-            console.log(worldBankData);
-
+        function composePlotData(worldBankData, type) {
             var data = arrayOfArraysToArray(worldBankData)
                 .filter(function (item) {
                     return item.value
@@ -29,9 +26,6 @@
                 return item.country
             });
             var countries = _.uniq(allCountries, 'id');
-
-            console.log('take out countries');
-            console.log(countries);
 
             var dots = [];
 
@@ -59,17 +53,12 @@
                 return a['x'] - b['x'];
             });
 
-            console.log('final dots');
-            console.log(dots);
-
             var max = getMaxValueFromWorldBankData(data);
 
             var axes = {x: {type: 'date'}, y: {grid: true, max: max, min: 0}};
 
             var series = countries.map(function (country) {
-                return {y: country.id, color:colors.getColor(country.id), thickness: '2px'};
-                //striped: true
-                //type: 'area', striped: true
+                return {y: country.id, color:colors.getColor(country.id), thickness: '2px', type: type};
             });
 
             var options = {
@@ -83,8 +72,6 @@
             };
 
             var plotData = {dots: dots, options: options};
-
-            console.log(plotData);
 
             return plotData;
         }
