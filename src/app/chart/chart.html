@@ -1,2 +1,3 @@
-<linechart class="chart__graph" data="vm.data" options="vm.options"></linechart>
-<series-view class="series-type__container"></series-view>
+<linechart data="vm.data" options="vm.options" ng-show="!vm.isBusy"></linechart>
+<series-view class="series-type__container" ng-show="!vm.isBusy"></series-view>
+<double-bounce-spinner class="busy-indicator" ng-show="vm.isBusy"></double-bounce-spinner>

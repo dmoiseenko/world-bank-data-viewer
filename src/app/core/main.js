@@ -5,11 +5,12 @@
         .module('app.core')
         .factory('main', main);
 
-    main.$inject = ['countries', 'topics', 'indicators', 'charts', 'settings'];
+    main.$inject = ['countries', 'topics', 'indicators', 'charts', 'settings', 'rx'];
 
-    function main(countries, topics, indicators, charts, settings) {
+    function main(countries, topics, indicators, charts, settings, Rx) {
         var service = {
-            start: start
+            start: start,
+            loadingObservable: new Rx.BehaviorSubject(false)
         };
 
         return service;
@@ -17,7 +18,6 @@
         ////////////////
 
         function start() {
-
             countries.loadCountries();
             topics.loadTopics();
 
@@ -30,9 +30,22 @@
                 indicators.selectedIndicatorObservable,
                 settings.seriesTypeObservable,
                 function (countries, source, indicator, type) {
-                    charts.draw(countries, indicator, type)
+                    return {
+                        countries: countries,
+                        source: source,
+                        indicator: indicator,
+                        type: type
+                    };
                 })
-                .subscribe();
+                .subscribe(function (data) {
+                    if (data.countries && data.source && data.indicator && data.type) {
+                        charts.draw(data.countries, data.indicator, data.type);
+                        service.loadingObservable.onNext(true);
+                    }
+                    else {
+                        service.loadingObservable.onNext(false);
+                    }
+                });
         }
     }
 

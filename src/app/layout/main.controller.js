@@ -11,8 +11,8 @@
         /* jshint validthis: true */
         var vm = this;
 
+        vm.isVisible = true;
         vm.activate = activate;
-        vm.title = 'MainController';
 
         activate();
 
@@ -20,6 +20,10 @@
 
         function activate() {
             main.start();
+
+            main.loadingObservable.subscribe(function (isLoading) {
+                vm.isVisible = isLoading;
+            });
         }
     }
 

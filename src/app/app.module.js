@@ -12,7 +12,8 @@
             'app.chart',
 
             'perfect_scrollbar',
-            'rx'
+            'rx',
+            'angular-spinkit'
 
         ]);
 

@@ -28,7 +28,8 @@
     "n3-line-chart": "*",
     "neat": "*",
     "restangular": "*",
-    "rxjs": "*"
+    "rxjs": "*",
+    "angular-spinkit": "~0.3.3"
   },
   "overrides": {
     "bootstrap": {

@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -7,12 +7,11 @@
 
     chart.$inject = [];
 
-    function chart () {
+    function chart() {
         var directive = {
             restrict: 'EA',
             templateUrl: 'app/chart/chart.html',
-            scope: {
-            },
+            scope: {},
             controller: chartController,
             controllerAs: 'vm',
             bindToController: true
@@ -29,6 +28,7 @@
 
         vm.data = [];
         vm.options = {};
+        vm.isBusy = false;
 
         activate();
 
@@ -36,16 +36,34 @@
 
         function activate() {
 
-            charts.plotDataObservable.subscribe(function(data){
-                if(data)
-                {
-                    $scope.$apply(function(){
+            charts.plotDataObservable.subscribe(function (data) {
+                if (data) {
+                    $scope.$apply(function () {
                         vm.data = data.dots;
                         vm.options = data.options;
                     });
 
                 }
             });
+
+            charts.busyObservable
+                .filter(function(isBusy){
+                    return isBusy;
+                })
+                .subscribe(function (isBusy) {
+                    vm.isBusy = isBusy;
+                });
+
+            charts.busyObservable
+                .filter(function(isBusy){
+                    return !isBusy;
+                })
+                .delay(500)
+                .subscribe(function (isBusy) {
+                    $scope.$apply(function () {
+                        vm.isBusy = isBusy;
+                    });
+                });
         }
     }
 })();

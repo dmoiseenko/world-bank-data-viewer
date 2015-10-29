@@ -9,7 +9,22 @@
     position: relative;
     top: -$spacer*2;
 
-    .radio-inline{
+    .radio-inline {
         padding-right: $spacer/2;
     }
+}
+
+.busy-indicator {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    > div {
+        div {
+            background-color: $brand-primary;
+        }
+    }
+
 }

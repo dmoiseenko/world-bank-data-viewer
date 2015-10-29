@@ -5,9 +5,9 @@
         .module('app.core')
         .factory('plot', plot);
 
-    plot.$inject = ['rx', 'colors', 'settings'];
+    plot.$inject = ['rx', 'colors'];
 
-    function plot(Rx, colors, settings) {
+    function plot(Rx, colors) {
         var service = {
             composePlotData: composePlotData
         };

@@ -13,7 +13,8 @@
             getTopics: getTopics,
             getIndicatorsByTopic: getIndicatorsByTopic,
             getDataByIndicator: getDataByIndicator,
-            getDataByIndicatorAndCountry: getDataByIndicatorAndCountry
+            getDataByIndicatorAndCountry: getDataByIndicatorAndCountry,
+            getIndicators: getIndicators
         };
 
         return service;
@@ -30,6 +31,10 @@
 
         function getIndicatorsByTopic(topic) {
             return Restangular.all('topic/' + topic.id + '/indicator').getList();
+        }
+
+        function getIndicators(){
+            return Restangular.all('indicators/').getList();
         }
 
         function getDataByIndicator(indicator) {

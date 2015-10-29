@@ -27,6 +27,8 @@
         var vm = this;
 
         vm.indicators = indicators;
+        vm.isDisabled = true;
+
         vm.selectedIndicator = getNullIndicator();
         vm.selectIndicator = selectIndicator;
 
@@ -36,6 +38,7 @@
 
         function activate() {
             indicators.indicatorsObservable.subscribe(function (data) {
+                vm.isDisabled = _.isEmpty(data);
                 vm.indicators = data;
             });
 
