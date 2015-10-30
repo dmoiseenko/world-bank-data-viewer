@@ -6,7 +6,7 @@
 
             'app.core',
             'app.api',
-            'app.layout',
+            'app.page',
 
             'app.filter',
             'app.chart',

@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('app.layout')
-        .controller('MainController', MainController);
+        .module('app.page')
+        .controller('PageController', PageController);
 
-    MainController.$inject = ['main'];
+    PageController.$inject = ['main'];
 
-    function MainController(main) {
+    function PageController(main) {
         /* jshint validthis: true */
         var vm = this;
 
