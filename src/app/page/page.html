@@ -11,12 +11,7 @@
         </div>
         <div class="countries-chart">
             <countries class="countries-wrapper"></countries>
-
-            <div class="chart-wrapper" >
-                <selected-countries></selected-countries>
-                <chart ng-show="vm.isVisible"></chart>
-                <indicator-info></indicator-info>
-            </div>
+            <ui-view name="content" class="chart-wrapper"></ui-view>
         </div>
     </div>
 

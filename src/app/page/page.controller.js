@@ -5,13 +5,12 @@
         .module('app.page')
         .controller('PageController', PageController);
 
-    PageController.$inject = ['main'];
+    PageController.$inject = ['main', '$state'];
 
-    function PageController(main) {
+    function PageController(main, $state) {
         /* jshint validthis: true */
         var vm = this;
 
-        vm.isVisible = true;
         vm.activate = activate;
 
         activate();
@@ -21,8 +20,14 @@
         function activate() {
             main.start();
 
-            main.loadingObservable.subscribe(function (isLoading) {
-                vm.isVisible = isLoading;
+            main.startObservable.subscribe(function (isStarted) {
+
+                if (isStarted) {
+                    $state.go('home.data');
+                }
+                else{
+                    $state.go('home.start');
+                }
             });
         }
     }

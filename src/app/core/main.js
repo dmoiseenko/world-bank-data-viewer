@@ -10,7 +10,7 @@
     function main(countries, topics, indicators, charts, settings, Rx) {
         var service = {
             start: start,
-            loadingObservable: new Rx.BehaviorSubject(false)
+            startObservable: new Rx.BehaviorSubject(false)
         };
 
         return service;
@@ -38,13 +38,16 @@
                     };
                 })
                 .subscribe(function (data) {
-                    if (data.countries && data.source && data.indicator && data.type) {
-                        charts.draw(data.countries, data.indicator, data.type);
-                        service.loadingObservable.onNext(true);
+                    if (!_.isEmpty(data.countries) ||
+                        data.source ||
+                        data.indicator) {
+                        service.startObservable.onNext(true);
                     }
                     else {
-                        service.loadingObservable.onNext(false);
+                        service.startObservable.onNext(false);
                     }
+
+                    charts.draw(data.countries, data.indicator, data.type);
                 });
         }
     }
