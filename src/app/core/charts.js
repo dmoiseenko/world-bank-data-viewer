@@ -20,7 +20,9 @@
 
         function draw(countries, indicator, type) {
             if (countries && indicator && countries.length !== 0) {
+
                 service.busyObservable.onNext(true);
+
                 Rx.Observable.from(countries)
                     .flatMap(function (country) {
                         return Rx.Observable.fromPromise(
@@ -28,11 +30,16 @@
                     })
                     .toArray()
                     .subscribe(function (data) {
-                        var plotData = plot.composePlotData(data, type);
+                        plot.setType(type);
+                        var plotData = plot.composePlotData(data);
                         service.plotDataObservable.onNext(plotData);
 
                         service.busyObservable.onNext(false);
                     });
+            }
+            else{
+                var plotData = plot.getSample();
+                service.plotDataObservable.onNext(plotData);
             }
         }
     }

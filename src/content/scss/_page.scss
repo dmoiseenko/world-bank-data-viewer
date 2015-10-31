@@ -26,6 +26,7 @@
 }
 
 .countries-wrapper {
+    //padding-top: 20px;
     flex-basis: 15%;
     height: 100%;
 }
@@ -38,6 +39,7 @@
     padding-left: $spacer*2;
 
     selected-countries{
+        //min-height: 30px;
     }
 
     chart{
@@ -55,5 +57,7 @@ a:focus {
     outline: none;
 }
 
-
+body{
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 10%, rgba(0, 108, 200, 0.05) 90%); /* W3C */
+}
 

@@ -38,16 +38,13 @@
 
             charts.plotDataObservable.subscribe(function (data) {
                 if (data) {
-                    $scope.$apply(function () {
-                        vm.data = data.dots;
-                        vm.options = data.options;
-                    });
-
+                    vm.data = data.dots;
+                    vm.options = data.options;
                 }
             });
 
             charts.busyObservable
-                .filter(function(isBusy){
+                .filter(function (isBusy) {
                     return isBusy;
                 })
                 .subscribe(function (isBusy) {
@@ -55,7 +52,7 @@
                 });
 
             charts.busyObservable
-                .filter(function(isBusy){
+                .filter(function (isBusy) {
                     return !isBusy;
                 })
                 .delay(500)

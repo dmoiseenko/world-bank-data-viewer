@@ -5,46 +5,68 @@
         .module('app.core')
         .factory('plot', plot);
 
-    plot.$inject = ['rx', 'colors'];
+    plot.$inject = ['colors'];
 
-    function plot(Rx, colors) {
+    function plot(colors) {
         var service = {
-            composePlotData: composePlotData
+            composePlotData: composePlotData,
+            setType: setType,
+            getSample: getSample
+        };
+
+        var type = 'line';
+
+        var sampleData = {
+            dots: [
+                {x: 1, value: 1}
+            ],
+            options: {
+                axes: {
+                    x: {key: 'x', type: 'linear', min: 0, max: 1},
+                    y: {type: 'linear', min: 0, max: 1, ticks: 10, grid: true},
+                },
+                margin: {
+                    left: 30,
+                    right: 30
+                },
+                series: [
+                    {y: 'value', drawDots : false}
+                ],
+                lineMode: 'linear',
+                drawLegend: false,
+                tooltip:{
+                    mode: 'none'
+                }
+            }
         };
 
         return service;
 
         ////////////////
 
-        function composePlotData(worldBankData, type) {
+        function setType(selectedType) {
+            type = selectedType;
+        }
+
+        function composePlotData(worldBankData) {
             var data = arrayOfArraysToArray(worldBankData)
                 .filter(function (item) {
                     return item.value
                 });
 
-            var allCountries = data.map(function (item) {
-                return item.country
-            });
-            var countries = _.uniq(allCountries, 'id');
+            if (_.isEmpty(data)) {
+                return getSample();
+            }
 
             var dots = [];
-
             data.forEach(function (item) {
-                var index = _.findIndex(dots, function (dot) {
-                    if (dot.hasOwnProperty('x')) {
-                        return dot['x'].getTime() === (new Date(item.date)).getTime();
-                    }
-                    return false;
-                });
+                var dot = getDotWithSameTime(dots, item);
 
-                var dot = {};
-
-                if (index !== -1) {
-                    dot = dots[index];
-                }
-                else {
+                if (!dot) {
+                    dot = {};
                     dots.push(dot);
                 }
+
                 dot['x'] = new Date(item.date);
                 dot[item.country.id] = parseInt(item.value, 10);
             });
@@ -53,30 +75,28 @@
                 return a['x'] - b['x'];
             });
 
-            var max = getMaxValueFromWorldBankData(data);
+            var axes = getAxes(data);
 
-            var axes = {x: {type: 'date'}, y: {grid: true, max: max, min: 0}};
-
-            var series = countries.map(function (country) {
-                return {y: country.id, color:colors.getColor(country.id), thickness: '2px', type: type};
-            });
+            var series = getSeries(data);
 
             var options = {
                 axes: axes,
                 series: series,
                 drawLegend: false,
-                margin:{
+                margin: {
                     left: 30,
                     right: 30
                 }
             };
 
-            var plotData = {dots: dots, options: options};
-
-            return plotData;
+            return {dots: dots, options: options};
         }
 
-        function getMaxValueFromWorldBankData(data) {
+        function getSample() {
+            return sampleData;
+        }
+
+        function getMaxValue(data) {
             var values = data.map(function (item) {
                 return item.value;
             });
@@ -85,6 +105,44 @@
 
         function arrayOfArraysToArray(array) {
             return [].concat.apply([], array);
+        }
+
+        function getUniqueCountries(data) {
+            var allCountries = data.map(function (item) {
+                return item.country
+            });
+            return _.uniq(allCountries, 'id');
+        }
+
+        function getDotWithSameTime(dots, item) {
+            var itemTime = (new Date(item.date)).getTime();
+
+            var index = _.findIndex(dots, function (dot) {
+                return dot['x'].getTime() === itemTime;
+            });
+
+            if (index === -1) {
+                return null;
+            }
+
+            return dots[index];
+        }
+
+        function getSeries(data) {
+            var countries = getUniqueCountries(data);
+            return countries.map(function (country) {
+                return {
+                    y: country.id,
+                    color: colors.getColor(country.id),
+                    thickness: '3px',
+                    type: type
+                };
+            });
+        }
+
+        function getAxes(data) {
+            var max = getMaxValue(data);
+            return {x: {type: 'date'}, y: {grid: true, max: max, min: 0}};
         }
     }
 
