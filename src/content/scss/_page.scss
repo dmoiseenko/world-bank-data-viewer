@@ -9,9 +9,8 @@
 }
 
 .content-wrapper {
-    margin: 0 0 0 $spacer*2;
+    margin: 0 1px 0 $spacer*2;
     height: calc(100vh - #{$header_height} - #{$footer-height});
-    max-width: 2500px;
 }
 
 .indicators-wrapper {
