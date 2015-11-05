@@ -7,7 +7,7 @@
 
     countries.$inject = [];
 
-    function countries () {
+    function countries() {
         var directive = {
             restrict: 'EA',
             templateUrl: 'app/filter/countries.html',

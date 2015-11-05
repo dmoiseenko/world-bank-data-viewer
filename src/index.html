@@ -1,6 +1,6 @@
 <!doctype html>
-<html ng-app="app" ng-strict-di>
-
+<html ng-app="app">
+<!--ng-app="app"-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -28,51 +28,56 @@
 
     <!-- build:js js/lib.js -->
     <!-- bower:js -->
-    <script src="../bower_components/jquery/dist/jquery.js"></script>
-    <script src="../bower_components/angular/angular.js"></script>
-    <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="../bower_components/perfect-scrollbar/src/perfect-scrollbar.js"></script>
-    <script src="../bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js"></script>
+    <!--<script src="../bower_components/jquery/dist/jquery.js"></script>-->
+    <!--<script src="../bower_components/angular/angular.js"></script>-->
+    <!--<script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>-->
+    <!--<script src="../bower_components/perfect-scrollbar/src/perfect-scrollbar.js"></script>-->
+    <!--<script src="../bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js"></script>-->
     <script src="../bower_components/rxjs/dist/rx.all.js"></script>
-    <script src="../bower_components/angular-rx/dist/rx.angular.js"></script>
-    <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="../bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
-    <script src="../bower_components/d3/d3.js"></script>
-    <script src="../bower_components/moment/moment.js"></script>
-    <script src="../bower_components/n3-line-chart/build/line-chart.min.js"></script>
-    <script src="../bower_components/lodash/lodash.js"></script>
-    <script src="../bower_components/restangular/dist/restangular.js"></script>
-    <script src="../bower_components/angular-spinkit/build/angular-spinkit.js"></script>
+    <!--<script src="../bower_components/angular-rx/dist/rx.angular.js"></script>-->
+    <!--<script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>-->
+    <!--<script src="../bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>-->
+    <!--<script src="../bower_components/d3/d3.js"></script>-->
+    <!--<script src="../bower_components/moment/moment.js"></script>-->
+    <!--<script src="../bower_components/n3-line-chart/build/line-chart.min.js"></script>-->
+    <!--<script src="../bower_components/lodash/lodash.js"></script>-->
+    <!--<script src="../bower_components/restangular/dist/restangular.js"></script>-->
+    <!--<script src="../bower_components/angular-spinkit/build/angular-spinkit.js"></script>-->
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js(./) js/app.js -->
-    <!-- inject:js -->
-    <script src="/src/app/app.module.js"></script>
-    <script src="/src/app/api/api.module.js"></script>
-    <script src="/src/app/chart/chart.module.js"></script>
-    <script src="/src/app/core/core.module.js"></script>
-    <script src="/src/app/filter/filter.module.js"></script>
-    <script src="/src/app/page/page.module.js"></script>
-    <script src="/src/app/api/worldBank.config.js"></script>
-    <script src="/src/app/api/worldBank.js"></script>
-    <script src="/src/app/chart/chart.directive.js"></script>
-    <script src="/src/app/chart/indicatorInfo.directive.js"></script>
-    <script src="/src/app/chart/seriesType.directive.js"></script>
-    <script src="/src/app/core/charts.js"></script>
-    <script src="/src/app/core/colors.js"></script>
-    <script src="/src/app/core/countries.js"></script>
-    <script src="/src/app/core/indicators.js"></script>
-    <script src="/src/app/core/main.js"></script>
-    <script src="/src/app/core/plot.js"></script>
-    <script src="/src/app/core/settings.js"></script>
-    <script src="/src/app/core/topics.js"></script>
-    <script src="/src/app/filter/countries.directive.js"></script>
-    <script src="/src/app/filter/indicators.directive.js"></script>
-    <script src="/src/app/filter/selected-countries.directive.js"></script>
-    <script src="/src/app/filter/topics.directive.js"></script>
-    <script src="/src/app/page/page.controller.js"></script>
-    <!-- endinject -->
+    <!--&lt;!&ndash; inject:js &ndash;&gt;-->
+    <!--<script src="/src/app/api/api.module.js"></script>-->
+    <!--<script src="/src/app/app.module.js"></script>-->
+    <!--<script src="/src/app/chart/chart.module.js"></script>-->
+    <!--<script src="/src/app/core/core.module.js"></script>-->
+    <!--<script src="/src/app/filter/filter.module.js"></script>-->
+    <!--<script src="/src/app/page/page.module.js"></script>-->
+    <!--<script src="/src/app/api/worldBank.config.js"></script>-->
+    <!--<script src="/src/app/api/worldBank.js"></script>-->
+    <!--<script src="/src/app/bundle.js"></script>-->
+    <!--<script src="/src/app/chart/chart.directive.js"></script>-->
+    <!--<script src="/src/app/chart/indicatorInfo.directive.js"></script>-->
+    <!--<script src="/src/app/chart/seriesType.directive.js"></script>-->
+    <!--<script src="/src/app/core/charts.js"></script>-->
+    <!--<script src="/src/app/core/colors.js"></script>-->
+    <!--<script src="/src/app/core/countries.js"></script>-->
+    <!--<script src="/src/app/core/indicators.js"></script>-->
+    <!--<script src="/src/app/core/main.js"></script>-->
+    <!--<script src="/src/app/core/plot.js"></script>-->
+    <!--<script src="/src/app/core/settings.js"></script>-->
+    <!--<script src="/src/app/core/topics.js"></script>-->
+    <!--<script src="/src/app/filter/countries.directive.js"></script>-->
+    <!--<script src="/src/app/filter/indicators.directive.js"></script>-->
+    <!--<script src="/src/app/filter/selected-countries.directive.js"></script>-->
+    <!--<script src="/src/app/filter/topics.directive.js"></script>-->
+    <!--<script src="/src/app/page/page.controller.js"></script>-->
+    <!--<script src="/src/app/vendor.bundle.js"></script>-->
+    <!--&lt;!&ndash; endinject &ndash;&gt;-->
+
+    <!--<script src="/src/app/vendor.bundle.js"></script>-->
+    <script src="/src/app/bundle.js"></script>
 
     <!-- inject:templates:js -->
     <!-- endinject -->

@@ -1,20 +1,29 @@
-(function () {
-    'use strict';
+'use strict';
 
-    angular
-        .module('app', [
+//require('rx');
+require('angular');
 
-            'app.core',
-            'app.api',
-            'app.page',
 
-            'app.filter',
-            'app.chart',
+module.exports = angular.module('app', [
+    'rx',
 
-            'perfect_scrollbar',
-            'rx',
-            'angular-spinkit'
+    require('./core/core.module').name,
+    require('./api/api.module').name,
+]);
 
-        ]);
 
-})();
+//angular
+//    .module('app', [
+//
+//        'app.core',
+//        'app.api',
+//        'app.page',
+//
+//        'app.filter',
+//        'app.chart',
+//
+//        'perfect_scrollbar',
+//        'rx',
+//        'angular-spinkit'
+//
+//    ]);
