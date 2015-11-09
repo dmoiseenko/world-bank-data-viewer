@@ -1,6 +1,7 @@
-(function () {
-    'use strict';
+'use strict';
 
-    angular.module('app.chart', ['n3-line-chart']);
-
-})();
+module.exports = angular.module('app.chart', ['n3-line-chart'])
+    .directive('chart', require('./chart.directive'))
+    .directive('indicatorInfo', require('./indicatorInfo.directive'))
+    .directive('seriesView', require('./seriesView.directive'))
+    .directive('spinner', require('./spinner.directive'));

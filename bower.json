@@ -17,24 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "*",
-    "angular-bootstrap": "*",
     "angular-perfect-scrollbar": "~0.0.4",
-    "angular-rx": "*",
-    "angular-ui-router": "*",
-    "bootstrap-sass": "*",
-    "bourbon": "*",
-    "font-awesome": "*",
-    "n3-line-chart": "*",
-    "neat": "*",
-    "restangular": "*",
-    "rxjs": "*",
-    "angular-spinkit": "~0.3.3"
-  },
-  "overrides": {
-    "bootstrap": {
-      "main": "dist/css/bootstrap.css",
-      "dist": "dist/js/bootstrap.js"
-    }
+    "n3-line-chart": "*"
   }
 }

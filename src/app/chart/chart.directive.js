@@ -1,66 +1,62 @@
-(function () {
-    'use strict';
+'use strict';
 
-    angular
-        .module('app.chart')
-        .directive('chart', chart);
+module.exports = chart;
 
-    chart.$inject = [];
+chart.$inject = [];
 
-    function chart() {
-        var directive = {
-            restrict: 'EA',
-            templateUrl: 'app/chart/chart.html',
-            scope: {},
-            controller: chartController,
-            controllerAs: 'vm',
-            bindToController: true
-        };
+function chart() {
+    var directive = {
+        restrict: 'EA',
+        template: require('./chart.html'),
+        scope: {},
+        controller: chartController,
+        controllerAs: 'vm',
+        bindToController: true
+    };
 
-        return directive;
-    }
+    return directive;
+}
 
-    chartController.$inject = ['charts', '$scope'];
+chartController.$inject = ['charts', '$scope'];
 
-    function chartController(charts, $scope) {
-        /* jshint validthis: true */
-        var vm = this;
+function chartController(charts, $scope) {
+    /* jshint validthis: true */
+    var vm = this;
 
-        vm.data = [];
-        vm.options = {};
-        vm.isBusy = false;
+    vm.data = [];
+    vm.options = {};
+    vm.isBusy = false;
 
-        activate();
+    activate();
 
-        ////////////////
+    ////////////////
 
-        function activate() {
+    function activate() {
 
-            charts.plotDataObservable.subscribe(function (data) {
-                if (data) {
-                    vm.data = data.dots;
-                    vm.options = data.options;
-                }
+        charts.plotDataObservable.subscribe(function (data) {
+            if (data) {
+                vm.data = data.dots;
+                vm.options = data.options;
+            }
+        });
+
+        charts.busyObservable
+            .filter(function (isBusy) {
+                return isBusy;
+            })
+            .subscribe(function (isBusy) {
+                vm.isBusy = isBusy;
             });
 
-            charts.busyObservable
-                .filter(function (isBusy) {
-                    return isBusy;
-                })
-                .subscribe(function (isBusy) {
+        charts.busyObservable
+            .filter(function (isBusy) {
+                return !isBusy;
+            })
+            .delay(500)
+            .subscribe(function (isBusy) {
+                $scope.$apply(function () {
                     vm.isBusy = isBusy;
                 });
-
-            charts.busyObservable
-                .filter(function (isBusy) {
-                    return !isBusy;
-                })
-                .delay(500)
-                .subscribe(function (isBusy) {
-                    $scope.$apply(function () {
-                        vm.isBusy = isBusy;
-                    });
-                });
-        }
+            });
     }
-})();
+}

@@ -1,7 +1,8 @@
 // Paper 3.3.5
 // Bootswatch
 // -----------------------------------------------------
-@import '../../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+@import '../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
 
 
 $web-font-path: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" !default;

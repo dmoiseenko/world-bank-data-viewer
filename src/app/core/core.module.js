@@ -8,5 +8,4 @@ module.exports = angular.module('app.core', [])
     .factory('main', require('./main'))
     .factory('plot', require('./plot'))
     .factory('settings', require('./settings'))
-    .factory('topics', require('./topics'))
-;
+    .factory('topics', require('./topics'));

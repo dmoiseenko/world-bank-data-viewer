@@ -1,35 +1,30 @@
-(function () {
-    'use strict';
+'use strict';
 
-    angular
-        .module('app.page')
-        .controller('PageController', PageController);
+module.exports = PageController;
 
-    PageController.$inject = ['main', '$state'];
+PageController.$inject = ['main', '$state'];
 
-    function PageController(main, $state) {
-        /* jshint validthis: true */
-        var vm = this;
+function PageController(main, $state) {
+    /* jshint validthis: true */
+    var vm = this;
 
-        vm.activate = activate;
+    vm.activate = activate;
 
-        activate();
+    activate();
 
-        ////////////////
+    ////////////////
 
-        function activate() {
-            main.start();
+    function activate() {
+        main.start();
 
-            main.startObservable.subscribe(function (isStarted) {
+        main.startObservable.subscribe(function (isStarted) {
 
-                if (isStarted) {
-                    $state.go('home.data');
-                }
-                else{
-                    $state.go('home.start');
-                }
-            });
-        }
+            if (isStarted) {
+                $state.go('home.data');
+            }
+            else {
+                $state.go('home.start');
+            }
+        });
     }
-
-})();
+}
