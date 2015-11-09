@@ -2,7 +2,7 @@
     <div class="countries__search">
         <input type="text" ng-model="vm.searchedCountry">
     </div>
-    <perfect-scrollbar class="countries__scroll" min-scrollbar-length="10">
+    <div class="countries__scroll">
         <div class="countries__list">
             <div ng-repeat="country in vm.countries | filter:vm.searchedCountry">
                 <a href="" ng-click="vm.selectCountry(country)">
@@ -12,5 +12,5 @@
                 </a>
             </div>
         </div>
-    </perfect-scrollbar>
+    </div>
 </div>

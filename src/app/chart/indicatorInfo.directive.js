@@ -1,5 +1,7 @@
 'use strict';
 
+require('./_indicator-info.scss');
+
 module.exports = indicatorInfo;
 
 function indicatorInfo() {
@@ -13,7 +15,6 @@ function indicatorInfo() {
     };
 
     return directive;
-
 }
 
 indicatorInfoController.$inject = ['indicators'];

@@ -1,5 +1,7 @@
 'use strict';
 
+require('./_selected-countries.scss');
+
 module.exports = selectedCountries;
 
 selectedCountries.$inject = [];

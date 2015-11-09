@@ -1,4 +1,4 @@
-@import "base";
+@import "../../content/scss/_base";
 
 .page {
     height: 100vh;
@@ -25,7 +25,6 @@
 }
 
 .countries-wrapper {
-    //padding-top: 20px;
     flex-basis: 15%;
     height: 100%;
 }

@@ -1,5 +1,10 @@
 'use strict';
 
+require('./_start.scss');
+require('./_page.scss');
+require('./_start.scss');
+require('./_header.scss');
+
 module.exports = PageController;
 
 PageController.$inject = ['main', '$state'];

@@ -73,7 +73,6 @@ function scrollbar($parse, $window) {
                 jqWindow.off('resize', update);
                 $elem.perfectScrollbar('destroy');
             });
-
         }
     };
 

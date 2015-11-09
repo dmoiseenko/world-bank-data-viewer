@@ -1,5 +1,7 @@
 'use strict';
 
+require('./_chart.scss');
+
 module.exports = chart;
 
 chart.$inject = [];

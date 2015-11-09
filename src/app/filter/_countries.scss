@@ -1,4 +1,4 @@
-@import "modules";
+@import "../../content/scss/_modules";
 
 .countries {
     display: flex;
@@ -19,6 +19,10 @@
     flex: 0 1 auto;
     overflow: hidden;
     position: relative;
+
+    &:hover {
+        overflow: auto;
+    }
 }
 
 .country {

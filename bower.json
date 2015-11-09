@@ -17,7 +17,6 @@
     "tests"
   ],
   "dependencies": {
-    "angular-perfect-scrollbar": "~0.0.4",
     "n3-line-chart": "*"
   }
 }
