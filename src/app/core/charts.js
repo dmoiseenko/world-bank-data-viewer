@@ -4,11 +4,11 @@ module.exports = charts;
 
 charts.$inject = ['worldBank', 'rx', 'plot'];
 
-function charts(worldBank, Rx, plot) {
+function charts(worldBank, rx, plot) {
     var service = {
-        plotDataObservable: new Rx.BehaviorSubject(null),
+        plotDataObservable: new rx.BehaviorSubject(null),
         draw: draw,
-        busyObservable: new Rx.BehaviorSubject(false)
+        busyObservable: new rx.BehaviorSubject(false)
     };
 
     return service;
@@ -20,9 +20,9 @@ function charts(worldBank, Rx, plot) {
 
             service.busyObservable.onNext(true);
 
-            Rx.Observable.from(countries)
+            rx.Observable.from(countries)
                 .flatMap(function (country) {
-                    return Rx.Observable.fromPromise(
+                    return rx.Observable.fromPromise(
                         worldBank.getDataByIndicatorAndCountry(indicator, country));
                 })
                 .toArray()

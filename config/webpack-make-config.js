@@ -1,12 +1,20 @@
 var path = require('path');
 var webpack = require('webpack');
-var bourbon = require('node-bourbon').includePaths;
+var path = require('path');
+var bower_dir = path.resolve(__dirname, '../bower_components');
+var node_dir = path.resolve(__dirname, '../node_modules');
+var app = path.resolve(__dirname, '../src/app');
+var autoprefixer = require('autoprefixer');
+var cssnano = require('cssnano');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = function (options) {
+
+    var context = app;
+
     var output = {
-        path: options.dir,
-        pathinfo: true,
-        filename: '[name].js'
+        path: options.dir + options.assetsDir,
+        filename: 'bundle.js'
     };
 
     if (options.sourcemaps) {
@@ -14,130 +22,61 @@ module.exports = function (options) {
     }
 
     var entry = {
-        main: './app.module.js',
-        //vendor: [
-        //    'angular',
-        //    'ocLazyLoad',
-        //    'ui-router',
-        //    'lodash',
-        //    'modernizr',
-        //    'jquery'
-        //]
+        app: './app.module.js',
+        vendors: ['angular',
+            'angular-ui-router',
+            'd3',
+            'n3-line-chart',
+            'rx',
+            'rx-angular',
+            'lodash',
+            'restangular',
+            'jquery',
+            'bootstrap-dropdown']
     };
 
-    var modulesDirectories = [
-        //'../node_modules',
-        //'../vendor'
-    ];
-
-    //var aliases = {
-    //  'angular': path.resolve(__dirname, '../vendor/angular/'),
-    //  'jquery': path.resolve(__dirname, '../vendor/jquery/dist/jquery.js'),
-    //  'lodash': path.resolve(__dirname, '../vendor/lodash/lodash.js'),
-    //  'modernizr': path.resolve(__dirname, '../vendor/modernizr/modernizr.js'),
-    //  'ocLazyLoad': path.resolve(__dirname, '../vendor/ocLazyLoad/dist/ocLazyLoad.js'),
-    //  'registerjs': path.resolve(__dirname, '../app/components/util/register.js'),
-    //  'ui-router': path.resolve(__dirname, '../vendor/angular-ui-router/release/angular-ui-router.js')
-    //};
-
-    var aliases = {};
+    var aliases = {
+        'n3-line-chart': bower_dir + '/n3-line-chart/build/line-chart.min.js',
+        'jquery': node_dir + '/jquery/dist/jquery.min.js',
+        'bootstrap-dropdown': node_dir + '/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js',
+        'd3': bower_dir + '/d3/d3.min.js',
+    };
 
     var loaders = [
-        //{
-        //    test: /\.js$/,
-        //    exclude: [
-        //        /[\\\/]node_modules/,
-        //        /[\\\/]vendor/,
-        //        /bootstrap-sass.config.js/
-        //    ],
-        //    loader: 'ng-annotate!babel'
-        //},
-        //{
-        //    test: /\.es6$/,
-        //    loader: 'ng-annotate!babel'
-        //},
-        //{
-        //    test: /[\\\/]vendor[\\\/]angular[\\\/]angular\.js$/,
-        //    loader: "imports?$=jquery"
-        //},
-        //{
-        //    test: /[\\\/]vendor[\\\/]jquery[\\\/]dist[\\\/]jquery\.js$/,
-        //    loader: 'expose?jQuery!expose?$'
-        //},
-        //{
-        //    test: /[\\\/]vendor[\\\/]modernizr[\\\/]modernizr\.js$/,
-        //    loader: "imports?this=>window!exports?window.Modernizr"
-        //},
-        //{
-        //    test: /\.jade$/,
-        //    loader: 'html!jade-html'
-        //},
-        //{
-        //    test: /\.html$/,
-        //    loader: 'html'
-        //},
-        //{
-        //    test: /\.css$/,
-        //    exclude: [
-        //        /bootstrap[\\\/]js[\\\/]/
-        //    ],
-        //    loader: 'style!css'
-        //},
-        //{
-        //    test: /\.scss$/,
-        //    exclude: [
-        //        /bootstrap[\\\/]js[\\\/]/
-        //    ],
-        //    loader: 'style!css!autoprefixer!sass?includePaths[]=' + bourbon
-        //},
-        //{
-        //    test: /\.png$/,
-        //    loader: 'url?limit=100000&mimetype=image/png&name=assets/[name].[hash].[ext]'
-        //},
-        //{
-        //    test: /\.jpg$/,
-        //    exclude: [
-        //        '/app\/assets/'
-        //    ],
-        //    loader: 'file?name=assets/[name].[hash].[ext]'
-        //},
-        //{
-        //    test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-        //    loader: 'url?limit=10000&minetype=application/font-woff&name=assets/[name].[hash].[ext]'
-        //},
-        //{
-        //    test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-        //    loader: 'url?limit=10000&minetype=application/font-woff2&name=assets/[name].[hash].[ext]'
-        //},
-        //{
-        //    test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        //    loader: 'url?limit=10000&minetype=application/octet-stream&name=assets/[name].[hash].[ext]'
-        //},
-        //{
-        //    test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        //    loader: 'file?name=assets/[name].[hash].[ext]'
-        //},
-        //{
-        //    test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        //    loader: 'url?limit=10000&minetype=image/svg+xml&name=assets/[name].[hash].[ext]'
-        //}
+        {
+            test: /\.html$/, loader: 'html'
+        },
+        {
+            test: /\.scss$/,
+            exclude: [
+                /bootstrap[\\\/]js[\\\/]/
+            ],
+            loader: ExtractTextPlugin.extract(
+                "style",
+                "css?sourceMap!postcss!sass?sourceMap")
+        },
+        {test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff"},
+        {test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff"},
+        {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream"},
+        {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file"},
+        {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml"}
     ];
+
+    var postcss = function () {
+        return [cssnano, autoprefixer];
+    };
 
     var plugins = [
+        new ExtractTextPlugin('styles.css'),
+        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
+        new webpack.optimize.AggressiveMergingPlugin({}),
         new webpack.ProvidePlugin({
-            _: 'lodash',
-            //Modernizr: 'modernizr',
-            //$: 'jquery',
-            //jQuery: 'jquery',
-            //register: 'registerjs'
-        }),
-        new webpack.optimize.OccurenceOrderPlugin(true)
+                _: 'lodash',
+                $: 'jquery',
+                jQuery: 'jquery'
+            }
+        )
     ];
-
-    if (options.chunk) {
-        //plugins.push(new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'));
-       // plugins.push(new webpack.optimize.AggressiveMergingPlugin({}));
-    }
 
     if (options.minimize) {
         plugins.push(new webpack.optimize.UglifyJsPlugin({
@@ -154,23 +93,9 @@ module.exports = function (options) {
         plugins.push(new webpack.DefinePlugin(options.defines));
     }
 
-    var postLoaders = [];
-    //if (options.testing) {
-    //    postLoaders.push({
-    //        test: /\.js/,
-    //        exclude: /(test|node_modules|vendor|config|\.spec|index\.js|register\.js)/,
-    //        loader: 'istanbul-instrumenter'
-    //    });
-    //    postLoaders.push({
-    //        test: /\.es6/,
-    //        exclude: /(test|node_modules|vendor|config|\.spec|index\.js|register\.js)/,
-    //        loader: 'istanbul-instrumenter'
-    //    });
-    //}
-
     return {
         entry: entry,
-        context: __dirname + '/../src/app',
+        context: context,
         output: output,
 
         devtool: options.devtool,
@@ -178,16 +103,15 @@ module.exports = function (options) {
 
         module: {
             loaders: loaders,
-            postLoaders: postLoaders,
             noParse: /\.min\.js/
         },
 
         resolve: {
-            extensions: ['', '.js', '.json'],
-            modulesDirectories: modulesDirectories,
             alias: aliases
         },
 
-        plugins: plugins
+        plugins: plugins,
+
+        postcss: postcss
     };
 };

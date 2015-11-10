@@ -4,8 +4,6 @@ require('./_countries.scss');
 
 module.exports = countries;
 
-countries.$inject = [];
-
 function countries() {
     var directive = {
         restrict: 'EA',
@@ -38,11 +36,6 @@ function countriesController(countries) {
             .subscribe(function (countries) {
                 vm.countries = countries;
             });
-
-        //observeOnScope($scope, 'vm.searchedCountry')
-        //    .subscribe(function(change) {
-        //    console.log(change.newValue);
-        //});
     }
 
     function selectCountry(country) {

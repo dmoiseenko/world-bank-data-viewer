@@ -4,8 +4,6 @@ var path = require('path');
 var gutil = require('gutil');
 var opn = require('opn');
 
-var jade = require('gulp-jade');
-
 var webpack = require('webpack');
 var webpackDevServer = require("webpack-dev-server");
 
@@ -17,12 +15,8 @@ var runSequence = require('run-sequence');
 var clean = require('gulp-clean');
 var argv = require('optimist').argv;
 
-var karma = require('karma').server;
-
 var buildConfig = {};
 
-/** Type of build: production or development. */
-buildConfig.type = argv['build-type'] || 'development';
 /** The environment that the build uses. */
 buildConfig.environment = argv['build-environment'] || 'development';
 buildConfig.testing = false;
@@ -40,8 +34,8 @@ var host = argv['host'] ? argv['host'] : '127.0.0.1';
  * Used for the dev task.
  */
 gulp.task('vars:dev', function() {
-    /** The build directory. */
     buildConfig.dir = '.build';
+    buildConfig.type = 'development';
 });
 
 /**
@@ -50,8 +44,8 @@ gulp.task('vars:dev', function() {
  * Used for the build task.
  */
 gulp.task('vars:build', function() {
-    /** The build directory. */
     buildConfig.dir = 'build';
+    buildConfig.type = 'production';
 });
 
 /**
@@ -65,7 +59,7 @@ gulp.task('clean', function() {
 
 /**
  * Index
- * Converts the main index template to a html file and copies it to the build directory.
+ * Copies the main index template to the build directory.
  * Used for the build and dev tasks.
  */
 gulp.task('index', function () {
@@ -81,7 +75,7 @@ gulp.task('pre-build', function(done) {
     runSequence(
         'vars:build',
         'clean',
-        ['index'],
+        ['index'], // todo lint
         done
     );
 });
@@ -109,21 +103,7 @@ function webpackConfig() {
 
     options.dir = path.resolve(__dirname, buildConfig.dir);
 
-    options.defines = {
-        __TESTING__: buildConfig.testing,
-        __DEV__: buildConfig.environment === 'development',
-        __STAGE__: buildConfig.environment === 'stage',
-        __PRODUCTION__: buildConfig.environment === 'production'
-    };
-
     if (buildConfig.type === 'development') {
-        options.sourcemaps = true;
-        options.devtool = 'eval';
-        options.debug = true;
-        options.minimize = false;
-        options.chunk = !buildConfig.testing;
-    }
-    else if (buildConfig.type === 'stage') {
         options.sourcemaps = true;
         options.devtool = 'eval';
         options.debug = true;
@@ -132,7 +112,7 @@ function webpackConfig() {
     }
     else {
         options.sourcemaps = false;
-        options.devtool = '';
+        options.devtool = 'source-map';
         options.debug = false;
         options.minimize = true;
         options.chunk = !buildConfig.testing;
@@ -148,8 +128,8 @@ function webpackConfig() {
  */
 gulp.task('webpack-dev-server', ['vars:dev', 'index'], function(done) {
 
-    //var compiler = webpack(webpackConfig());
-    var compiler = webpack(require('./webpack.config.js'));
+    var compiler = webpack(webpackConfig());
+    //var compiler = webpack(require('./config/webpack.s'));
 
     compiler.plugin("done", function(stats) {
         /** Reload all connected browsers. */
@@ -169,7 +149,6 @@ gulp.task('webpack-dev-server', ['vars:dev', 'index'], function(done) {
             if(err) {
                 throw new gutil.PluginError('webpack-dev-server', err);
             }
-
             done();
         });
 });
@@ -193,6 +172,34 @@ gulp.task('dev', ['webpack-dev-server'], function () {
         open: false
     }, function () {
         opn('http://127.0.0.1:3000');
+    });
+});
+
+/**
+ * Build
+ * Builds the project.
+ */
+gulp.task('build', ['webpack-build'], function () {
+    gutil.log((buildConfig.type == 'development' ? 'Development' : 'Production') + ' build done for environment ' + buildConfig.environment + ' in ./' + buildConfig.dir + '.');
+});
+
+/**
+ * Webpack
+ * Builds an app bundle once. Used for the build task.
+ */
+gulp.task('webpack-build', ['pre-build'], function(callback) {
+    var compiler = webpack(webpackConfig());
+
+    compiler.run(function(err, stats) {
+        if (err) {
+            throw new gutil.PluginError('webpack-build', err);
+        }
+
+        gutil.log("[webpack:build]", stats.toString({
+            colors: true
+        }));
+
+        callback();
     });
 });
 

@@ -6,7 +6,6 @@ require('rx');
 require('rx-angular');
 require('n3-line-chart');
 require('bootstrap-dropdown');
-//require('bootstrap-sass-loader!../../bootstrap-sass.config.js');
 
 angular.module('app', [
     'rx',
