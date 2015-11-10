@@ -13,7 +13,7 @@ module.exports = function (options) {
     var context = app;
 
     var output = {
-        path: options.dir + options.assetsDir,
+        path: options.dir,
         filename: 'bundle.js'
     };
 
@@ -32,7 +32,8 @@ module.exports = function (options) {
             'lodash',
             'restangular',
             'jquery',
-            'bootstrap-dropdown']
+            'bootstrap-dropdown',
+            'moment']
     };
 
     var aliases = {
@@ -40,6 +41,7 @@ module.exports = function (options) {
         'jquery': node_dir + '/jquery/dist/jquery.min.js',
         'bootstrap-dropdown': node_dir + '/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js',
         'd3': bower_dir + '/d3/d3.min.js',
+        'moment': bower_dir + '/moment/min/moment.min.js'
     };
 
     var loaders = [
@@ -73,7 +75,9 @@ module.exports = function (options) {
         new webpack.ProvidePlugin({
                 _: 'lodash',
                 $: 'jquery',
-                jQuery: 'jquery'
+                jQuery: 'jquery',
+                moment: 'moment',
+                d3: 'd3'
             }
         )
     ];

@@ -30,10 +30,7 @@ function plot(colors) {
                 {y: 'value', drawDots: false}
             ],
             lineMode: 'linear',
-            drawLegend: false,
-            tooltip: {
-                mode: 'none'
-            }
+            drawLegend: false
         }
     };
 
@@ -81,8 +78,13 @@ function plot(colors) {
             series: series,
             drawLegend: false,
             margin: {
-                left: 30,
+                left: 40,
                 right: 30
+            },
+            tooltip: {
+                mode: 'scrubber',
+                formatter: function(x, y, series) {
+                    return  moment(x).format('L') + ', ' + series.countryName + ' : ' + d3.format(',')(y);}
             }
         };
 
@@ -130,6 +132,7 @@ function plot(colors) {
         return countries.map(function (country) {
             return {
                 y: country.id,
+                countryName: country.value,
                 color: colors.getColor(country.id),
                 thickness: '3px',
                 type: type
@@ -138,7 +141,15 @@ function plot(colors) {
     }
 
     function getAxes(data) {
+        var ticksFormat = {};
         var max = getMaxValue(data);
-        return {x: {type: 'date'}, y: {grid: true, max: max, min: 0}};
+        if (max <= 100) {
+            max = 100;
+        }
+        else{
+            ticksFormat = 's';
+        }
+
+        return {x: {type: 'date'}, y: {grid: true, max: max, min: 0, ticksFormat: ticksFormat}};
     }
 }
