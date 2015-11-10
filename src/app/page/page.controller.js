@@ -2,7 +2,7 @@
 
 require('./_start.scss');
 require('./_page.scss');
-require('./_start.scss');
+require('./_footer.scss');
 require('./_header.scss');
 
 module.exports = PageController;
@@ -10,7 +10,6 @@ module.exports = PageController;
 PageController.$inject = ['main', '$state'];
 
 function PageController(main, $state) {
-    /* jshint validthis: true */
     var vm = this;
 
     vm.activate = activate;

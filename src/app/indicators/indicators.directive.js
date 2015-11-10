@@ -1,5 +1,7 @@
 'use strict';
 
+require('./_indicators.scss');
+
 module.exports = indicators;
 
 indicators.$inject = [];
@@ -17,10 +19,9 @@ function indicators() {
     return directive;
 }
 
-IndicatorsController.$inject = ['topics', 'indicators'];
+IndicatorsController.$inject = ['indicators'];
 
-function IndicatorsController(topics, indicators) {
-    /* jshint validthis: true */
+function IndicatorsController(indicators) {
     var vm = this;
 
     vm.indicators = indicators;

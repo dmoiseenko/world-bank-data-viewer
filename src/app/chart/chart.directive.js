@@ -22,7 +22,6 @@ function chart() {
 chartController.$inject = ['charts', '$scope'];
 
 function chartController(charts, $scope) {
-    /* jshint validthis: true */
     var vm = this;
 
     vm.data = [];

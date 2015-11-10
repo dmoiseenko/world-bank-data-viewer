@@ -1,4 +1,4 @@
-@import "../../content/scss/_base";
+@import "../../scss/_base";
 
 .page {
     height: 100vh;
@@ -37,7 +37,6 @@
     padding-left: $spacer*2;
 
     selected-countries{
-        //min-height: 30px;
     }
 
     chart{

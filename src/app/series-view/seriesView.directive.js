@@ -1,5 +1,7 @@
 'use strict';
 
+require('./_series-view.scss');
+
 module.exports = seriesView;
 
 seriesView.$inject = [];

@@ -1,17 +1,7 @@
-@import "../../content/scss/_modules";
+@import "../../scss/_modules";
 
 .scrubberText {
     font-size: 14px;
-}
-
-.series-type__container {
-    padding-left: $spacer*2;
-    position: relative;
-    top: -$spacer*2;
-
-    .radio-inline {
-        padding-right: $spacer/2;
-    }
 }
 
 .busy-indicator {
