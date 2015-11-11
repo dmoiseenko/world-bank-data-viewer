@@ -1,0 +1,37 @@
+{
+//  "rules": {
+//    "no-underscore-dangle": 0,
+//    "no-use-before-define": "nofunc",
+//    "no-unused-expressions": 0,
+//    "no-empty-class": 0,
+//    "quotes": "single"
+//  },
+//  "env": {
+//    "node": true
+//  },
+  "extends": "defaults",
+  "globals": {
+    "angular": true,
+    "$": true,
+    "jQuery": true,
+    "moment": true,
+    "window": true,
+    "document": true,
+    "Modernizr": true,
+    "__TESTING__": true,
+    "beforeEach": true,
+    "expect": true,
+    "describe": true,
+    "it": true,
+    "element": true,
+    "by": true,
+    "browser": true,
+    "inject": true,
+    "register": true,
+    "sinon": true,
+    "_": false,
+    "require":true,
+    "module": true,
+    "d3": true
+  }
+}

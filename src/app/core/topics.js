@@ -2,9 +2,9 @@
 
 module.exports = topics;
 
-topics.$inject = ['worldBank'];
+topics.$inject = ['worldBank', 'rx'];
 
-function topics(worldBank) {
+function topics(worldBank, Rx) {
     var service = {
         loadTopics: getAllTopics,
         topicsObservable: new Rx.BehaviorSubject([]),

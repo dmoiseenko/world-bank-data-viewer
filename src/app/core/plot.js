@@ -20,7 +20,7 @@ function plot(colors) {
         options: {
             axes: {
                 x: {key: 'x', type: 'linear', min: 0, max: 1},
-                y: {type: 'linear', min: 0, max: 1, ticks: 10, grid: true},
+                y: {type: 'linear', min: 0, max: 1, ticks: 10, grid: true}
             },
             margin: {
                 left: 30,

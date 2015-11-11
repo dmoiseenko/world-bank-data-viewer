@@ -4,10 +4,10 @@ module.exports = settings;
 
 settings.$inject = ['rx'];
 
-function settings(rx) {
+function settings(Rx) {
     var service = {
         setSeriesType: setSeriesType,
-        seriesTypeObservable: new Rx.BehaviorSubject('line'),
+        seriesTypeObservable: new Rx.BehaviorSubject('line')
     };
 
     return service;

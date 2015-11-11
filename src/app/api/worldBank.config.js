@@ -14,7 +14,7 @@ function configure(RestangularProvider) {
     });
     RestangularProvider.setDefaultHttpFields({cache: true});
     // add a response interceptor
-    RestangularProvider.addResponseInterceptor(function (data, operation, what, url, response, deferred) {
+    RestangularProvider.addResponseInterceptor(function (data, operation) {
         var extractedData = [];
         // .. to look for getList operations
         if (operation === "getList") {

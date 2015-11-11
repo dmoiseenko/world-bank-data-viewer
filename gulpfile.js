@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var path = require('path');
 
+var eslint = require('gulp-eslint');
 var gutil = require('gutil');
 var opn = require('opn');
 
@@ -68,6 +69,16 @@ gulp.task('index', function () {
 });
 
 /**
+ * ESLint
+ * Checks the sourcecode for errors with ESLint. Used for the build and dev tasks.
+ */
+gulp.task('lint', function () {
+    return gulp.src(['src/app/**/*.js'])
+        .pipe(eslint({ useEslintrc: true }))
+        .pipe(eslint.format());
+});
+
+/**
  * Build
  * Performs all the build tasks except webpack.
  */
@@ -75,7 +86,7 @@ gulp.task('pre-build', function(done) {
     runSequence(
         'vars:build',
         'clean',
-        ['index'], // todo lint
+        ['lint', 'index'], // todo lint
         done
     );
 });
@@ -89,7 +100,7 @@ gulp.task('pre-dev', function(done) {
     runSequence(
         'vars:dev',
         'clean',
-        ['index'],
+        ['lint', 'index'],
         done
     );
 });
@@ -126,7 +137,7 @@ function webpackConfig() {
  * Starts a webpack dev server that rebuilds the app bundle on file changes.
  * Used for the dev task.
  */
-gulp.task('webpack-dev-server', ['vars:dev', 'index'], function(done) {
+gulp.task('webpack-dev-server', ['pre-dev'], function(done) {
 
     var compiler = webpack(webpackConfig());
     //var compiler = webpack(require('./config/webpack.s'));
