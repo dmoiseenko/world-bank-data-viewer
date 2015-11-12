@@ -1,12 +1,13 @@
 var path = require('path');
 var webpack = require('webpack');
-var path = require('path');
 var bower_dir = path.resolve(__dirname, '../bower_components');
 var node_dir = path.resolve(__dirname, '../node_modules');
 var app = path.resolve(__dirname, '../src/app');
 var autoprefixer = require('autoprefixer');
 var cssnano = require('cssnano');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+
 
 module.exports = function (options) {
 
@@ -22,18 +23,7 @@ module.exports = function (options) {
     }
 
     var entry = {
-        app: './app.module.js',
-        vendors: ['angular',
-            'angular-ui-router',
-            'd3',
-            'n3-line-chart',
-            'rx',
-            'rx-angular',
-            'lodash',
-            'restangular',
-            'jquery',
-            'bootstrap-dropdown',
-            'moment']
+        app: './app.module.js'
     };
 
     var aliases = {
@@ -65,13 +55,11 @@ module.exports = function (options) {
     ];
 
     var postcss = function () {
-        return [cssnano, autoprefixer];
+        return [];
     };
 
     var plugins = [
         new ExtractTextPlugin('styles.css'),
-        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
-        new webpack.optimize.AggressiveMergingPlugin({}),
         new webpack.ProvidePlugin({
                 _: 'lodash',
                 $: 'jquery',
@@ -82,6 +70,23 @@ module.exports = function (options) {
         )
     ];
 
+    if (options.chunk) {
+        plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'));
+        plugins.push(new webpack.optimize.AggressiveMergingPlugin({}));
+
+        entry.vendors = ['angular',
+            'angular-ui-router',
+            'd3',
+            'n3-line-chart',
+            'rx',
+            'rx-angular',
+            'lodash',
+            'restangular',
+            'jquery',
+            'bootstrap-dropdown',
+            'moment']
+    }
+
     if (options.minimize) {
         plugins.push(new webpack.optimize.UglifyJsPlugin({
             minimize: true,
@@ -91,6 +96,10 @@ module.exports = function (options) {
             },
             sourceMap: false
         }));
+
+        postcss = function () {
+            return [cssnano, autoprefixer];
+        };
     }
 
     if (options.defines) {

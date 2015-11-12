@@ -1,14 +1,7 @@
 {
-//  "rules": {
-//    "no-underscore-dangle": 0,
-//    "no-use-before-define": "nofunc",
-//    "no-unused-expressions": 0,
-//    "no-empty-class": 0,
-//    "quotes": "single"
-//  },
-//  "env": {
-//    "node": true
-//  },
+  "env": {
+    "node": true
+  },
   "extends": "defaults",
   "globals": {
     "angular": true,

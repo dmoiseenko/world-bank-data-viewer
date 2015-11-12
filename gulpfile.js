@@ -1,30 +1,24 @@
 var gulp = require('gulp');
 var path = require('path');
-
 var eslint = require('gulp-eslint');
 var gutil = require('gutil');
 var opn = require('opn');
-
 var webpack = require('webpack');
 var webpackDevServer = require("webpack-dev-server");
-
 var browserSync = require('browser-sync');
 var reload      = browserSync.reload;
-
-var fs = require('fs');
 var runSequence = require('run-sequence');
 var clean = require('gulp-clean');
 var argv = require('optimist').argv;
+var Server = require('karma').Server;
 
 var buildConfig = {};
-
-/** The environment that the build uses. */
 buildConfig.environment = argv['build-environment'] || 'development';
 buildConfig.testing = false;
 
-/** Read the environment variables. */
-var environmentConfig = JSON.parse(fs.readFileSync('./config/environments.json', 'utf8'));
-buildConfig.gtmID = environmentConfig[buildConfig.environment].gtmID;
+var testConfig = {};
+testConfig.type = argv['type'] || 'unit';
+testConfig.watch = argv['watch'] ? true : false;
 
 /** Override the host. */
 var host = argv['host'] ? argv['host'] : '127.0.0.1';
@@ -133,16 +127,29 @@ function webpackConfig() {
 }
 
 /**
+ * Testing
+ * Unit tests.
+ */
+gulp.task('test-unit', function (done) {
+    var config = {
+        configFile: __dirname + '/config/karma.config.js',
+        singleRun: false
+    };
+
+    var server = new Server(config, done);
+    server.start();
+});
+
+/**
  * Webpack
  * Starts a webpack dev server that rebuilds the app bundle on file changes.
  * Used for the dev task.
  */
 gulp.task('webpack-dev-server', ['pre-dev'], function(done) {
 
-    var compiler = webpack(webpackConfig());
-    //var compiler = webpack(require('./config/webpack.s'));
+    var compiler = webpack(require('./config/webpack-dev.config.js'));
 
-    compiler.plugin("done", function(stats) {
+    compiler.plugin("done", function() {
         /** Reload all connected browsers. */
         reload();
     });
@@ -151,7 +158,7 @@ gulp.task('webpack-dev-server', ['pre-dev'], function(done) {
         contentBase: buildConfig.dir,
         quiet: false,
         noInfo: false,
-        watchDelay: 300,
+        watchOptions: {aggregateTimeout: 300},
         historyApiFallback: true,
         stats: {
             colors: true
