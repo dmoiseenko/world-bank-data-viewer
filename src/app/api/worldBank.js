@@ -24,26 +24,26 @@ function worldBank(Restangular) {
     }
 
     function getCountries() {
-        return getList('countries');
+        return service.getList('countries');
     }
 
     function getTopics() {
-        return getList('topics');
+        return service.getList('topics');
     }
 
     function getIndicatorsByTopic(topic) {
-        return getList('topic/' + topic.id + '/indicator');
+        return service.getList('topic/' + topic.id + '/indicator');
     }
 
     function getIndicators() {
-        return getList('indicators/');
+        return service.getList('indicators');
     }
 
     function getDataByIndicator(indicator) {
-        return getList('countries/all/indicators/' + indicator.id);
+        return service.getList('countries/all/indicators/' + indicator.id);
     }
 
     function getDataByIndicatorAndCountry(indicator, country) {
-        return getList('countries/' + country.iso2Code + '/indicators/' + indicator.id);
+        return service.getList('countries/' + country.iso2Code + '/indicators/' + indicator.id);
     }
 }
