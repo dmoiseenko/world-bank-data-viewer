@@ -1,8 +1,8 @@
 module.exports = chartController;
 
-chartController.$inject = ['charts', '$scope'];
+chartController.$inject = ['charts', '$timeout'];
 
-function chartController(charts, $scope) {
+function chartController(charts, $timeout) {
     var vm = this;
 
     vm.data = [];
@@ -23,22 +23,16 @@ function chartController(charts, $scope) {
         });
 
         charts.busyObservable
-            .filter(function (isBusy) {
-                return isBusy;
-            })
             .subscribe(function (isBusy) {
-                vm.isBusy = isBusy;
-            });
+                if (isBusy) {
+                    vm.isBusy = true;
+                }
+                else {
+                    $timeout(function () {
+                        vm.isBusy = false;
+                    }, 500);
+                }
 
-        charts.busyObservable
-            .filter(function (isBusy) {
-                return !isBusy;
-            })
-            .delay(500)
-            .subscribe(function (isBusy) {
-                $scope.$apply(function () {
-                    vm.isBusy = isBusy;
-                });
             });
     }
 }

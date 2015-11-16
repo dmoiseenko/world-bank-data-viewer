@@ -25,6 +25,7 @@
     "_": false,
     "require":true,
     "module": true,
-    "d3": true
+    "d3": true,
+    "Rx": true
   }
 }
