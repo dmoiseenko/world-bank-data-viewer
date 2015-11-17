@@ -13,27 +13,6 @@ function plot(colors) {
 
     var type = 'line';
 
-    var sampleData = {
-        dots: [
-            {x: 1, value: 1}
-        ],
-        options: {
-            axes: {
-                x: {key: 'x', type: 'linear', min: 0, max: 1},
-                y: {type: 'linear', min: 0, max: 1, ticks: 10, grid: true}
-            },
-            margin: {
-                left: 30,
-                right: 30
-            },
-            series: [
-                {y: 'value', drawDots: false}
-            ],
-            lineMode: 'linear',
-            drawLegend: false
-        }
-    };
-
     return service;
 
     ////////////////
@@ -166,7 +145,7 @@ function plot(colors) {
         var ticksFormat = {};
         var max = getMaxValue(data);
         if (max <= 100) {
-            max = 100;
+            //max = 100;
         }
         else {
             ticksFormat = 's';

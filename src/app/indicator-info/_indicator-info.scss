@@ -1,9 +1,9 @@
 @import "../../scss/_modules";
 
 .indicator-info__container{
-    padding: $spacer $spacer*2 0 $spacer;
+    padding: $spacer $spacer*2 0 $spacer*2;
     text-align: right;
-
+    overflow-y: auto;
     @media screen and (orientation: landscape) and (max-device-height: 600px) {
         display: none;
     }

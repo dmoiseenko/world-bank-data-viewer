@@ -5,7 +5,8 @@ var node_dir = path.resolve(__dirname, '../node_modules');
 var app = path.resolve(__dirname, '../src/app');
 var autoprefixer = require('autoprefixer');
 var cssnano = require('cssnano');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = function (options) {
 
@@ -13,7 +14,7 @@ module.exports = function (options) {
 
     var output = {
         path: options.dir,
-        filename: 'bundle.js'
+        filename: 'bundle.[hash].js'
     };
 
     if (options.sourcemaps) {
@@ -57,7 +58,7 @@ module.exports = function (options) {
     };
 
     var plugins = [
-        new ExtractTextPlugin('styles.css'),
+        new ExtractTextPlugin('styles.[hash].css'),
         new webpack.ProvidePlugin({
                 _: 'lodash',
                 $: 'jquery',
@@ -65,11 +66,15 @@ module.exports = function (options) {
                 moment: 'moment',
                 d3: 'd3'
             }
-        )
+        ),
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            inject: true
+        })
     ];
 
     if (options.chunk) {
-        plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'));
+        plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendor.[hash].js'));
         plugins.push(new webpack.optimize.AggressiveMergingPlugin({}));
 
         entry.vendors = ['angular',

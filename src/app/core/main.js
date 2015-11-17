@@ -17,7 +17,7 @@ function main(countries, topics, indicators, charts, settings, Rx) {
     function start() {
         countries.loadCountries();
         //load trade topic
-        indicators.setTopic({id: 12});
+        indicators.setTopic({id: 21});
 
         Rx.Observable.combineLatest(countries.selectedCountriesObservable,
             topics.selectedTopicObservable,
@@ -32,15 +32,6 @@ function main(countries, topics, indicators, charts, settings, Rx) {
                 };
             })
             .subscribe(function (data) {
-                //if (!_.isEmpty(data.countries) ||
-                //    data.source ||
-                //    data.indicator) {
-                //    service.startObservable.onNext(true);
-                //}
-                //else {
-                //    service.startObservable.onNext(false);
-                //}
-
                 charts.draw(data.countries, data.indicator, data.type);
             });
     }

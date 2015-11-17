@@ -80,7 +80,7 @@ gulp.task('pre-build', function(done) {
     runSequence(
         'vars:build',
         'clean',
-        ['lint', 'index'], // todo lint
+        ['lint'],
         done
     );
 });
@@ -94,37 +94,10 @@ gulp.task('pre-dev', function(done) {
     runSequence(
         'vars:dev',
         'clean',
-        ['lint', 'index'],
+        ['lint'],
         done
     );
 });
-
-/**
- * Webpack
- * Processes the Webpack configuration file.
- */
-function webpackConfig() {
-    var options = {};
-
-    options.dir = path.resolve(__dirname, buildConfig.dir);
-
-    if (buildConfig.type === 'development') {
-        options.sourcemaps = true;
-        options.devtool = 'eval';
-        options.debug = true;
-        options.minimize = false;
-        options.chunk = !buildConfig.testing;
-    }
-    else {
-        options.sourcemaps = false;
-        options.devtool = 'source-map';
-        options.debug = false;
-        options.minimize = true;
-        options.chunk = !buildConfig.testing;
-    }
-
-    return require('./config/webpack-make-config')(options);
-}
 
 /**
  * Testing

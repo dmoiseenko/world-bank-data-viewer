@@ -1,13 +1,9 @@
 @import "../../scss/_modules";
 
-.footer-wrapper{
-    height: $footer-height;
-}
-
 .footer{
+    height: $footer-height;
     display: flex;
     align-items:center;
-    height: 100%;
 }
 
 .footer--label {
