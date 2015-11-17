@@ -7,6 +7,7 @@ require('rx-angular');
 require('moment');
 require('n3-line-chart');
 require('bootstrap-dropdown');
+require('../scss/_vendor.scss');
 
 angular.module('app', [
     'rx',

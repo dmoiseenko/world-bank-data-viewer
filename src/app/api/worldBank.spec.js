@@ -3,7 +3,7 @@
 require('angular');
 require('angular-mocks/angular-mocks');
 require('lodash');
-var restangular = require('restangular');
+require('restangular');
 
 angular.module('app.api', ['restangular'])
     .factory('worldBank', require('./worldBank'));

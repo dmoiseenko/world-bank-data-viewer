@@ -1,9 +1,12 @@
 @import "../../scss/_modules";
 
 .indicator-info__container{
-    padding: $spacer $spacer*2 $spacer $spacer;
-
+    padding: $spacer $spacer*2 0 $spacer;
     text-align: right;
+
+    @media screen and (orientation: landscape) and (max-device-height: 600px) {
+        display: none;
+    }
 }
 
 .indicator-info__name{

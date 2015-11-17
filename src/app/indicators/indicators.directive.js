@@ -40,7 +40,7 @@ function IndicatorsController(indicators) {
             vm.indicators = data;
         });
 
-        indicators.newTopicObservable.subscribe(function (topic) {
+        indicators.newTopicObservable.subscribe(function () {
             vm.selectedIndicator = getNullIndicator();
         });
     }

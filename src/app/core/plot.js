@@ -83,8 +83,9 @@ function plot(colors) {
             },
             tooltip: {
                 mode: 'scrubber',
-                formatter: function(x, y, series) {
-                    return  moment(x).format('L') + ', ' + series.countryName + ' : ' + d3.format(',')(y);}
+                formatter: function (x, y, series) {
+                    return moment(x).format('L') + ', ' + series.countryName + ' : ' + d3.format(',')(y);
+                }
             }
         };
 
@@ -92,7 +93,28 @@ function plot(colors) {
     }
 
     function getSample() {
-        return sampleData;
+        return {
+            dots: [
+                {x: 1, value: 1}
+            ],
+            options: {
+                axes: {
+                    x: {key: 'x', type: 'linear', min: 0, max: 1},
+                    y: {type: 'linear', min: 0, max: 1, ticks: 10, grid: true}
+                },
+                margin: {
+                    left: 30,
+                    right: 30
+                },
+                series: [
+                    {y: 'value', drawDots: false}
+                ],
+                lineMode: 'linear',
+                drawLegend: false,
+                drawDots: false,
+                tooltip: {mode: 'none'}
+            }
+        };
     }
 
     function getMaxValue(data) {
@@ -146,7 +168,7 @@ function plot(colors) {
         if (max <= 100) {
             max = 100;
         }
-        else{
+        else {
             ticksFormat = 's';
         }
 

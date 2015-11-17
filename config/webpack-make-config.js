@@ -7,8 +7,6 @@ var autoprefixer = require('autoprefixer');
 var cssnano = require('cssnano');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-
-
 module.exports = function (options) {
 
     var context = app;
@@ -92,7 +90,7 @@ module.exports = function (options) {
             minimize: true,
             warnings: false,
             mangle: {
-                except: ['$q', '$ocLazyLoad']
+                except: ['$q']
             },
             sourceMap: false
         }));

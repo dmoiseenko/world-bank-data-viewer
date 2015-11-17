@@ -206,7 +206,7 @@ gulp.task('build', ['webpack-build'], function () {
  * Builds an app bundle once. Used for the build task.
  */
 gulp.task('webpack-build', ['pre-build'], function(callback) {
-    var compiler = webpack(webpackConfig());
+    var compiler = webpack(require('./config/webpack-prod.config.js'));
 
     compiler.run(function(err, stats) {
         if (err) {
