@@ -20,15 +20,6 @@ function PageController(main, $state) {
 
     function activate() {
         main.start();
-
-        main.startObservable.subscribe(function (isStarted) {
-
-            if (isStarted) {
-                $state.go('home.data');
-            }
-            else {
-                $state.go('home.start');
-            }
-        });
+        $state.go('home.data');
     }
 }

@@ -13,14 +13,6 @@ function configure($stateProvider, $urlRouterProvider) {
             controller: 'PageController',
             controllerAs: 'vm'
         })
-        .state('home.start', {
-            url: '/start',
-            views: {
-                'content': {
-                    template: require('./start.html')
-                }
-            }
-        })
         .state('home.data', {
             url: '/',
             views: {
@@ -30,5 +22,5 @@ function configure($stateProvider, $urlRouterProvider) {
             }
         });
 
-    $urlRouterProvider.otherwise('/start');
+    $urlRouterProvider.otherwise('/');
 }
