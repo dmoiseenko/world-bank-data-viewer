@@ -36,7 +36,9 @@
     }
 
     indicator-info{
-
+        @include height-breakpoint($phone_height_breakpoint){
+            display: none;
+        }
 
     }
 }

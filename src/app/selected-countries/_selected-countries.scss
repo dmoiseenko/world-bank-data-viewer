@@ -53,11 +53,16 @@
 }
 
 .selected-country {
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 2.0rem;
+    line-height: 3.0rem;
     display: flex;
     align-items: center;
-    color: #444444;
+    color: $text-primary;
+
+    @include height-breakpoint($phone_height_breakpoint){
+        font-size: 1.4rem;
+        line-height: 2rem;
+    }
 }
 
 .selected-country__circle {
