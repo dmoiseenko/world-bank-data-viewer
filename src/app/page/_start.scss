@@ -1,7 +1,7 @@
 @import "../../scss/_modules";
 
 .start__container {
-    padding: $spacer*2;
+    padding: $spacer-vertical*2 $spacer-horizontal*2 $spacer-vertical*2 $spacer-horizontal*2;
     padding-top: 40%;
     h1 {
         font-size: 70px;

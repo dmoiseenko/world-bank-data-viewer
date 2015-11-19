@@ -1,16 +1,16 @@
 @import "../../scss/_modules";
 
 .indicator-info__container{
-    padding: $spacer $spacer*2 0 $spacer*2;
+    padding: $spacer-vertical $spacer-horizontal*2 0 $spacer-horizontal*2;
     text-align: right;
     overflow-y: auto;
-    @media screen and (orientation: landscape) and (max-device-height: 600px) {
+    @media (max-device-height: $phone_height_breakpoint) {
         display: none;
     }
 }
 
 .indicator-info__name{
-    font-size: 36px;
+    font-size: 3.6rem;
     font-weight: 300;
     line-height: 48px;
 }

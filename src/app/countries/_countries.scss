@@ -20,6 +20,10 @@
     &:hover {
         overflow: auto;
     }
+
+    &:focus {
+        overflow: auto;
+    }
 }
 
 .country {

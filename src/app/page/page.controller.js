@@ -4,6 +4,7 @@ require('./_start.scss');
 require('./_page.scss');
 require('./_footer.scss');
 require('./_header.scss');
+require('./_content.scss');
 
 module.exports = PageController;
 

@@ -45,8 +45,8 @@
 }
 
 .countries__selected-list {
-    margin-left: $spacer*2;
-    margin-right: $spacer*2;
+    margin-left: $spacer-horizontal*2;
+    margin-right: $spacer-horizontal*2;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
@@ -64,9 +64,9 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    margin-right: $spacer/2;
+    margin-right: $spacer-horizontal/2;
 }
 
 .selected-country__container {
-    margin-left: $spacer;
+    margin-left: $spacer-horizontal;
 }

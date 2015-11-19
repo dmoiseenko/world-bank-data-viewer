@@ -1,20 +1,5 @@
 <div class="page">
-    <div class="header">
-        <div class="top-line"></div>
-        <p class="logo">World Bank Data Viewer</p>
-    </div>
-
-    <div class="content-wrapper">
-        <div class="indicators-wrapper">
-            <indicators></indicators>
-        </div>
-        <div class="countries-chart">
-            <countries class="countries-wrapper"></countries>
-            <ui-view name="content" class="chart-wrapper"></ui-view>
-        </div>
-    </div>
-
-        <div class="footer">
-            <div class="footer--label">&#169; 2015 Moiden</div>
-        </div>
+    <div ui-view="header" class="header-wrapper"></div>
+    <div ui-view="content" class="content-wrapper"></div>
+    <div ui-view="footer" class="footer-wrapper"></div>
 </div>

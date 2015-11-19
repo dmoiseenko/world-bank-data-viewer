@@ -1,0 +1,7 @@
+$phone_height_breakpoint: 700px;
+
+@mixin height-breakpoint($point) {
+    @if $point == $phone_height_breakpoint {
+        @media (max-height: $phone_height_breakpoint) { @content; }
+    }
+}

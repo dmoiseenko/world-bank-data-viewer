@@ -16,8 +16,14 @@ function configure($stateProvider, $urlRouterProvider) {
         .state('home.data', {
             url: '/',
             views: {
-                'content': {
-                    template: require('./data.html')
+                'content':{
+                    template: require('./content.html')
+                },
+                'header': {
+                    template: require('./header.html')
+                },
+                'footer': {
+                    template: require('./footer.html')
                 }
             }
         });

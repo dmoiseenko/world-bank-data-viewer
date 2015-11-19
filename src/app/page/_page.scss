@@ -1,60 +1,35 @@
 @import "../../scss/modules";
 
-.page {
-    height: 100vh;
-}
-
-.header {
-    height: $header_height;
-}
-
-.content-wrapper {
-    margin: 0 1px 0 $spacer*2;
-    height: calc(100vh - #{$header_height} - #{$footer-height});
-}
-
-.indicators-wrapper {
-    height: $indicators_height;
-    min-height: 40px;
-    display: flex;
-}
-
-.countries-chart {
-    display: flex;
-    height: calc(100% - #{$indicators_height});
-    padding: 0 0 $spacer 0;
-}
-
-.countries-wrapper {
-    width: 200px;
-    height: 100%;
-}
-
-.chart-wrapper {
-    flex: auto;
-    width: calc(100% - 200px);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding-left: $spacer;
-
-    selected-countries{
-    }
-
-    chart{
-        height:50%;
-        flex: auto;
-    }
-
-    indicator-info{
-    }
-}
-
 a:focus {
     outline: none;
 }
 
-body{
+body {
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 10%, rgba(0, 108, 200, 0.05) 90%);
+}
+
+.page {
+    height: 100vh;
+}
+
+.header-wrapper {
+    margin-bottom: $header_bottom_margin;
+}
+
+.content-wrapper {
+    margin: 0 1px $content_margin_bottom $spacer-horizontal*2;
+    height: $content-height;
+
+    @include height-breakpoint($phone_height_breakpoint) {
+        height: $content_height_phone;
+    }
+}
+
+.footer-wrapper {
+    margin-bottom: $footer_margin_bottom;
+
+    @include height-breakpoint($phone_height_breakpoint) {
+        margin-bottom: $footer_margin_bottom_phone;
+    }
 }
 

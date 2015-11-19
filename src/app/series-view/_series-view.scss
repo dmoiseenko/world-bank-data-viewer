@@ -1,11 +1,10 @@
 @import "../../scss/_modules";
 
-.series-type__container {
-    padding-left: $spacer*2;
+.series-view__container {
+    padding-left: $spacer-horizontal*2.5;
     position: relative;
-    top: -$spacer*2;
 
     .radio-inline {
-        padding-right: $spacer/2;
+        padding-right: $spacer-horizontal/2;
     }
 }

@@ -1,6 +1,38 @@
-$spacer: 15px;
-$header_height : 100px;
-$indicators_height : 65px;
-$footer-height: 60px;
+//REGULAR
+$spacer-vertical: 1vh;
+$spacer-horizontal: 1vw;
 
-$brand-primary: #2196F3 !default;
+$header_height: 4.5rem;
+$header_bottom_margin: $spacer-vertical*3;
+
+$indicators_height: 3.7rem;
+$indicators_margin_bottom: $spacer-vertical*1.5;
+
+$footer_height: 2.8rem;
+$footer_margin_bottom: $spacer-vertical;
+
+$content_margin_bottom: $spacer-vertical*3;
+$content-height: calc(100vh -
+    #{$header_height} -
+    #{$content_margin_bottom} -
+    #{$header_bottom_margin} -
+    #{$footer_height} -
+    #{$footer_margin_bottom});
+
+$countries_width: 20rem;
+
+
+//PHONE
+$header_height_phone: $header_height/2;
+$footer_height_phone: $footer_height/2;
+$footer_margin_bottom_phone: 0px;
+$content_height_phone: calc(100vh -
+    #{$header_height_phone} -
+    #{$header_bottom_margin} -
+    #{$content_margin_bottom} -
+    #{$footer_height_phone} -
+    #{$footer_margin_bottom_phone});
+
+
+//COLORS
+$brand-primary: #2196F3;

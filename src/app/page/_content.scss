@@ -1,0 +1,42 @@
+@import "../../scss/modules";
+
+.indicators-wrapper {
+    height: $indicators_height;
+    display: flex;
+    margin-bottom: $indicators_margin_bottom;
+}
+
+.countries-chart {
+    display: flex;
+    height: calc(100% -
+        #{$indicators_height} -
+        #{$indicators_margin_bottom});
+}
+
+.countries-wrapper {
+    width: $countries_width;
+    height: 100%;
+}
+
+.chart-wrapper {
+    flex: auto;
+    width: calc(100% - #{$countries_width});
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: $spacer-horizontal;
+
+    selected-countries{
+    }
+
+    chart{
+        height:50%;
+        flex: auto;
+        position: relative;
+    }
+
+    indicator-info{
+
+
+    }
+}
