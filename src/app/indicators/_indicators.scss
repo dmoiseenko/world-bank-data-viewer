@@ -1,10 +1,14 @@
 @import "../../scss/_modules";
 
-.filters__topic {
-    margin-right: $spacer-horizontal;
-}
-
-.filters__indicator__indicators-list {
-    max-height: 80vh;
+.indicators__indicators-list {
+    max-height: 70vh;
+    max-width: 70vw;
     overflow-y: auto;
+    overflow-x: hidden;
+
+    li {
+        a {
+            white-space: normal;
+        }
+    }
 }

@@ -1,7 +1,14 @@
-$phone_height_breakpoint: 700px;
+$phone_height_breakpoint: 750px;
+$phone_width_breakpoint: 470px;
 
 @mixin height-breakpoint($point) {
     @if $point == $phone_height_breakpoint {
         @media (max-height: $phone_height_breakpoint) { @content; }
+    }
+}
+
+@mixin width-breakpoint($point) {
+    @if $point == $phone_width_breakpoint {
+        @media (max-width: $phone_width_breakpoint) { @content; }
     }
 }

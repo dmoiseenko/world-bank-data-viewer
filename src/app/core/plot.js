@@ -57,7 +57,7 @@ function plot(colors) {
             series: series,
             drawLegend: false,
             margin: {
-                left: 40,
+                left: 30,
                 right: 30
             },
             tooltip: {

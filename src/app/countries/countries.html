@@ -1,7 +1,7 @@
 <div class="countries">
     <div class="countries__scroll">
         <div class="countries__list">
-            <div ng-repeat="country in vm.countries | filter:vm.searchedCountry">
+            <div ng-repeat="country in vm.countries">
                 <a href="" ng-click="vm.selectCountry(country)">
                     <div class="country">
                         {{ country.name }}

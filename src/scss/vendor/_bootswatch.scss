@@ -43,6 +43,8 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
         background-size: 200%;
         background-position: 50%;
 
+        border-radius: 0;
+
         &:focus {
             background-color: $bg;
         }

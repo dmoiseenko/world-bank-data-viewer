@@ -24,6 +24,7 @@ function indicatorInfoController(indicators) {
 
     vm.indicatorName = '';
     vm.indicatorDescription = '';
+    vm.show = false;
 
     activate();
 
@@ -34,10 +35,12 @@ function indicatorInfoController(indicators) {
             if (selectedIndicator) {
                 vm.indicatorName = selectedIndicator.name;
                 vm.indicatorDescription = selectedIndicator.sourceNote;
+                vm.show = true;
             }
             else {
                 vm.indicatorName = '';
                 vm.indicatorDescription = '';
+                vm.show = false;
             }
 
         });
