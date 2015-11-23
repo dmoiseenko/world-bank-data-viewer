@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = countriesController;
 
 countriesController.$inject = ['countries'];

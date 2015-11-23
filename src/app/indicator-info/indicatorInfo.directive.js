@@ -9,7 +9,7 @@ function indicatorInfo() {
         restrict: 'EA',
         template: require('./indicatorInfo.html'),
         scope: {},
-        controller: indicatorInfoController,
+        controller: require('./indicator-info.controller.js'),
         controllerAs: 'vm',
         bindToController: true
     };
@@ -17,32 +17,3 @@ function indicatorInfo() {
     return directive;
 }
 
-indicatorInfoController.$inject = ['indicators'];
-
-function indicatorInfoController(indicators) {
-    var vm = this;
-
-    vm.indicatorName = '';
-    vm.indicatorDescription = '';
-    vm.show = false;
-
-    activate();
-
-    ////////////////
-
-    function activate() {
-        indicators.selectedIndicatorObservable.subscribe(function (selectedIndicator) {
-            if (selectedIndicator) {
-                vm.indicatorName = selectedIndicator.name;
-                vm.indicatorDescription = selectedIndicator.sourceNote;
-                vm.show = true;
-            }
-            else {
-                vm.indicatorName = '';
-                vm.indicatorDescription = '';
-                vm.show = false;
-            }
-
-        });
-    }
-}

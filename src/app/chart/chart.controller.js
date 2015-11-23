@@ -32,7 +32,6 @@ function chartController(charts, $timeout) {
                         vm.isBusy = false;
                     }, 500);
                 }
-
             });
     }
 }

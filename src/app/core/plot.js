@@ -144,10 +144,7 @@ function plot(colors) {
     function getAxes(data) {
         var ticksFormat = {};
         var max = getMaxValue(data);
-        if (max <= 100) {
-            //max = 100;
-        }
-        else {
+        if (max > 100) {
             ticksFormat = 's';
         }
 

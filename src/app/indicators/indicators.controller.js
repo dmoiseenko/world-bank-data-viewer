@@ -1,6 +1,8 @@
-indicatorsController.$inject = ['indicators'];
+'use strict';
 
 module.exports = indicatorsController;
+
+indicatorsController.$inject = ['indicators'];
 
 function indicatorsController(indicators) {
     var vm = this;
