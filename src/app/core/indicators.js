@@ -33,10 +33,6 @@ function indicators(worldBank, Rx) {
                 service.indicatorsObservable.onNext(indicators);
             });
         }
-        //    else {
-        //        service.indicatorsObservable.onNext([]);
-        //        service.selectedIndicatorObservable.onNext(null);
-        //    }
     }
 
     function loadIndicators() {

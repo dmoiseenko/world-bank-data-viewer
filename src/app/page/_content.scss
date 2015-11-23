@@ -2,42 +2,22 @@
 
 .indicators-wrapper {
     height: $indicators_height;
-    display: flex;
-    flex-flow: column;
     margin-bottom: $indicators_margin_bottom;
-    margin-right: $spacer-horizontal*2;
 
-    countries-min{
+    @include width-breakpoint($phone_width_breakpoint) {
         display: none;
-
-        @include width-breakpoint($phone_width_breakpoint){
-            display: block;
-        }
-    }
-
-    indicators{
-        @include width-breakpoint($phone_width_breakpoint){
-            margin-bottom: $indicators_margin_bottom;
-        }
-    }
-
-    @include width-breakpoint($phone_width_breakpoint){
-        height: calc(#{$indicators_height}*2 + #{$indicators_margin_bottom});
     }
 }
 
-.countries-chart {
+.countries-chart-wrapper {
     display: flex;
-    flex: auto;
 
     height: calc(100% -
     #{$indicators_height} -
     #{$indicators_margin_bottom});
 
-    @include width-breakpoint($phone_width_breakpoint){
-        height: calc(100% -
-        #{$indicators_height}*2 -
-        #{$indicators_margin_bottom}*2);
+    @include width-breakpoint($phone_width_breakpoint) {
+        height: 100%;
     }
 }
 
@@ -56,10 +36,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding-left: $spacer-horizontal;
-
-    selected-countries {
-    }
 
     chart {
         height: 50%;
@@ -71,6 +47,24 @@
         @include height-breakpoint($phone_height_breakpoint) {
             display: none;
         }
+    }
 
+    countries-min {
+        display: none;
+        margin-bottom: $spacer-vertical*2;
+        @include width-breakpoint($phone_width_breakpoint) {
+            display: block;
+        }
+    }
+
+    indicators {
+        margin-bottom: $spacer-vertical;
+        display: none;
+        @include width-breakpoint($phone_width_breakpoint) {
+            display: block;
+        }
+        button {
+            white-space: normal;
+        }
     }
 }

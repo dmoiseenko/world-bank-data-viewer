@@ -58,7 +58,7 @@ function plot(colors) {
             drawLegend: false,
             margin: {
                 left: 30,
-                right: 30
+                right: 15
             },
             tooltip: {
                 mode: 'scrubber',
@@ -83,7 +83,7 @@ function plot(colors) {
                 },
                 margin: {
                     left: 30,
-                    right: 30
+                    right: 15
                 },
                 series: [
                     {y: 'value', drawDots: false}

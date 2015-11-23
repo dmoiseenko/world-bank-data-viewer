@@ -17,7 +17,7 @@ body {
 }
 
 .content-wrapper {
-    margin: 0 1px $content_margin_bottom $spacer-horizontal*2;
+    margin: 0 $spacer-horizontal*2 $content_margin_bottom $spacer-horizontal*2;
     height: $content-height;
 
     @include height-breakpoint($phone_height_breakpoint) {

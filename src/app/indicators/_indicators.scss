@@ -1,10 +1,9 @@
 @import "../../scss/_modules";
 
 .indicators__indicators-list {
-    max-height: 70vh;
-    max-width: 70vw;
+    max-height: 80vh;
+    max-width: 80vw;
     overflow-y: auto;
-    overflow-x: hidden;
 
     li {
         a {
