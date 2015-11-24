@@ -9,7 +9,7 @@ require('n3-line-chart');
 require('bootstrap-dropdown');
 require('../scss/_vendor.scss');
 
-angular.module('app', [
+var app = angular.module('app', [
     'rx',
     'n3-line-chart',
     'ui.router',
@@ -25,3 +25,11 @@ angular.module('app', [
     require('./indicators/_indicators.module.js').name,
     require('./selected-countries/_selected-countries.module.js').name
 ]);
+
+app.config(config);
+
+config.$inject = ['$compileProvider'];
+
+function config($compileProvider) {
+    $compileProvider.debugInfoEnabled(false);
+}
