@@ -11,36 +11,10 @@ function seriesView() {
         restrict: 'EA',
         template: require('./seriesView.html'),
         scope: {},
-        controller: seriesViewController,
+        controller: require('./series-view.controller.js'),
         controllerAs: 'vm',
         bindToController: true
     };
 
     return directive;
-}
-
-seriesViewController.$inject = ['settings'];
-
-function seriesViewController(settings) {
-    /* jshint validthis: true */
-    var vm = this;
-
-    vm.selectedType = '';
-
-    vm.activate = activate;
-    vm.selectType = selectType
-
-    activate();
-
-    ////////////////
-
-    function activate() {
-        settings.seriesTypeObservable.subscribe(function (type) {
-            vm.selectedType = type;
-        })
-    }
-
-    function selectType() {
-        settings.setSeriesType(vm.selectedType);
-    }
 }
