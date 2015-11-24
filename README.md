@@ -1,6 +1,6 @@
 #World Bank Data Viewer
 
-##AngularJS SPA web application built on top of [World Bank](http://www.worldbank.org/) indicators data.
+AngularJS SPA web application built on top of [World Bank](http://www.worldbank.org/) indicators data.
 
 To run development environment
 
