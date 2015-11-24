@@ -1,6 +1,9 @@
 @import "../../scss/_modules";
 
 .header {
+    display: flex;
+    justify-content: space-between;
+
     height: $header_height;
     background: $brand-primary;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -15,11 +18,31 @@
     color: white;
     font-size: 3.4rem;
     line-height: 4.2rem;
-
     padding: 0 $spacer-horizontal 0 $spacer-horizontal * 2;
 
     @include height-breakpoint($phone_height_breakpoint){
         font-size: 2rem;
         line-height: 2rem;
+    }
+}
+
+.world-bank__container{
+    display: flex;
+    align-items: center;
+
+    @include height-breakpoint($phone_height_breakpoint){
+        display: none;
+    }
+}
+
+.world-bank__link{
+    font-size: 1.4rem;
+    color: white;
+    opacity: 0.7;
+    padding-right: $spacer-horizontal*2;
+
+    &:hover{
+        color: white;
+        opacity: 1;
     }
 }
