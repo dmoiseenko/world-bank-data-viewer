@@ -9,7 +9,7 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
-    "test-unit": "gulp test-unit"
+    "test": "gulp test-unit"
   },
   "author": "Denis Moiseenko",
   "license": "MIT",
