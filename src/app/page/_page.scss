@@ -33,3 +33,13 @@ body {
     }
 }
 
+.splash {
+    display: none;
+    margin-top: 40%;
+    text-align: center;
+}
+
+[ng-cloak].splash {
+    display: block !important;
+}
+
