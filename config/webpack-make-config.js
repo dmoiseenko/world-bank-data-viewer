@@ -3,7 +3,6 @@ var webpack = require('webpack');
 var bower_dir = path.resolve(__dirname, '../bower_components');
 var node_dir = path.resolve(__dirname, '../node_modules');
 var app = path.resolve(__dirname, '../src/app');
-var autoprefixer = require('autoprefixer');
 var cssnano = require('cssnano');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -97,11 +96,22 @@ module.exports = function (options) {
             mangle: {
                 except: ['$q']
             },
-            sourceMap: false
+            sourceMap: false,
+            output:{
+                comments: false
+            }
         }));
 
         postcss = function () {
-            return [cssnano, autoprefixer];
+            return [cssnano({
+                discardComments: {
+                    removeAll: true
+                },
+                autoprefixer: {
+                    add: true,
+                    browsers: ['last 2 versions']
+                }
+            })];
         };
     }
 
