@@ -7,7 +7,6 @@
     background: $brand-primary;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     width: max-content;
-    //width: -moz-max-content;
     @include height-breakpoint($phone_height_breakpoint) {
         height: $footer_height_phone;
     }
@@ -15,8 +14,8 @@
 
 .footer--label {
     color: white;
-    font-size: 1.4rem;
-    line-height: 2.8rem;
+    font-size: 1.3rem;
+    line-height: 2.6rem;
     padding-left: $spacer-horizontal*2;
     padding-right: $spacer-horizontal;
 
