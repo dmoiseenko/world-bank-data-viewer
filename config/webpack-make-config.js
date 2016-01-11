@@ -13,7 +13,8 @@ module.exports = function (options) {
 
     var output = {
         path: options.dir,
-        filename: 'bundle.[hash].js'
+        filename: '[name].[chunkhash].js',
+        chunkFileName: '[id].js'
     };
 
     if (options.sourcemaps) {
@@ -45,11 +46,11 @@ module.exports = function (options) {
                 "style",
                 "css?sourceMap!postcss!sass?sourceMap")
         },
-        {test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff"},
-        {test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff"},
-        {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream"},
-        {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file"},
-        {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml"}
+        { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
+        { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
+        { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
+        { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
+        { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" }
     ];
 
     var postcss = function () {
@@ -57,15 +58,15 @@ module.exports = function (options) {
     };
 
     var plugins = [
-        new ExtractTextPlugin('styles.[hash].css'),
+        new ExtractTextPlugin('[name].[contenthash].css'),
         new webpack.ProvidePlugin({
-                _: 'lodash',
-                $: 'jquery',
-                jQuery: 'jquery',
-                moment: 'moment',
-                d3: 'd3'
-            }
-        ),
+            _: 'lodash',
+            $: 'jquery',
+            jQuery: 'jquery',
+            moment: 'moment',
+            d3: 'd3'
+        }
+            ),
         new HtmlWebpackPlugin({
             template: './src/index.html',
             inject: true
@@ -73,7 +74,7 @@ module.exports = function (options) {
     ];
 
     if (options.chunk) {
-        plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendor.[hash].js'));
+        plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendor.[chunkhash].js'));
         plugins.push(new webpack.optimize.AggressiveMergingPlugin({}));
 
         entry.vendors = ['angular',
@@ -97,7 +98,7 @@ module.exports = function (options) {
                 except: ['$q']
             },
             sourceMap: false,
-            output:{
+            output: {
                 comments: false
             }
         }));
