@@ -1,7 +1,7 @@
 {
   "name": "Worl-Bank-Data-Viewer",
   "version": "1.0.0",
-  "description": "Worl Bank Data Viewer",
+  "description": "World Bank Data Viewer",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lampas21/world-bank-data-viewer.git"
