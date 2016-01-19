@@ -23,6 +23,7 @@ module.exports = {
             'rx-angular',
             'restangular',
             'jquery',
+            'lodash',
             'bootstrap-dropdown',
             'moment']
     },
@@ -40,6 +41,7 @@ module.exports = {
         alias: {
             'n3-line-chart': bower_dir + '/n3-line-chart/build/line-chart.min.js',
             'bootstrap-dropdown': node_dir + '/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js',
+            'lodash': node_dir + '/lodash-custom-restangular/lodash.custom.js'
         }
     },
 
@@ -64,6 +66,7 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery',
             moment: 'moment',
+            _: 'lodash',
             d3: 'd3'
         })
     ],
