@@ -24,7 +24,6 @@ module.exports = {
             'n3-line-chart',
             'rx',
             'rx-angular',
-            'lodash',
             'restangular',
             'jquery',
             'bootstrap-dropdown',
@@ -65,7 +64,6 @@ module.exports = {
         }),
         new ExtractTextPlugin('[name].[contenthash].css'),
         new webpack.ProvidePlugin({
-            _: 'lodash',
             $: 'jquery',
             jQuery: 'jquery',
             moment: 'moment',
