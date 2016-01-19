@@ -7,9 +7,8 @@
     "url": "git+https://github.com/lampas21/world-bank-data-viewer.git"
   },
   "scripts": {
-    "dev": "webpack-dev-server --inline --hot --config ./config/webpack.dev.config.js",
-    "build": "gulp build",
-    "test": "gulp test-unit"
+    "dev": "webpack-dev-server --inline --hot --config ./config/webpack.devevelopment.js",
+    "build": "webpack --config ./config/webpack.production.js"
   },
   "author": "Denis Moiseenko",
   "license": "MIT",
@@ -27,6 +26,7 @@
     "browser-sync": "^2.5.3",
     "chai": "^3.4.1",
     "chai-as-promised": "^5.1.0",
+    "clean-webpack-plugin": "^0.1.6",
     "css-loader": "^0.22.0",
     "cssnano": "^3.3.2",
     "d3": "^3.5.6",
