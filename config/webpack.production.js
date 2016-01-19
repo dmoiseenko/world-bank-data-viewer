@@ -10,7 +10,7 @@ var build = path.resolve(__dirname, '../build');
 
 var config = require('./webpack.base.js');
 
-config.output.path = path.resolve(__dirname, '../.build');
+config.output.path = build;
 
 config.plugins.push(new ExtractTextPlugin('[name].[contenthash].css'));
 config.plugins.push(new CleanWebpackPlugin(build, { verbose: true }));
@@ -38,7 +38,7 @@ config.postcss = function () {
             browsers: ['last 2 versions']
         }
     })];
-}
+};
 
 config.output.filename = '[name].[chunkhash].js';
 

@@ -16,19 +16,19 @@ module.exports = {
         app: ['./app.module.js'],
         vendors: ['angular',
             'angular-ui-router',
-            'd3',
-            'n3-line-chart',
             'rx',
             'rx-angular',
             'restangular',
             'jquery',
             'lodash',
             'bootstrap-dropdown',
-            'moment']
+            'moment',
+            'd3',
+            'n3-line-chart']
     },
 
     output: {
-        publicPath: '/',
+        //publicPath: '/',
         filename: '[name].js',
         chunkFileName: '[id].js'
     },
@@ -37,7 +37,7 @@ module.exports = {
         modulesDirectories: ['node_modules', 'bower_components'],
         extensions: ['', '.js'],
         alias: {
-            'n3-line-chart': bower_dir + '/n3-line-chart/build/line-chart.min.js',
+            'n3-line-chart': bower_dir + '/n3-line-chart/build/line-chart.js',
             'bootstrap-dropdown': node_dir + '/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js',
         }
     },
@@ -58,7 +58,7 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery',
             moment: 'moment',
-            //_: 'lodash',
+            _: 'lodash',
             d3: 'd3'
         })
     ],
@@ -73,35 +73,11 @@ module.exports = {
                 loader: ExtractTextPlugin.extract(
                     'style',
                     'css?sourceMap!postcss!sass?sourceMap')
-            },
-            {
-                test: /sinon\.js$/,
-                loader: "imports?define=>false,require=>false"
-            },
-            {
-                test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&mimetype=application/font-woff'
-            },
-            {
-                test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&mimetype=application/font-woff'
-            },
-            {
-                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&mimetype=application/octet-stream'
-            },
-            {
-                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "file"
-            },
-            {
-                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&mimetype=image/svg+xml'
             }
         ]
     },
 
-    postcss: function(){
+    postcss: function () {
         return [];
     }
 };

@@ -4,15 +4,12 @@ require('angular');
 require('angular-ui-router');
 require('rx');
 require('rx-angular');
-require('moment');
-require('n3-line-chart');
 require('bootstrap-dropdown');
 require('../scss/_vendor.scss');
 
 
 var app = angular.module('app', [
     'rx',
-    'n3-line-chart',
     'ui.router',
     require('./core/_core.module.js').name,
     require('./api/_api.module.js').name,

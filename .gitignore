@@ -38,6 +38,7 @@ journal
 *.so
 report/
 build/
+.build/
 .tmp/
 .vscode/
 

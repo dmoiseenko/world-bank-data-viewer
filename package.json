@@ -59,6 +59,7 @@
   "dependencies": {
     "d3": "^3.5.12",
     "lodash-custom-restangular": "0.0.5",
-    "moment": "^2.11.1"
+    "moment": "^2.11.1",
+    "oclazyload": "^1.0.9"
   }
 }
