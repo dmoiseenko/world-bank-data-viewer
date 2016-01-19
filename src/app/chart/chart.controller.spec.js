@@ -4,6 +4,8 @@ require('angular');
 require('angular-mocks/angular-mocks');
 require('rx');
 require('rx-angular');
+var chai = require('chai');
+var expect = chai.expect;
 
 angular.module('app.chart', ['rx'])
     .controller('chartController', require('./chart.controller'));

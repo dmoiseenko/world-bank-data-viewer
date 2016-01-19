@@ -9,6 +9,8 @@ require('n3-line-chart');
 require('bootstrap-dropdown');
 require('../scss/_vendor.scss');
 
+
+
 var app = angular.module('app', [
     'rx',
     'n3-line-chart',
