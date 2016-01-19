@@ -7,7 +7,6 @@ var webpack = require('webpack');
 
 var bower_dir = path.resolve(__dirname, '../bower_components');
 var node_dir = path.resolve(__dirname, '../node_modules');
-var build = path.resolve(__dirname, '../.build');
 var app = path.resolve(__dirname, '../src/app');
 
 module.exports = {
@@ -40,7 +39,6 @@ module.exports = {
         alias: {
             'n3-line-chart': bower_dir + '/n3-line-chart/build/line-chart.min.js',
             'bootstrap-dropdown': node_dir + '/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js',
-            'lodash': node_dir + '/lodash-custom-restangular/lodash.custom.js'
         }
     },
 
@@ -60,7 +58,7 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery',
             moment: 'moment',
-            _: 'lodash',
+            //_: 'lodash',
             d3: 'd3'
         })
     ],
