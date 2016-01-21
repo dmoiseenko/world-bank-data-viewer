@@ -28,6 +28,8 @@ module.exports = function (wallaby) {
 
         postprocessor: webpackPostprocessor,
 
+        testFramework: 'mocha',
+
         bootstrap: function () {
             window.__moduleBundler.loadTests();
         }
