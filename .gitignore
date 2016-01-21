@@ -41,6 +41,7 @@ build/
 .build/
 .tmp/
 .vscode/
+/typings
 
 # Packages #
 ############
