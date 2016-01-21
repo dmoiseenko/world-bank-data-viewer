@@ -73,8 +73,16 @@ module.exports = {
                 loader: ExtractTextPlugin.extract(
                     'style',
                     'css?sourceMap!postcss!sass?sourceMap')
+            },
+            {
+                test: /sinon\/pkg\/sinon\.js/,
+                loader: 'imports?define=>false,require=>false'
             }
-        ]
+        ],
+        noParse: [
+            // TODO: Temporary workaround until Sinon works with Webpack.
+            /node_modules\/sinon\//,
+        ],
     },
 
     postcss: function () {

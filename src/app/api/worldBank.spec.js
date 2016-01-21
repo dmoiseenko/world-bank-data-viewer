@@ -2,11 +2,12 @@
 
 require('angular');
 require('angular-mocks/angular-mocks');
-require('lodash');
+require('lodash-custom-restangular');
 require('restangular');
 var chai = require('chai');
 var expect = chai.expect;
 var sinon = require('sinon/pkg/sinon');
+
 
 angular.module('app.api', ['restangular'])
     .factory('worldBank', require('./worldBank'));
