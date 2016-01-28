@@ -28,7 +28,6 @@ module.exports = {
     },
 
     output: {
-        //publicPath: '/',
         filename: '[name].js',
         chunkFileName: '[id].js'
     },
@@ -80,9 +79,7 @@ module.exports = {
             }
         ],
         noParse: [
-            // TODO: Temporary workaround until Sinon works with Webpack.
-            /node_modules\/sinon\//,
-        ],
+        ]
     },
 
     postcss: function () {
