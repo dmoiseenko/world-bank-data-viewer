@@ -8,7 +8,8 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --config ./config/webpack.development.js",
-    "build": "webpack --progress --display-chunks --display-modules --config ./config/webpack.production.js"
+    "build": "webpack --progress --display-chunks --display-modules --config ./config/webpack.production.js",
+    "unit": "karma start"
   },
   "author": "Denis Moiseenko",
   "license": "MIT",
