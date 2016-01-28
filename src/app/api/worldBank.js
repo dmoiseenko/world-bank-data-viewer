@@ -12,38 +12,39 @@ function worldBank(Restangular) {
         getDataByIndicator: getDataByIndicator,
         getDataByIndicatorAndCountry: getDataByIndicatorAndCountry,
         getIndicators: getIndicators,
-        getList: getList
+        getData: getData,
+        rest: Restangular
     };
 
     return service;
 
     ////////////////
 
-    function getList(path){
+    function getData(path){
         return Restangular.all(path).getList();
     }
 
     function getCountries() {
-        return service.getList('countries');
+        return service.getData('countries');
     }
 
     function getTopics() {
-        return service.getList('topics');
+        return service.getData('topics');
     }
 
     function getIndicatorsByTopic(topic) {
-        return service.getList('topic/' + topic.id + '/indicator');
+        return service.getData('topic/' + topic.id + '/indicator');
     }
 
     function getIndicators() {
-        return service.getList('indicators');
+        return service.getData('indicators');
     }
 
     function getDataByIndicator(indicator) {
-        return service.getList('countries/all/indicators/' + indicator.id);
+        return service.getData('countries/all/indicators/' + indicator.id);
     }
 
     function getDataByIndicatorAndCountry(indicator, country) {
-        return service.getList('countries/' + country.iso2Code + '/indicators/' + indicator.id);
+        return service.getData('countries/' + country.iso2Code + '/indicators/' + indicator.id);
     }
 }

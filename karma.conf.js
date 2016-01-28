@@ -1,8 +1,6 @@
 var webpack = require('webpack');
-var webpackConfig = require('./config/webpack.test');
 webpackConfig  = {};
 var preprocessors = {};
-//var entry = './src/app/**/**.spec.js';
 var entry = './test/unit.js';
 preprocessors[entry] = ['webpack'];
 
