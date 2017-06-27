@@ -5,7 +5,7 @@ module.exports = configure;
 configure.$inject = ['RestangularProvider'];
 
 function configure(RestangularProvider) {
-    RestangularProvider.setBaseUrl('http://api.worldbank.org');
+    RestangularProvider.setBaseUrl('https://api.worldbank.org');
     RestangularProvider.setJsonp(true);
     RestangularProvider.setDefaultRequestParams('jsonp', {
         format: 'jsonP',
